@@ -6,7 +6,8 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
+  height: 100vh;
+  width: 100vw;
 `;
 
 

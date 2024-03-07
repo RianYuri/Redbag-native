@@ -1,14 +1,15 @@
 import { Path, Svg, SvgUri, Text } from "react-native-svg";
 import * as React from "react";
 import { Container } from "./styles";
-import Rectangle from "@/assets/rectangle";
-
+import RectangleTop from "@/assets/rectangleTop";
+import ReactangleBot from "@/assets/rectangleBot.svg";
 const Login = () => {
   return (
     <Container>
-      <Rectangle />
+      <RectangleTop />
       
-      <Rectangle transform={"rotate(180 214 69.5)"} />
+      <ReactangleBot width="100" height="100"/>
+
     </Container>
   );
 };

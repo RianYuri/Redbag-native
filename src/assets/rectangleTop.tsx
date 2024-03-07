@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-const Rectangle = ({transform}:any ) => {
+const RectangleTop = ({transform}:any ) => {
   return (
     <Svg
       width={428}
@@ -21,4 +21,4 @@ const Rectangle = ({transform}:any ) => {
   )
 }
 
-export default Rectangle;
+export default RectangleTop;
