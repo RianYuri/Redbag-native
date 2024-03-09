@@ -1,23 +1,22 @@
-import { Container, Title } from "./styles";
-import { router } from "expo-router";
-import React, { useCallback, useEffect } from "react";
+import { Container, Title } from './styles';
+import { router } from 'expo-router';
+import React, { useCallback, useEffect } from 'react';
+import LogoAnimRedBag from '@/assets/logo__anim.svg';
 const Index = () => {
-const navigateToLogin = useCallback(() => {
-  router.push('/login/login');
-}, []); 
-useEffect(() => {
-   
+  const navigateToLogin = useCallback(() => {
+    router.push('/login/');
+  }, []);
+  useEffect(() => {
+    const timeoutId = setTimeout(navigateToLogin, 2000);
 
-  const timeoutId = setTimeout(navigateToLogin, 2000);
-
-  return () => clearTimeout(timeoutId);
-}, []);
-  return(
-
-    <Container >
-    <Title>Red Bag</Title>
-  </Container>
-    )
+    return () => clearTimeout(timeoutId);
+  }, []);
+  return (
+    <Container>
+      <LogoAnimRedBag width={100} height={100} />
+      <Title>Red Bag</Title>
+    </Container>
+  );
 };
 
 export default Index;
