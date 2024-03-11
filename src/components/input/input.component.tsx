@@ -7,15 +7,19 @@ const Input = ({
   autoCapitalize,
   secureTextEntry,
   labelName,
+  onChangeText,
+  value
 }: InputProps) => {
   return (
     <InputContainer>
       <TextInput
+        autoCapitalize={autoCapitalize}
+        cursorColor={theme.colors.thirdRedColor}
         isFocused={true}
         inputMode={inputMode}
-        autoCapitalize={autoCapitalize}
+        onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
-        cursorColor={theme.colors.thirdRedColor}
+        value={value}
       />
       <LabelInput isFocused={true}>{labelName}</LabelInput>
     </InputContainer>

@@ -4,21 +4,27 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 `;
-
+export const RectangleTop = styled.Image`
+  position: absolute;
+  top: 0;
+  z-index: -1;
+`;
+export const ReactangleBot = styled.Image`
+  position: relative;
+  bottom: 0;
+  z-index: -1;
+`;
 export const LoginFormContainer = styled.KeyboardAvoidingView`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0 25px 0px;
-  position: relative;
-  top: -50px;
+  padding: 50px 25px 0px;
 `;
 
 export const LogoCat = styled.Image`
@@ -33,11 +39,13 @@ export const Content = styled.View`
   flex-direction: column;
   gap: 30px;
   padding-top: 60px;
+  padding-bottom: 3px;
 `;
 
 export const ContinueButton = styled.Pressable`
   width: 100%;
   height: 50px;
+  display: flex;
   background-color: ${theme.colors.fourthRedColor};
   align-items: center;
   justify-content: center;
