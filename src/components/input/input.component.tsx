@@ -1,7 +1,13 @@
+import { theme } from '@/themes';
 import { InputContainer, LabelInput, TextInput } from './style';
 import { InputProps } from '@/app/login/types';
 
-const Input  = ({ inputMode, autoCapitalize, secureTextEntry,labelName }:InputProps) => {
+const Input = ({
+  inputMode,
+  autoCapitalize,
+  secureTextEntry,
+  labelName,
+}: InputProps) => {
   return (
     <InputContainer>
       <TextInput
@@ -9,6 +15,7 @@ const Input  = ({ inputMode, autoCapitalize, secureTextEntry,labelName }:InputPr
         inputMode={inputMode}
         autoCapitalize={autoCapitalize}
         secureTextEntry={secureTextEntry}
+        cursorColor={theme.colors.thirdRedColor}
       />
       <LabelInput isFocused={true}>{labelName}</LabelInput>
     </InputContainer>

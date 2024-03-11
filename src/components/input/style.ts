@@ -2,7 +2,7 @@ import { theme } from '@/themes';
 import styled from 'styled-components/native';
 import { LabelInputProps } from '../../app/login/types';
 
-export const InputContainer = styled.KeyboardAvoidingView`
+export const InputContainer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,8 @@ export const LabelInput = styled.Text<LabelInputProps>`
   color: ${({ isFocused }) =>
     isFocused ? theme.colors.thirdRedColor : theme.colors.gray};
   padding-left: 5%;
-  transform: translateY(${({ isFocused }) => (isFocused ? '-20px' : '0px')}) scale(0.8);
+  transform: translateY(${({ isFocused }) => (isFocused ? '-20px' : '0px')})
+    scale(0.8);
 `;
 export const TextInput = styled.TextInput<LabelInputProps>`
   background: rgba(51, 51, 51, 0.06);
@@ -25,11 +26,10 @@ export const TextInput = styled.TextInput<LabelInputProps>`
   width: 100%;
   height: 56px;
   padding-left: 5%;
-
-  caret-color: ${theme.colors.thirdRedColor};
   border-bottom-color: ${({ isFocused }) =>
     isFocused ? theme.colors.thirdRedColor : theme.colors.gray};
   border-bottom-width: 2px;
   font-family: ${theme.fonts.text.regular};
   padding-top: 2%;
+  outline-style: none;
 `;
