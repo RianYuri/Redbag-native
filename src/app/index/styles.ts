@@ -8,9 +8,8 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Image = styled.Image`
-  width: 194px;
-  height: 203px;
+export const LogoRedBag = styled.Image`
+opacity: 1;
 `;
 
 export const Title = styled.Text`

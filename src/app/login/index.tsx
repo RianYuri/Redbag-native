@@ -14,8 +14,16 @@ import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.compone
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { FormData } from './types';
+import * as yup from "yup"
+import {yupResolver} from "@hookform/resolvers/yup";
 const Login = () => {
-  const { control, handleSubmit } = useForm<FormData>();
+  const schema = yup.object({
+      email:yup.string().email("E-mail inválido").required("Informe o seu email"),
+      password:yup.string().required("Informe sua senha")
+  })
+  const { control, handleSubmit } = useForm<FormData>({
+    resolver:yupResolver(schema)
+  });
   const handleUserLogin = (data: FormData) => {
     console.log(data)
   };

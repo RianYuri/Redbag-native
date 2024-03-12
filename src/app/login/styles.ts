@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -46,6 +47,7 @@ export const ContinueButton = styled.Pressable`
   width: 100%;
   height: 50px;
   display: flex;
+  border-radius: 3px;
   background-color: ${theme.colors.fourthRedColor};
   align-items: center;
   justify-content: center;
