@@ -15,6 +15,20 @@ export const RectangleTop = styled.Image`
   z-index: -1;
 `;
 export const ReactangleBot = styled.Image`
+  position: absolute;
+`;
+export const NotHaveAccount = styled.Text`
+font-family: ${theme.fonts.text.regular};
+font-size: 16px;
+color: ${theme.colors.white};
+padding-top: 33px;
+z-index: 1;
+text-decoration: underline;
+`;
+export const RectangleBotContent = styled.View`
+  display: flex;
+  justify-content: start;
+  align-items: center;
   position: relative;
   bottom: 0;
   z-index: -1;

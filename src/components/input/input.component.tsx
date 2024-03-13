@@ -15,13 +15,13 @@ const Input = ({
       <TextInput
         autoCapitalize={autoCapitalize}
         cursorColor={theme.colors.thirdRedColor}
-        isFocused={true}
+        isFocused={value}
         inputMode={inputMode}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         value={value}
       />
-      <LabelInput isFocused={true}>{labelName}</LabelInput>
+      <LabelInput isFocused={value}>{labelName}</LabelInput>
     </InputContainer>
   );
 };

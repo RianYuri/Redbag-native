@@ -5,7 +5,9 @@ import {
   ContinueButton,
   LoginFormContainer,
   LogoCat,
+  NotHaveAccount,
   ReactangleBot,
+  RectangleBotContent,
   RectangleTop,
   TextButton,
 } from './styles';
@@ -14,18 +16,25 @@ import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.compone
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { FormData } from './types';
-import * as yup from "yup"
-import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 const Login = () => {
   const schema = yup.object({
-      email:yup.string().email("E-mail inválido").required("Informe o seu email"),
-      password:yup.string().required("Informe sua senha")
-  })
-  const { control, handleSubmit } = useForm<FormData>({
-    resolver:yupResolver(schema)
+    email: yup
+      .string()
+      .email('E-mail inválido')
+      .required('Informe o seu email'),
+    password: yup.string().required('Informe sua senha'),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
   });
   const handleUserLogin = (data: FormData) => {
-    console.log(data)
+    console.log(data);
   };
   return (
     <Container>
@@ -40,12 +49,14 @@ const Login = () => {
               labelName="Email"
               inputMode="email"
               autoCapitalize="none"
+              error={errors.email}
             />
             <ControlledInput
               name="password"
               control={control}
               labelName="Senha"
               secureTextEntry={true}
+              error={errors.password}
             />
           </Content>
           <CheckboxForget />
@@ -54,7 +65,12 @@ const Login = () => {
           </ContinueButton>
         </LoginFormContainer>
       </TouchableWithoutFeedback>
+      <RectangleBotContent>
+        <NotHaveAccount>
+        Não possui uma conta?
+        </NotHaveAccount>
       <ReactangleBot source={require('@/assets/rectangleBot.png')} />
+      </RectangleBotContent>
     </Container>
   );
 };
