@@ -1,6 +1,3 @@
-import { SetStateAction } from 'react';
-import { FieldError } from 'react-hook-form';
-
 export type LabelInputProps = {
   isFocused: boolean;
   inputMode?: string;

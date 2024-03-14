@@ -14,6 +14,7 @@ import {
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
 import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.component';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { router } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { FormData } from './types';
 import * as yup from 'yup';
@@ -66,10 +67,10 @@ const Login = () => {
         </LoginFormContainer>
       </TouchableWithoutFeedback>
       <RectangleBotContent>
-        <NotHaveAccount>
-        Não possui uma conta?
+        <NotHaveAccount onPress={() => router.push('/register/')}>
+          Não possui uma conta?
         </NotHaveAccount>
-      <ReactangleBot source={require('@/assets/rectangleBot.png')} />
+        <ReactangleBot source={require('@/assets/rectangleBot.png')} />
       </RectangleBotContent>
     </Container>
   );

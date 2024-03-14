@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -18,12 +18,12 @@ export const ReactangleBot = styled.Image`
   position: absolute;
 `;
 export const NotHaveAccount = styled.Text`
-font-family: ${theme.fonts.text.regular};
-font-size: 16px;
-color: ${theme.colors.white};
-padding-top: 33px;
-z-index: 1;
-text-decoration: underline;
+  font-family: ${theme.fonts.text.regular};
+  font-size: 16px;
+  color: ${theme.colors.white};
+  padding-top: 33px;
+  z-index: 1;
+  text-decoration: underline;
 `;
 export const RectangleBotContent = styled.View`
   display: flex;
