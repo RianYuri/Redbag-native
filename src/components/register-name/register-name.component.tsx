@@ -3,12 +3,9 @@ import {
   BackButton,
   ButtonContent,
   CircleStep,
-  Container,
   Content,
   ContinueButton,
   FormRegister,
-  RectangleBot,
-  RectangleTop,
   StepContainer,
   SubtitleInput,
   TextContinue,
@@ -33,36 +30,32 @@ const RegisterName = () => {
     resolver: yupResolver(schema),
   });
   return (
-    <Container>
-      <RectangleTop source={require('@/assets/rectangleTop.png')} />
-      <Content  >
-        <TextHeader>Vamos lá!</TextHeader>
-        <Undraw />
-        <StepContainer>
-          <CircleStep isStep />
-          <CircleStep />
-          <CircleStep />
-        </StepContainer>
-        <SubtitleInput>Como podemos chamá-lo(a)?</SubtitleInput>
-        <FormRegister behavior="padding">
-          <ControlledInput
-            name="name"
-            control={control}
-            labelName="Nome"
-            error={errors.name}
-          />
-        </FormRegister>
-        <ButtonContent>
-          <BackButton>
-            <BackIcon />
-          </BackButton>
-          <ContinueButton>
-            <TextContinue>Continuar</TextContinue>
-          </ContinueButton>
-        </ButtonContent>
-      </Content>
-      <RectangleBot source={require('@/assets/rectangleBotRegister.png')} />
-    </Container>
+    <Content>
+      <TextHeader>Vamos lá!</TextHeader>
+      <Undraw />
+      <StepContainer>
+        <CircleStep isStep />
+        <CircleStep />
+        <CircleStep />
+      </StepContainer>
+      <SubtitleInput>Como podemos chamá-lo(a)?</SubtitleInput>
+      <FormRegister behavior="padding">
+        <ControlledInput
+          name="name"
+          control={control}
+          labelName="Nome"
+          error={errors.name}
+        />
+      </FormRegister>
+      <ButtonContent>
+        <BackButton>
+          <BackIcon />
+        </BackButton>
+        <ContinueButton>
+          <TextContinue>Continuar</TextContinue>
+        </ContinueButton>
+      </ButtonContent>
+    </Content>
   );
 };
 

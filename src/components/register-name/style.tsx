@@ -1,26 +1,7 @@
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 import { CircleProps } from './types';
-export const Container = styled.View`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
 
-export const RectangleTop = styled.Image`
-  position: absolute;
-  top: 0;
-`;
-
-export const RectangleBot = styled.Image`
-  position: relative;
-  z-index: -1;
-  bottom: 0;
-`;
 
 export const Content = styled.View`
   width: 100%;
