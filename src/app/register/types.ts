@@ -1,8 +1,16 @@
+import { ImageProps } from "react-native";
+
 export type CircleProps = {
-    isStep?:boolean;
-}
+  isStep?: boolean;
+};
 
 export type FormData = {
-    name: string;
-   
-  };
+  name: string;
+};
+
+export type RegisterListProps = {
+  image: ImageProps;
+  description: string;
+  name: string;
+  labbelName: string;
+};

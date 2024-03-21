@@ -8,7 +8,13 @@ export const Container = styled.View`
   width: 100vw;
   height: 100%;
 `;
+export const Content = styled.View`
+  width: 100%;
+ display: flex;
+  align-items: center;
 
+  
+`;
 export const RectangleTop = styled.Image`
   position: absolute;
   top: 0;

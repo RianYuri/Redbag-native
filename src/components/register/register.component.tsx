@@ -10,15 +10,15 @@ import {
   SubtitleInput,
   TextContinue,
   TextHeader,
+  UndrawImage,
 } from './style';
-import Undraw from '@/assets/undrawName.svg';
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { FormData } from './types';
+import { FormData, RegisterNameProps } from './types';
 import BackIcon from '@/assets/backIcon.svg';
-const RegisterName = () => {
+const RegisterStep = (props: RegisterNameProps) => {
   const schema = yup.object({
     name: yup.string().required('Informe sua senha'),
   });
@@ -32,26 +32,26 @@ const RegisterName = () => {
   return (
     <Content>
       <TextHeader>Vamos lá!</TextHeader>
-      <Undraw />
+      <UndrawImage source={props.image} />
       <StepContainer>
         <CircleStep isStep />
         <CircleStep />
         <CircleStep />
       </StepContainer>
-      <SubtitleInput>Como podemos chamá-lo(a)?</SubtitleInput>
+      <SubtitleInput>{props.description}</SubtitleInput>
       <FormRegister behavior="padding">
         <ControlledInput
-          name="name"
+          name={props.name}
           control={control}
-          labelName="Nome"
+          labelName={props.labelName}
           error={errors.name}
         />
       </FormRegister>
       <ButtonContent>
-        <BackButton>
+        <BackButton onPress={props.handleRegisterBack}>
           <BackIcon />
         </BackButton>
-        <ContinueButton>
+        <ContinueButton onPress={props.handleRegisterName}>
           <TextContinue>Continuar</TextContinue>
         </ContinueButton>
       </ButtonContent>
@@ -59,4 +59,4 @@ const RegisterName = () => {
   );
 };
 
-export default RegisterName;
+export default RegisterStep;

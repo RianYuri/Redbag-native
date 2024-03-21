@@ -4,12 +4,12 @@ import { CircleProps } from './types';
 
 
 export const Content = styled.View`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px 0px 32px;
   gap: 30px;
+  padding: 80px 20px 0px 32px;
+  
 `;
 
 export const TextHeader = styled.Text`
@@ -80,3 +80,8 @@ export const TextContinue = styled.Text`
   color: ${theme.colors.white};
   text-transform: uppercase;
 `;
+
+export const UndrawImage = styled.Image`
+height: 240px;
+aspect-ratio: 1;
+`
