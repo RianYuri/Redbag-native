@@ -9,3 +9,9 @@ background-color: ${theme.colors.firstRedColor};
 flex-direction: column;
 gap: 30px;
 `
+
+export const TextLoading = styled.Text`
+font-family: ${theme.fonts.text.regular};
+font-size: 16px;
+color: ${theme.colors.white};
+`
