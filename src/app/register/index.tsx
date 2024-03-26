@@ -3,11 +3,11 @@ import React from 'react';
 import { Container, Content, RectangleBot, RectangleTop } from './style';
 import { FlatList } from 'react-native';
 import { registerList } from '@/data/registerList';
-import { RegisterListProps } from './types';
+import Loading from '@/components/loading/loading.component';
 const Register = () => {
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const registerListRef = React.useRef<any>(null);
-
+  const [isLoading, setIsLoading] = React.useState(false);
   const totalStepRegister = registerList.length - 1;
 
   const calculateNewIndex = (currentIndex: number, step: number) => {
@@ -23,6 +23,10 @@ const Register = () => {
       });
       setCurrentRegister(newIndex);
     }
+    if (currentRegister === 2) {
+      console.log(currentRegister);
+      setIsLoading(true);
+    }
   };
 
   const handleRegisterBack = () => {
@@ -33,7 +37,9 @@ const Register = () => {
     });
     setCurrentRegister(newIndex);
   };
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
       <Content>
