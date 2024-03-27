@@ -4,6 +4,7 @@ import { Container, Content, RectangleBot, RectangleTop } from './style';
 import { FlatList } from 'react-native';
 import { registerList } from '@/data/registerList';
 import Loading from '@/components/loading/loading.component';
+import { router } from 'expo-router';
 const Register = () => {
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const registerListRef = React.useRef<any>(null);
@@ -26,6 +27,9 @@ const Register = () => {
     if (currentRegister === 2) {
       console.log(currentRegister);
       setIsLoading(true);
+      setTimeout(() => {
+        router.push('/home/');
+      }, 2000);
     }
   };
 
