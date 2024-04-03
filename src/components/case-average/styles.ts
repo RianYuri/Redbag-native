@@ -11,6 +11,9 @@ align-items: center;
 justify-content: center;
 padding: 0 20px;
 gap: 2px;
+border-width: 0.5px;
+border-color: #EEEEEE;
+
 `;
 
 export const TextNumberCases = styled.Text`

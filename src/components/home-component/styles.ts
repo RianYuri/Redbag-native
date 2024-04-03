@@ -8,6 +8,7 @@ export const Container = styled.View`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0 17px;
 `;
 
 export const HeaderHome = styled.View`
@@ -15,11 +16,6 @@ export const HeaderHome = styled.View`
   align-items: center;
   position: relative;
   width: 100%;
-`;
-export const RectangleTop = styled.Image`
-  position: absolute;
-  z-index: -1;
-  top: 0;
 `;
 
 export const TextDay = styled.Text`
@@ -29,10 +25,10 @@ export const TextDay = styled.Text`
 `;
 
 export const SectionCasesAnalysis = styled.View`
-width: 100%;
-display: flex;
-flex-direction: row;
-gap: 10px;
-align-items: center;
-justify-content: center;
-`
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+`;

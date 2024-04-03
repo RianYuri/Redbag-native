@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container } from './styles';
+import { Container, RectangleTop } from './styles';
 import HomeComponent from '@/components/home-component/home-component.component';
 
 const Home = () => {
   return (
     <Container>
+      <RectangleTop source={require('@/assets/rectangleTop.png')} />
       <HomeComponent />
     </Container>
   );

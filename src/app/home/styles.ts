@@ -5,6 +5,12 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  flex: 1;
+  padding: 0px;
+`;
 
-flex: 1;
+export const RectangleTop = styled.Image`
+  position: absolute;
+  z-index: -1;
+  top: 0;
 `;
