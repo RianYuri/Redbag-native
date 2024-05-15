@@ -6,8 +6,7 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+ flex: 1;
 `;
 export const RectangleTop = styled.Image`
   position: absolute;
@@ -15,7 +14,7 @@ export const RectangleTop = styled.Image`
   z-index: -1;
 `;
 export const ReactangleBot = styled.Image`
-  position: absolute;
+  position: relative;
 `;
 export const NotHaveAccount = styled.Text`
   font-family: ${theme.fonts.text.regular};
@@ -24,12 +23,13 @@ export const NotHaveAccount = styled.Text`
   padding-top: 33px;
   z-index: 1;
   text-decoration: underline;
+  position: absolute;
 `;
 export const RectangleBotContent = styled.View`
   display: flex;
   justify-content: start;
   align-items: center;
-  position: relative;
+  position: absolute;
   bottom: 0;
   z-index: -1;
 `;

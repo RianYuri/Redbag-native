@@ -9,10 +9,9 @@ export const Container = styled.View`
   height: 100%;
 `;
 export const Content = styled.View`
-  width: 100%;
  display: flex;
   align-items: center;
-
+flex: 1;
   
 `;
 export const RectangleTop = styled.Image`
