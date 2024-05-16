@@ -2,15 +2,13 @@ import { theme } from '@/themes';
 import styled from 'styled-components/native';
 import { CircleProps } from './types';
 
-
 export const Content = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   padding: 80px 20px 0px 32px;
   flex: 1;
-  
 `;
 
 export const TextHeader = styled.Text`
@@ -53,7 +51,7 @@ export const ButtonContent = styled.View`
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
 `;
 export const BackButton = styled.Pressable`
   width: 60px;
@@ -83,6 +81,6 @@ export const TextContinue = styled.Text`
 `;
 
 export const UndrawImage = styled.Image`
-height: 240px;
-aspect-ratio: 1;
-`
+  height: 240px;
+  aspect-ratio: 1;
+`;

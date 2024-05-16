@@ -12,7 +12,7 @@ const Index = () => {
   }, []);
   return (
     <Container>
-      <LogoRedBag source={require("@/assets/redBag.png")}/>
+      <LogoRedBag source={require('@/assets/redBag.png')} />
       <Title>Red Bag</Title>
     </Container>
   );

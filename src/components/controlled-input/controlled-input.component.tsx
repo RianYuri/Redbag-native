@@ -25,9 +25,7 @@ const ControlledInput = ({
           <Input onChangeText={onChange} value={value} {...rest} />
         )}
       />
-      {error && (
-          <Bakcdrop></Bakcdrop>
-      )}
+      {error && <Bakcdrop></Bakcdrop>}
     </>
   );
 };

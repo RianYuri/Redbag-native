@@ -19,7 +19,6 @@ export const LabelInput = styled.Text<LabelInputProps>`
   padding-left: 5%;
   transform: translateY(${({ isFocused }) => (isFocused ? '-20px' : '0px')})
     scale(${({ isFocused }) => (isFocused ? 0.8 : 1.0)});
-   
 `;
 export const TextInput = styled.TextInput<LabelInputProps>`
   background: rgba(51, 51, 51, 0.06);
@@ -32,5 +31,4 @@ export const TextInput = styled.TextInput<LabelInputProps>`
   border-bottom-width: 2px;
   font-family: ${theme.fonts.text.regular};
   padding-top: 2%;
-  outline-style: none;
 `;

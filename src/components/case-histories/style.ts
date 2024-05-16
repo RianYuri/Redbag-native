@@ -13,6 +13,7 @@ export const MonthlyHistory = styled.View`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 20px;
 `;
 
 export const HistoricText = styled.Text`
@@ -44,7 +45,7 @@ export const CaseGraph = styled.View`
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding-top:15px ;
+  padding-top: 15px;
 `;
 
 export const AnalysingCase = styled.View`
@@ -52,23 +53,23 @@ export const AnalysingCase = styled.View`
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap:12px;
+  gap: 12px;
 `;
 
 interface AnalysingCaseProps {
   color: string;
 }
 
-export const ContentCircleText= styled.View`
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 5px;
-`
+export const ContentCircleText = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+`;
 export const CircleGraph = styled.View<AnalysingCaseProps>`
   width: 7px;
   height: 7px;
-  border-radius: 28px;  
+  border-radius: 28px;
   background-color: ${({ color }) => color};
 `;
 export const TextGraph = styled.Text`

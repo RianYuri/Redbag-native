@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
- flex: 1;
+  flex: 1;
 `;
 export const RectangleTop = styled.Image`
   position: absolute;

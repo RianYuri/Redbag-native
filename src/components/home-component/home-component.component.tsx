@@ -7,14 +7,23 @@ import CaseHistories from '../case-histories/case-histories.component';
 const HomeComponent = () => {
   const getDate = () => {
     const date = new Date();
-    const day = date.getDate(); 
-  
+    const day = date.getDate();
 
     const months = [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
     ] as string[];
-    const monthName = months[date.getMonth()]; 
+    const monthName = months[date.getMonth()];
 
     return `${day - 1} de ${monthName}`;
   };

@@ -1,5 +1,4 @@
-import { ImageProps } from "react-native";
-
+import { ImageProps } from 'react-native';
 
 export type RegisterNameProps = {
   handleRegisterName: () => void;
@@ -17,4 +16,3 @@ export type CircleProps = {
 export type FormData = {
   name: string;
 };
-

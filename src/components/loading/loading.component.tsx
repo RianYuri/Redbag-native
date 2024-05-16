@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <Container>
       <CatLoading />
-      <ActivityIndicator size='large' color='#FFFFFF'/>
+      <ActivityIndicator size="large" color="#FFFFFF" />
       <TextLoading>Analisando suas informações...</TextLoading>
     </Container>
   );

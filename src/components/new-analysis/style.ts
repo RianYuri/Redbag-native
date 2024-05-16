@@ -2,7 +2,7 @@ import { theme } from '@/themes';
 import styled from 'styled-components/native';
 
 export const BoxContainer = styled.View`
-width: 160px ;
+  width: 160px;
   height: 160px;
   border-radius: 8px;
   background-color: ${theme.colors.fourthRedColor};

@@ -1,5 +1,5 @@
-import { theme } from "@/themes";
-import styled from "styled-components/native";
+import { theme } from '@/themes';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   display: flex;
@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const LogoRedBag = styled.Image`
-opacity: 1;
+  opacity: 1;
 `;
 
 export const Title = styled.Text`

@@ -8,11 +8,12 @@ const Input = ({
   secureTextEntry,
   labelName,
   onChangeText,
-  value
+  value,
 }: InputProps) => {
   return (
     <InputContainer>
       <TextInput
+        underlineColorAndroid="transparent"
         autoCapitalize={autoCapitalize}
         cursorColor={theme.colors.thirdRedColor}
         isFocused={value}

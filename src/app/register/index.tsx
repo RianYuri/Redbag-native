@@ -60,7 +60,7 @@ const Register = () => {
               handleRegisterBack={handleRegisterBack}
               description={item.description}
               image={item.image}
-              labelName={item.labbelName}
+              labelName={item.labelName}
               name={item.name}
             />
           )}

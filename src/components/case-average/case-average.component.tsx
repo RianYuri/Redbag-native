@@ -10,9 +10,7 @@ import {
 
 const CaseAverage = () => {
   return (
-    <BoxContainer
-      
-    >
+    <BoxContainer>
       <TextNumberCases>25/100</TextNumberCases>
       <PorcentText>25%</PorcentText>
       <Line />
