@@ -13,7 +13,7 @@ const HomeComponent = () => {
     const months = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
       'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
+    ] as string[];
     const monthName = months[date.getMonth()]; 
 
     return `${day - 1} de ${monthName}`;

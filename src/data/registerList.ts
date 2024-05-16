@@ -7,25 +7,25 @@ type RegisterListProps = {
   image: ImageProps;
   description: string;
   name: string;
-  labbelName: string;
+  labelName: string;
 };
 export const registerList: RegisterListProps[] = [
   {
     image: UndrawName,
     description: 'Como podemos chamá-lo(a)?',
     name: 'name',
-    labbelName: 'Nome',
+    labelName: 'Nome',
   },
   {
     image: UndrawEmail,
     description: 'Digite o seu melhor email!',
     name: 'email',
-    labbelName: 'Email',
+    labelName: 'Email',
   },
   {
     image: UndrawPassword,
     description: 'Defina a sua senha',
     name: 'password',
-    labbelName: 'Senha',
+    labelName: 'Senha',
   },
 ];
