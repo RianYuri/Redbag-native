@@ -1,4 +1,4 @@
 export interface AnalysisProps {
-    handleListAnimal: () => void;
-    isOpen: boolean;
-  }
+  handleListAnimal: () => void;
+  isOpen: boolean;
+}
