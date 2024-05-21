@@ -59,4 +59,4 @@ const RegisterStep = (props: RegisterNameProps) => {
   );
 };
 
-export default RegisterStep;
+export default React.memo(RegisterStep);
