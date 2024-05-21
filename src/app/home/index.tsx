@@ -4,6 +4,7 @@ import Settings from '@/assets/settings.svg';
 import Analysis from '@/components/analysis/analysis.component';
 
 const Home = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
   const getDate = () => {
     const date = new Date();
     const day = date.getDate();
@@ -26,6 +27,9 @@ const Home = () => {
 
     return `${day} de ${monthName}`;
   };
+  const handleListAnimal = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
@@ -33,7 +37,7 @@ const Home = () => {
         <Settings style={{ right: 9, top: 32, position: 'absolute' }} />
       </HeaderHome>
       <TextDay>{getDate()}</TextDay>
-      <Analysis/>
+      <Analysis handleListAnimal={handleListAnimal} isOpen={isOpen} />
       {/* <HomeComponent /> */}
     </Container>
   );

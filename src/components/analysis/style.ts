@@ -1,6 +1,9 @@
+import { colors } from './../../themes/colors';
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
-
+type IsOpenProps = {
+  isOpen: boolean;
+};
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
@@ -8,14 +11,12 @@ export const Container = styled.View`
   align-items: center;
   width: 100%;
   padding: 0 17px;
+  gap: 20px;
 `;
 
 export const DropdownContent = styled.View`
   position: relative;
   width: 100%;
-  & * {
-    box-sizing: border-box;
-  }
 `;
 export const Select = styled.View`
   display: flex;
@@ -41,28 +42,63 @@ export const SelectedText = styled.Text`
   font-size: 14px;
   color: #9f9f9f;
 `;
-export const Caret = styled.Image`
+
+export const Caret = styled.Image<IsOpenProps>`
   width: 15px;
   height: 10px;
-  background-repeat: no-repeat;
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
-export const Menu = styled.View`
-     display: flex;
-     width: 100%;
-     background-color: #FFFFFF;
-  border-radius:0px 0px 5px 5px;
-  border-width: 1px;
-  border-top-color:#FFFFFF;
-  border-right-color: #E0E1E2;
-  border-bottom-color: #E0E1E2;
-  border-left-color: #E0E1E2;
 
-
+export const Menu = styled.ScrollView<IsOpenProps>`
+  display: flex;
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  height: ${({ isOpen }) => (isOpen ? '160px' : '0px')};
+  gap: 10px;
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0px 0px 5px 5px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+`;
+export const MenuList = styled.View`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 export const Active = styled.Text`
   font-family: ${theme.fonts.text.regular};
   font-size: 14px;
-  gap: 5px;
-
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
 `;
 
+export const Divider = styled.View`
+  height: 1px;
+  width: 90%;
+  background-color: #e0e1e2;
+  align-self: center;
+`;
+
+export const OpenCamera = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  border-width: 1px;
+  border-color: #dddddd;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  z-index: -1;
+`;
+
+export const OpenCameraText = styled.Text`
+  font-family: ${theme.fonts.text.regular};
+  font-size: 16px;
+  color: #b8b8b8;
+`;
