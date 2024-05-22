@@ -25,5 +25,5 @@ export const HeaderHome = styled.View`
 export const TextDay = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 18px;
-  padding: 73px 0;
+  padding: 73px 0 60px 0px;
 `;
