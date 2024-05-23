@@ -28,7 +28,7 @@ const Register = () => {
       console.log(currentRegister);
       setIsLoading(true);
       setTimeout(() => {
-        router.push('/home/');
+        router.replace('/home/');
       }, 2000);
     }
   };

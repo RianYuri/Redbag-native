@@ -24,6 +24,7 @@ import SelectCatDefault from '@/assets/select-cat.svg';
 import { Image } from 'react-native';
 import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
+import { router } from 'expo-router';
 const Analysis = ({
   handleListAnimal,
   handleLibraryUpload,
@@ -72,7 +73,7 @@ const Analysis = ({
       )}
       {selectedImage ? (
         <ButtonContent>
-          <UploadButton>
+          <UploadButton onPress={() => router.push('/complete-analysis/')}>
             <UploadText>Continuar</UploadText>
           </UploadButton>
           <CancelButton onPress={() => handleLibraryUpload('cancel')}>

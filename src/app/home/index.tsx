@@ -4,9 +4,11 @@ import Settings from '@/assets/settings.svg';
 import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
 import { Platform } from 'react-native';
+import { useImageContext } from '@/context/analysis-image';
 
 const Home = () => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
+  const { setAnalyzedImage } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
   const getDate = () => {
     const date = new Date();
@@ -55,12 +57,13 @@ const Home = () => {
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
-        base64:true
+        base64: true,
       });
 
     if (!result.canceled) {
       const uri = result.assets[0].uri;
       setSelectedImage(uri);
+      setAnalyzedImage(uri);
     }
   };
 

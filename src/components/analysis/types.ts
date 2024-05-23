@@ -3,4 +3,4 @@ export type AnalysisProps = {
   handleLibraryUpload: (type: string) => void;
   isOpen: boolean;
   selectedImage: string | null;
-}
+};
