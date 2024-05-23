@@ -3,6 +3,7 @@ import {
   BackContent,
   BackText,
   Container,
+  DateDiagnosis,
   HeaderHome,
   ImageAnalysis,
   LoadingImage,
@@ -55,6 +56,7 @@ const CompleteAnalysis = () => {
         <LoadingImage />
       )}
       <PreDiagnosis />
+      <DateDiagnosis>Pré-diagnóstico realizado no dia ${getDate()} de 2023, ás 12:10.</DateDiagnosis>
     </Container>
   );
 };
