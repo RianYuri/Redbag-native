@@ -50,3 +50,10 @@ export const LoadingImage = styled.View`
   border-radius: 8px;
   background-color: #e9e9e9;
 `;
+
+export const DateDiagnosis = styled.Text`
+font-family: ${theme.fonts.text.regular};
+font-size: 14px;
+text-align: center;
+color: #AFAFAF;
+`

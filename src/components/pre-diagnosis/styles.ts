@@ -54,7 +54,7 @@ export const AccuracyContent = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
 export const AccuracyText = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};
@@ -63,6 +63,7 @@ export const AccuracyText = styled.Text`
 `;
 export const PorcentText = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};
-  font-size: 10px;
+  font-size: 16px;
   color: ${theme.colors.fourthRedColor};
+  margin-bottom: 10px;
 `;
