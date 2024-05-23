@@ -1,4 +1,3 @@
-import { colors } from './../../themes/colors';
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 type IsOpenProps = {
@@ -81,6 +80,12 @@ export const Divider = styled.View`
   background-color: #e0e1e2;
   align-self: center;
 `;
+export const ImageAnalysis = styled.Image`
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  z-index: -1;
+`;
 
 export const OpenCamera = styled.View`
   display: flex;
@@ -126,4 +131,31 @@ export const UploadDescription = styled.Text`
   font-size: 14px;
   color: #8f8f8f;
   text-align: center;
+`;
+
+export const ButtonContent = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const CancelButton = styled.Pressable`
+  width: 100%;
+  height: 50px;
+  background-color: ${theme.colors.white};
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 5px;
+`;
+
+export const CancelButtonText = styled.Text`
+  font-family: ${theme.fonts.subtitle.semibold};
+  font-size: 16px;
+  color: ${theme.colors.fourthRedColor};
 `;
