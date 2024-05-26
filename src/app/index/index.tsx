@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 const Index = () => {
   const navigateToLogin = useCallback(() => {
-    router.push('/login/');
+    router.replace('/login/');
   }, []);
   useEffect(() => {
     const timeoutId = setTimeout(navigateToLogin, 2000);

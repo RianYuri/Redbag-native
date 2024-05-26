@@ -52,8 +52,24 @@ export const LoadingImage = styled.View`
 `;
 
 export const DateDiagnosis = styled.Text`
-font-family: ${theme.fonts.text.regular};
-font-size: 14px;
-text-align: center;
-color: #AFAFAF;
-`
+  font-family: ${theme.fonts.text.regular};
+  font-size: 14px;
+  text-align: center;
+  color: #afafaf;
+`;
+export const NewAnalysisButton = styled.Pressable`
+  width: 100%;
+  height: 50px;
+  background-color: ${theme.colors.fourthRedColor};
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 5px;
+`;
+export const NewAnalysisText = styled.Text`
+  font-family: ${theme.fonts.subtitle.semibold};
+  font-size: 16px;
+  color: ${theme.colors.white};
+`;

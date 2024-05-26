@@ -7,6 +7,8 @@ import {
   HeaderHome,
   ImageAnalysis,
   LoadingImage,
+  NewAnalysisButton,
+  NewAnalysisText,
   RectangleTop,
   TextDay,
 } from './styles';
@@ -15,35 +17,19 @@ import Settings from '@/assets/settings.svg';
 import { useImageContext } from '@/context/analysis-image';
 import PreDiagnosis from '@/components/pre-diagnosis/pre-diagnosis.component';
 import { router } from 'expo-router';
+import { getDate } from '@/utils/get-date/get-date';
 const CompleteAnalysis = () => {
   const { analyzedImage } = useImageContext();
-  const getDate = () => {
-    const date = new Date();
-    const day = date.getDate();
+  const year = new Date().getFullYear();
 
-    const months = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro',
-    ] as string[];
-    const monthName = months[date.getMonth()];
-
-    return `${day} de ${monthName}`;
-  };
   return (
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
       <HeaderHome>
-        <Settings style={{ right: 9, top: 32, position: 'absolute' }} />
+        <Settings
+          style={{ right: 9, top: 32, position: 'absolute' }}
+          onPress={() => router.push('/profile/')}
+        />
       </HeaderHome>
       <TextDay>{getDate()}</TextDay>
       <BackContent onTouchStart={() => router.back()}>
@@ -56,7 +42,12 @@ const CompleteAnalysis = () => {
         <LoadingImage />
       )}
       <PreDiagnosis />
-      <DateDiagnosis>Pré-diagnóstico realizado no dia ${getDate()} de 2023, ás 12:10.</DateDiagnosis>
+      <DateDiagnosis>
+        Pré-diagnóstico realizado no dia {getDate()} de {year}.
+      </DateDiagnosis>
+      <NewAnalysisButton>
+        <NewAnalysisText>Nova Análise</NewAnalysisText>
+      </NewAnalysisButton>
     </Container>
   );
 };

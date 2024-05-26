@@ -5,33 +5,14 @@ import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
 import { Platform } from 'react-native';
 import { useImageContext } from '@/context/analysis-image';
+import { getDate } from '@/utils/get-date/get-date';
+import { router } from 'expo-router';
 
 const Home = () => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const { setAnalyzedImage } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
-  const getDate = () => {
-    const date = new Date();
-    const day = date.getDate();
 
-    const months = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro',
-    ] as string[];
-    const monthName = months[date.getMonth()];
-
-    return `${day} de ${monthName}`;
-  };
   const handleListAnimal = () => {
     setIsOpen(!isOpen);
   };
@@ -71,7 +52,10 @@ const Home = () => {
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
       <HeaderHome>
-        <Settings style={{ right: 9, top: 32, position: 'absolute' }} />
+        <Settings
+          style={{ right: 9, top: 32, position: 'absolute' }}
+          onPress={() => router.push('/profile/')}
+        />
       </HeaderHome>
       <TextDay>{getDate()}</TextDay>
       <Analysis

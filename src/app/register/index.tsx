@@ -25,7 +25,6 @@ const Register = () => {
       setCurrentRegister(newIndex);
     }
     if (currentRegister === 2) {
-      console.log(currentRegister);
       setIsLoading(true);
       setTimeout(() => {
         router.replace('/home/');
