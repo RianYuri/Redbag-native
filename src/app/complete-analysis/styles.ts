@@ -21,23 +21,7 @@ export const BackText = styled.Text`
   font-size: 20px;
   color: ${theme.colors.firstRedColor};
 `;
-export const RectangleTop = styled.Image`
-  position: absolute;
-  z-index: -1;
-  top: 0;
-`;
-export const HeaderHome = styled.View`
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
-`;
 
-export const TextDay = styled.Text`
-  font-family: ${theme.fonts.subtitle.semibold};
-  font-size: 18px;
-  padding: 55px 0 20px 0px;
-`;
 export const ImageAnalysis = styled.Image`
   width: 100%;
   height: 200px;

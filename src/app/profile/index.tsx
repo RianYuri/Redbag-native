@@ -1,4 +1,4 @@
-import { getDate } from '@/utils/get-date/get-date';
+import HeaderDate from '@/components/header-date/header-date.component';
 import {
   Container,
   Content,
@@ -6,15 +6,11 @@ import {
   EditAndSuportContent,
   EditView,
   ExitButton,
-  HeaderHome,
-  RectangleTop,
   TextAbout,
-  TextDay,
   TextEditSuport,
   TextExit,
   TextMyAccount,
 } from './style';
-import Settings from '@/assets/settings.svg';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,11 +18,7 @@ import { router } from 'expo-router';
 const Profile = () => {
   return (
     <Container>
-      <RectangleTop source={require('@/assets/rectangleTop.png')} />
-      <HeaderHome>
-        <Settings style={{ right: 0, top: 32, position: 'absolute' }} />
-      </HeaderHome>
-      <TextDay>{getDate()}</TextDay>
+      <HeaderDate />
       <Content>
         <FontAwesome5 name="user" size={50} color="#9D2D15" />
         <TextMyAccount>Sua Conta</TextMyAccount>
@@ -35,7 +27,7 @@ const Profile = () => {
           configurações.
         </TextAbout>
         <EditAndSuportContent>
-          <EditView>
+          <EditView onPress={() => router.push('/edit-profile/')}>
             <Feather name="edit" size={30} color="#FE5433" />
             <TextEditSuport>Editar perfil</TextEditSuport>
           </EditView>

@@ -1,12 +1,10 @@
 import React from 'react';
-import { Container, HeaderHome, RectangleTop, TextDay } from './styles';
-import Settings from '@/assets/settings.svg';
+import { Container } from './styles';
 import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
 import { Platform } from 'react-native';
 import { useImageContext } from '@/context/analysis-image';
-import { getDate } from '@/utils/get-date/get-date';
-import { router } from 'expo-router';
+import HeaderDate from '@/components/header-date/header-date.component';
 
 const Home = () => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
@@ -50,14 +48,7 @@ const Home = () => {
 
   return (
     <Container>
-      <RectangleTop source={require('@/assets/rectangleTop.png')} />
-      <HeaderHome>
-        <Settings
-          style={{ right: 9, top: 32, position: 'absolute' }}
-          onPress={() => router.push('/profile/')}
-        />
-      </HeaderHome>
-      <TextDay>{getDate()}</TextDay>
+      <HeaderDate />
       <Analysis
         handleListAnimal={handleListAnimal}
         handleLibraryUpload={handleLibraryUpload}

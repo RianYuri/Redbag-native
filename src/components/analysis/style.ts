@@ -10,6 +10,7 @@ export const Container = styled.View`
   align-items: center;
   width: 100%;
   padding: 0 17px;
+  padding-top: 34px;
   gap: 20px;
 `;
 
