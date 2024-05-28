@@ -8,5 +8,6 @@ export const fonts = {
   text: {
     light: 'Ubuntu_300Light',
     regular: 'Ubuntu_400Regular',
+    medium:'Ubuntu_500Medium'
   },
 };

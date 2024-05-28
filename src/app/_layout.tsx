@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
-import { Ubuntu_300Light, Ubuntu_400Regular } from '@expo-google-fonts/ubuntu';
+import { Ubuntu_300Light, Ubuntu_400Regular,Ubuntu_500Medium } from '@expo-google-fonts/ubuntu';
 import { Slot } from 'expo-router';
 import { ImageProvider } from '@/context/analysis-image';
 const Layout = () => {
@@ -10,6 +10,7 @@ const Layout = () => {
     Montserrat_600SemiBold,
     Ubuntu_300Light,
     Ubuntu_400Regular,
+    Ubuntu_500Medium
   });
 
   if (!fontsLoaded) {

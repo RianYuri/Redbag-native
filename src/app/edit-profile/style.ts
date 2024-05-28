@@ -47,3 +47,20 @@ export const FormEditContent = styled.View`
   justify-content: center;
   gap: 15px;
 `;
+
+export const ButtonSave = styled.Pressable`
+display: flex;
+align-items: center;
+justify-content: center;
+height: 50px;
+width: 100%;
+background-color: #FE5433;
+margin-top: 10px;
+border-radius: 5px;
+`
+
+export const TextSave = styled.Text`
+font-family: ${theme.fonts.text.regular};
+font-size: 16px;
+color: #FFFFFF;
+`

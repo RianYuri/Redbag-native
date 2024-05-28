@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Platform } from 'react-native';
 import { useImageContext } from '@/context/analysis-image';
 import HeaderDate from '@/components/header-date/header-date.component';
+import HistoriesAnalysis from '@/components/histories-analysis/histories-analysis.component';
 
 const Home = () => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
@@ -49,12 +50,13 @@ const Home = () => {
   return (
     <Container>
       <HeaderDate />
-      <Analysis
+      <HistoriesAnalysis/>
+      {/* <Analysis
         handleListAnimal={handleListAnimal}
         handleLibraryUpload={handleLibraryUpload}
         isOpen={isOpen}
         selectedImage={selectedImage}
-      />
+      /> */}
       {/* <HomeComponent /> */}
     </Container>
   );

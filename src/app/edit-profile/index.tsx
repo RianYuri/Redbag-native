@@ -1,9 +1,11 @@
 import React from 'react';
 import {
+  ButtonSave,
   Container,
   DeletePerfil,
   EditProfileContent,
   FormEditContent,
+  TextSave,
   UserProfile,
 } from './style';
 import HeaderDate from '@/components/header-date/header-date.component';
@@ -13,9 +15,11 @@ import ControlledInput from '@/components/controlled-input/controlled-input.comp
 import { useForm } from 'react-hook-form';
 import { editProfileList } from '@/data/editProfileList';
 import { KeyboardAvoidingView } from 'react-native';
+import Modal from '@/components/modal/modal.component';
 const EditProfile = () => {
   const { control, handleSubmit } = useForm();
-  return (
+  return (<>
+      <Modal/>
     <KeyboardAvoidingView behavior="position">
       <Container>
         <HeaderDate />
@@ -30,6 +34,7 @@ const EditProfile = () => {
         <FormEditContent>
           {editProfileList.map((item) => (
             <ControlledInput
+            key={item.labelName}
               name={item.name}
               labelName={item.labelName}
               inputMode={item.name}
@@ -37,9 +42,13 @@ const EditProfile = () => {
               secureTextEntry={item.secureTextEntry}
             />
           ))}
+          <ButtonSave >
+            <TextSave>SALVAR</TextSave>
+          </ButtonSave>
         </FormEditContent>
       </Container>
     </KeyboardAvoidingView>
+  </>
   );
 };
 
