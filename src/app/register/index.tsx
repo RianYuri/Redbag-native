@@ -27,7 +27,7 @@ const Register = () => {
     if (currentRegister === 2) {
       setIsLoading(true);
       setTimeout(() => {
-        router.replace('/home/');
+        router.replace('/step-by-step/');
       }, 2000);
     }
   };

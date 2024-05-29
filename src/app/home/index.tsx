@@ -50,13 +50,13 @@ const Home = () => {
   return (
     <Container>
       <HeaderDate />
-      <HistoriesAnalysis/>
-      {/* <Analysis
+      {/* <HistoriesAnalysis/> */}
+      <Analysis
         handleListAnimal={handleListAnimal}
         handleLibraryUpload={handleLibraryUpload}
         isOpen={isOpen}
         selectedImage={selectedImage}
-      /> */}
+      />
       {/* <HomeComponent /> */}
     </Container>
   );

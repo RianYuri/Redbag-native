@@ -4,10 +4,12 @@ export const fonts = {
   },
   subtitle: {
     semibold: 'Montserrat_600SemiBold',
+    medium: 'Montserrat_500Medium',
+
   },
   text: {
     light: 'Ubuntu_300Light',
     regular: 'Ubuntu_400Regular',
-    medium:'Ubuntu_500Medium'
+    medium: 'Ubuntu_500Medium',
   },
 };
