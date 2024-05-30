@@ -29,8 +29,8 @@ export const CircleStep = styled.View<CircleProps>`
   width: ${({ isStep }) => (isStep ? '30px' : '10px')};
   height: 10px;
   border-radius: 10px;
-  background-color: ${({ isStep }) =>
-    isStep ? theme.colors.fourthRedColor : '#E6E6E6'};
+  background-color: ${({ hasAlreadyPassed }) =>
+    hasAlreadyPassed ? theme.colors.fourthRedColor : '#E6E6E6'};
 `;
 
 export const SubtitleInput = styled.Text`

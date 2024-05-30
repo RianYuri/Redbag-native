@@ -4,12 +4,10 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  position: relative;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 30px;
 `;
 export const RectangleTop = styled.Image`
   position: absolute;
@@ -38,5 +36,47 @@ export const TextDescription = styled.Text`
   color: #8a8a8a;
   font-size: 14px;
   text-align: center;
+  padding: 0 30px;
 `;
 
+export const ContinueButton = styled.Pressable`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.colors.fourthRedColor};
+  border-radius: 5px;
+  margin-top: 15px;
+`;
+
+export const TextContinue = styled.Text`
+  font-family: ${theme.fonts.text.medium};
+  font-size: 14px;
+  color: ${theme.colors.white};
+  text-transform: uppercase;
+`;
+
+export const ButtonContent = styled.View`
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 50px;
+`;
+export const ExitButton = styled.Pressable`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 213px;
+  height: 50px;
+  background-color: #ff45450d;
+  border-radius: 5px;
+`;
+export const TextExit = styled.Text`
+  font-family: ${theme.fonts.text.medium};
+  font-size: 14px;
+  color: ${theme.colors.fourthRedColor};
+`;

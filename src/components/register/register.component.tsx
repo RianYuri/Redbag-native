@@ -34,9 +34,9 @@ const RegisterStep = (props: RegisterNameProps) => {
       <TextHeader>Vamos lá!</TextHeader>
       <UndrawImage source={props.image} />
       <StepContainer>
-        <CircleStep isStep />
-        <CircleStep />
-        <CircleStep />
+       <CircleStep isStep={props.step === 0} hasAlreadyPassed={props.step >= 0} />
+        <CircleStep isStep={props.step === 1} hasAlreadyPassed={props.step >= 1} />
+        <CircleStep isStep={props.step === 2} hasAlreadyPassed={props.step >= 2} />
       </StepContainer>
       <SubtitleInput>{props.description}</SubtitleInput>
       <FormRegister behavior="padding">

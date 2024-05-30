@@ -55,6 +55,7 @@ const Register = () => {
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
             <RegisterStep
+            step={currentRegister}
               handleRegisterName={handleRegisterName}
               handleRegisterBack={handleRegisterBack}
               description={item.description}
