@@ -28,7 +28,7 @@ const CompleteAnalysis = () => {
       </BackContent>
       {analyzedImage ? (
         <ImageAnalysis source={{ uri: analyzedImage }} />
-      ) : ( 
+      ) : (
         <LoadingImage />
       )}
       <PreDiagnosis />

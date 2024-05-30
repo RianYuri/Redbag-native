@@ -7,12 +7,12 @@ export type RegisterNameProps = {
   description: string;
   name: string;
   labelName: string;
-  step:number;
+  step: number;
 };
 
 export type CircleProps = {
   isStep?: boolean;
-  hasAlreadyPassed:boolean;
+  hasAlreadyPassed: boolean;
 };
 
 export type FormData = {

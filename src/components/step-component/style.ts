@@ -14,30 +14,28 @@ export const BoxIcon = styled.View`
 `;
 
 export const TextDescriptionStep = styled.Text`
-font-family: ${theme.fonts.text.light};
+  font-family: ${theme.fonts.text.light};
   color: #292929;
   font-size: 14px;
   text-align: center;
   width: 300px;
-`
+`;
 
 export const BoxContentIcon = styled.View`
-display: flex;
-justify-content: center;
-align-items: center;
-width: 70px;
-height: 70px;
-background-color: #B43717;
-border-radius: 8px;
-
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: #b43717;
+  border-radius: 8px;
+`;
 export const Content = styled.View`
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   flex-direction: column;
   padding: 0 30px;
-
 `;
 export const StepContainer = styled.View`
   display: flex;

@@ -1,7 +1,7 @@
-import { ImageProps } from 'react-native';;
+import { ImageProps } from 'react-native';
 
 export type StepListProps = {
-    icon:ImageProps;
-    text:string;
-    step:number;
-   };
+  icon: ImageProps;
+  text: string;
+  step: number;
+};

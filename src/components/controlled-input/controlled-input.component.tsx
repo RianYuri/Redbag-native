@@ -4,7 +4,6 @@ import Input from '../input/input.component';
 import { InputProps } from '@/app/login/types';
 import { Bakcdrop, Error } from './styles';
 
-
 type ControlledInputProps = InputProps & {
   control: Control<any>;
   name: string;

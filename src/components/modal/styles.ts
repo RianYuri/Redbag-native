@@ -53,7 +53,7 @@ export const ButtonCanceled = styled.Pressable`
   justify-content: center;
   height: 50px;
   width: 40%;
-  background-color: #fe54330d ;
+  background-color: #fe54330d;
   margin-top: 10px;
   border-radius: 5px;
 `;
@@ -69,12 +69,12 @@ export const ButtonDelete = styled.Pressable`
 `;
 
 export const TextCanceled = styled.Text`
-font-family: ${theme.fonts.text.medium};
-color: #FF4545;
-font-size: 14px;
-`
+  font-family: ${theme.fonts.text.medium};
+  color: #ff4545;
+  font-size: 14px;
+`;
 export const TextDelete = styled.Text`
-font-family: ${theme.fonts.text.medium};
-color: #FFFFFF;
-font-size: 14px;
-`
+  font-family: ${theme.fonts.text.medium};
+  color: #ffffff;
+  font-size: 14px;
+`;

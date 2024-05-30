@@ -49,18 +49,18 @@ export const FormEditContent = styled.View`
 `;
 
 export const ButtonSave = styled.Pressable`
-display: flex;
-align-items: center;
-justify-content: center;
-height: 50px;
-width: 100%;
-background-color: #FE5433;
-margin-top: 10px;
-border-radius: 5px;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  background-color: #fe5433;
+  margin-top: 10px;
+  border-radius: 5px;
+`;
 
 export const TextSave = styled.Text`
-font-family: ${theme.fonts.text.regular};
-font-size: 16px;
-color: #FFFFFF;
-`
+  font-family: ${theme.fonts.text.regular};
+  font-size: 16px;
+  color: #ffffff;
+`;

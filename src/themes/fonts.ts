@@ -5,7 +5,6 @@ export const fonts = {
   subtitle: {
     semibold: 'Montserrat_600SemiBold',
     medium: 'Montserrat_500Medium',
-
   },
   text: {
     light: 'Ubuntu_300Light',

@@ -27,7 +27,7 @@ const StepByStep = () => {
   };
   const handleStepByStep = () => {
     if (currentRegister < totalStepRegister) {
-      console.log(currentRegister)
+      console.log(currentRegister);
       const newIndex = calculateNewIndex(currentRegister, 1);
 
       stepListRef.current?.scrollToIndex({
@@ -37,7 +37,7 @@ const StepByStep = () => {
       setCurrentRegister(newIndex);
     }
     if (currentRegister === 3) {
-        router.replace('/home/');
+      router.replace('/home/');
     }
   };
   return (
@@ -56,7 +56,11 @@ const StepByStep = () => {
           scrollEnabled={false}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
-            <StepComponent icon={item.icon} text={item.text} step={currentRegister} />
+            <StepComponent
+              icon={item.icon}
+              text={item.text}
+              step={currentRegister}
+            />
           )}
           initialScrollIndex={currentRegister}
         />
