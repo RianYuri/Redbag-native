@@ -6,12 +6,14 @@ import { Platform } from 'react-native';
 import { useImageContext } from '@/context/analysis-image';
 import HeaderDate from '@/components/header-date/header-date.component';
 import HistoriesAnalysis from '@/components/histories-analysis/histories-analysis.component';
+import Tab from '@/components/tabs/tab.component';
+import HomeComponent from '@/components/home-component/home-component.component';
 
 const Home = () => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const { setAnalyzedImage } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const [selectedTab, setSelectedTab] = React.useState<string>('home');
   const handleListAnimal = () => {
     setIsOpen(!isOpen);
   };
@@ -46,18 +48,30 @@ const Home = () => {
       setAnalyzedImage(uri);
     }
   };
-
+  const renderSelectedTab = () => {
+    switch (selectedTab) {
+      case 'home':
+        return <HomeComponent />;
+      case 'analysis':
+        return (
+          <Analysis
+            handleListAnimal={handleListAnimal}
+            handleLibraryUpload={handleLibraryUpload}
+            isOpen={isOpen}
+            selectedImage={selectedImage}
+          />
+        );
+      case 'prontuario':
+        return <HistoriesAnalysis />;
+      default:
+        return null;
+    }
+  };
   return (
     <Container>
       <HeaderDate />
-      {/* <HistoriesAnalysis/> */}
-      <Analysis
-        handleListAnimal={handleListAnimal}
-        handleLibraryUpload={handleLibraryUpload}
-        isOpen={isOpen}
-        selectedImage={selectedImage}
-      />
-      {/* <HomeComponent /> */}
+      {renderSelectedTab()}
+      <Tab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
     </Container>
   );
 };
