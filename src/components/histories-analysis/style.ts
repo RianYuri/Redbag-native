@@ -7,6 +7,6 @@ export const Container = styled.View`
   justify-content: start;
   align-items: center;
   width: 100%;
-  padding: 0 17px;
+  padding: 0 17px 180px 17px;
   gap: 20px;
 `;

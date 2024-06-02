@@ -19,12 +19,15 @@ import {
   ButtonContent,
   CancelButton,
   CancelButtonText,
+  DropwdownAndNewDog,
+  NewDog,
 } from './style';
 import SelectCatDefault from '@/assets/select-cat.svg';
 import { Image } from 'react-native';
 import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { AntDesign } from '@expo/vector-icons';
 const Analysis = ({
   handleListAnimal,
   handleLibraryUpload,
@@ -33,36 +36,41 @@ const Analysis = ({
 }: AnalysisProps) => {
   return (
     <Container>
-      <DropdownContent>
-        <Select onTouchStart={handleListAnimal}>
-          <Selected>
-            <SelectCatDefault color="#D8491D" />
-            <SelectedText>Aleatório</SelectedText>
-          </Selected>
-          <Caret source={require('@/assets/caret.png')} isOpen={isOpen} />
-        </Select>
-        <Menu
-          scrollEnabled
-          isOpen={isOpen}
-          style={{
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 3,
-          }}
-        >
-          <MenuList>
-            <Active>Aleatório</Active>
-            <Divider />
-            <Active>Aleatório</Active>
-            <Divider />
-            <Active>Aleatório</Active>
-            <Divider />
-            <Active>Aleatório</Active>
-          </MenuList>
-        </Menu>
-      </DropdownContent>
+      <DropwdownAndNewDog>
+        <DropdownContent>
+          <Select onTouchStart={handleListAnimal}>
+            <Selected>
+              <SelectCatDefault color="#D8491D" />
+              <SelectedText>Aleatório</SelectedText>
+            </Selected>
+            <Caret source={require('@/assets/caret.png')} isOpen={isOpen} />
+          </Select>
+          <Menu
+            scrollEnabled
+            isOpen={isOpen}
+            style={{
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 3,
+            }}
+          >
+            <MenuList>
+              <Active>Aleatório</Active>
+              <Divider />
+              <Active>Aleatório</Active>
+              <Divider />
+              <Active>Aleatório</Active>
+              <Divider />
+              <Active>Aleatório</Active>
+            </MenuList>
+          </Menu>
+        </DropdownContent>
+        <NewDog>
+          <AntDesign name="plus" size={24} color="white" />
+        </NewDog>
+      </DropwdownAndNewDog>
       {selectedImage ? (
         <ImageAnalysis source={{ uri: selectedImage }} />
       ) : (

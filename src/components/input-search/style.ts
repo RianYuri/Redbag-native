@@ -8,6 +8,7 @@ export const InputContainer = styled.View`
   align-items: center;
   position: relative;
   width: 100%;
+  margin-top: 30px;
 `;
 
 export const LabelInput = styled.Text<LabelInputProps>`

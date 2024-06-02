@@ -13,10 +13,26 @@ export const Container = styled.View`
   padding-top: 34px;
   gap: 20px;
 `;
-
+export const DropwdownAndNewDog = styled.View`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+`;
+export const NewDog = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: ${theme.colors.fourthRedColor};
+  width: 50px;
+  height: 50px;
+`;
 export const DropdownContent = styled.View`
   position: relative;
-  width: 100%;
+  width: 80%;
 `;
 export const Select = styled.View`
   display: flex;
