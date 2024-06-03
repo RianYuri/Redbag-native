@@ -7,10 +7,11 @@ import {
   TextDate,
   TextDateDog,
 } from './style';
+import { router } from 'expo-router';
 
 const AnimalHistories = () => {
   return (
-    <Container>
+    <Container onPress={() => router.push('/all-analyzes/')}>
       <ImageDog
         source={require('@/assets/dogExample.jpg')}
         resizeMode="cover"

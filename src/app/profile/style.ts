@@ -3,11 +3,11 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0 17px;
-  gap: 20px;
+  padding-left: 17px;
+  padding-top: 20px;
 `;
 
 export const Content = styled.View`

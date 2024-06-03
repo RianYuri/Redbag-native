@@ -1,6 +1,5 @@
 import { theme } from '@/themes';
 import { InputContainer, LabelInput, TextInput } from './style';
-import { InputProps } from '@/app/home/types';
 import React from 'react';
 import SearchIcon from '@/assets/searchIcon.svg';
 import ClearSearchIcon from '@/assets/clearSearchIcon.svg';

@@ -7,10 +7,12 @@ export const Container = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   flex-direction: row;
   position: absolute;
   gap: 35px;
   bottom: 50px;
+  z-index: 1;
 `;
 
 export const BoxTabs = styled.View<IsSelectProps>`

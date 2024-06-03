@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from './styles';
 import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,12 +8,21 @@ import HeaderDate from '@/components/header-date/header-date.component';
 import HistoriesAnalysis from '@/components/histories-analysis/histories-analysis.component';
 import Tab from '@/components/tabs/tab.component';
 import HomeComponent from '@/components/home-component/home-component.component';
-
+import { useLocalSearchParams } from 'expo-router';
+type RouteParams = {
+  selectedTabRoute: string;
+};
 const Home = () => {
+  const params = useLocalSearchParams() as RouteParams;
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const { setAnalyzedImage } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
+  useEffect(() => {
+    if (params.selectedTabRoute) {
+      setSelectedTab(params.selectedTabRoute);
+    }
+  }, [params.selectedTabRoute]);
   const handleListAnimal = () => {
     setIsOpen(!isOpen);
   };

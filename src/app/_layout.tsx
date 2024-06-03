@@ -11,6 +11,7 @@ import {
 } from '@expo-google-fonts/ubuntu';
 import { Slot } from 'expo-router';
 import { ImageProvider } from '@/context/analysis-image';
+
 const Layout = () => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,

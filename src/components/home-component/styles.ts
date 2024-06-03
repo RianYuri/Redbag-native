@@ -18,3 +18,13 @@ export const SectionCasesAnalysis = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+export const Content = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 180px;
+`;
