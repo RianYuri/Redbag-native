@@ -46,6 +46,7 @@ const Register = () => {
     }
     if (currentRegister === 2 && formData.password) {
       fetchRegister();
+      console.log('vai rodar a api');
     }
   };
   const fetchRegister = async () => {
@@ -53,6 +54,8 @@ const Register = () => {
       ...formData,
       username: formData.name,
     };
+    console.log(updatedFormData);
+
     try {
       const response = await redBagApiService.register(updatedFormData);
       console.log('Register successful', response);
@@ -60,8 +63,9 @@ const Register = () => {
     } catch (error: any) {
       console.error('Registration failed', error.message);
       Alert.alert('Erro de registro', error.message);
-    } finally {
       setIsLoading(false);
+    } finally {
+      setIsLoading(true);
     }
   };
   const handleRegisterBack = () => {

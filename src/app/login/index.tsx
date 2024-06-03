@@ -52,8 +52,9 @@ const Login = () => {
     } catch (error: any) {
       console.error('Login failed', error.message);
       Alert.alert('Erro de login', error.message);
-    } finally {
       setIsLoading(false);
+    } finally {
+      setIsLoading(true);
     }
   };
   return isLoading ? (
