@@ -18,14 +18,19 @@ import { KeyboardAvoidingView } from 'react-native';
 import Modal from '@/components/modal/modal.component';
 const EditProfile = () => {
   const { control, handleSubmit } = useForm();
+  const [hasModal, setHasModal] = React.useState<boolean>(false);
   return (
     <>
-      <Modal />
+      {hasModal && <Modal setHasModal={setHasModal} />}
       <KeyboardAvoidingView behavior="position">
         <Container>
           <HeaderDate />
           <EditProfileContent>
-            <DeletePerfil>
+            <DeletePerfil
+              onPress={() => {
+                setHasModal(true);
+              }}
+            >
               <AntDesign name="delete" size={26} color="#FF4545" />
             </DeletePerfil>
             <UserProfile>

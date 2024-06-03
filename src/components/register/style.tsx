@@ -1,6 +1,7 @@
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 import { CircleProps } from './types';
+import { LabelInputProps } from '@/app/login/types';
 
 export const Content = styled.View`
   display: flex;
@@ -83,4 +84,35 @@ export const TextContinue = styled.Text`
 export const UndrawImage = styled.Image`
   height: 240px;
   aspect-ratio: 1;
+`;
+export const InputContainer = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+`;
+
+export const LabelInput = styled.Text<LabelInputProps>`
+  position: absolute;
+  left: 0;
+  font-family: ${theme.fonts.text.regular};
+  color: ${({ isFocused }) =>
+    isFocused ? theme.colors.thirdRedColor : theme.colors.gray};
+  padding-left: 5%;
+  transform: translateY(${({ isFocused }) => (isFocused ? '-20px' : '0px')})
+    scale(${({ isFocused }) => (isFocused ? 0.8 : 1.0)});
+`;
+export const TextInput = styled.TextInput<LabelInputProps>`
+  background: rgba(51, 51, 51, 0.06);
+  border-radius: 4px 4px 0px 0px;
+  width: 100%;
+  height: 56px;
+  padding-left: 5%;
+  border-bottom-color: ${({ isFocused }) =>
+    isFocused ? theme.colors.thirdRedColor : theme.colors.gray};
+  border-bottom-width: 2px;
+  font-family: ${theme.fonts.text.regular};
+  padding-top: 2%;
 `;

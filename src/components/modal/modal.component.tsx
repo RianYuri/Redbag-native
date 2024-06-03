@@ -10,7 +10,7 @@ import {
   TextTitle,
 } from './styles';
 
-const Modal = () => {
+const Modal = ({ setHasModal }: any) => {
   return (
     <Container>
       <ModalContent>
@@ -19,10 +19,18 @@ const Modal = () => {
           Usuários excluídos não recuperam seus dados após sua exclusão.
         </TextDescription>
         <ContentButton>
-          <ButtonCanceled>
+          <ButtonCanceled
+            onPress={() => {
+              setHasModal(false);
+            }}
+          >
             <TextCanceled>Cancelar</TextCanceled>
           </ButtonCanceled>
-          <ButtonDelete>
+          <ButtonDelete
+            onPress={() => {
+              setHasModal(false);
+            }}
+          >
             <TextDelete>Sim, excluir minha conta</TextDelete>
           </ButtonDelete>
         </ContentButton>

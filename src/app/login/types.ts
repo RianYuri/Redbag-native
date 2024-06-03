@@ -13,6 +13,6 @@ export type InputProps = {
   value?: any;
 };
 export type FormData = {
-  email: string;
+  usernameOrEmail: string;
   password: string;
 };

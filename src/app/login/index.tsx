@@ -13,15 +13,24 @@ import {
 } from './styles';
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
 import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.component';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { router } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { FormData } from './types';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { redBagApiService } from '@/services/redBagApi';
+import Loading from '@/components/loading/loading.component';
 const Login = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const schema = yup.object({
-    email: yup
+    usernameOrEmail: yup
       .string()
       .email('E-mail inválido')
       .required('Informe o seu email'),
@@ -34,45 +43,59 @@ const Login = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const handleUserLogin = (data: FormData) => {
+  const handleUserLogin = async (data: FormData) => {
     console.log(data);
+    try {
+      const response = await redBagApiService.login(data);
+      console.log('Login successful', response);
+      router.push('/home/');
+    } catch (error: any) {
+      console.error('Login failed', error.message);
+      Alert.alert('Erro de login', error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
-  return (
-    <Container>
-      <RectangleTop source={require('@/assets/rectangleTop.png')} />
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <KeyboardAvoidingView behavior="height">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LoginFormContainer behavior="padding">
-          <LogoCat source={require('@/assets/logoCat.png')} />
-          <Content>
-            <ControlledInput
-              name="email"
-              control={control}
-              labelName="Email"
-              inputMode="email"
-              autoCapitalize="none"
-              error={errors.email}
-            />
-            <ControlledInput
-              name="password"
-              control={control}
-              labelName="Senha"
-              secureTextEntry={true}
-              error={errors.password}
-            />
-          </Content>
-          <CheckboxForget />
-          <ContinueButton onPress={handleSubmit(handleUserLogin)}>
-            <TextButton>Entrar</TextButton>
-          </ContinueButton>
-        </LoginFormContainer>
+        <Container>
+          <RectangleTop source={require('@/assets/rectangleTop.png')} />
+          <LoginFormContainer behavior="padding">
+            <LogoCat source={require('@/assets/logoCat.png')} />
+            <Content>
+              <ControlledInput
+                name="usernameOrEmail"
+                control={control}
+                labelName="Email"
+                inputMode="email"
+                autoCapitalize="none"
+                error={errors.usernameOrEmail}
+              />
+              <ControlledInput
+                name="password"
+                control={control}
+                labelName="Senha"
+                secureTextEntry={true}
+                error={errors.password}
+              />
+            </Content>
+            <CheckboxForget />
+            <ContinueButton onPress={handleSubmit(handleUserLogin)}>
+              <TextButton>Entrar</TextButton>
+            </ContinueButton>
+          </LoginFormContainer>
+          <RectangleBotContent>
+            <NotHaveAccount onPress={() => router.push('/register/')}>
+              Não possui uma conta?
+            </NotHaveAccount>
+            <ReactangleBot source={require('@/assets/rectangleBot.png')} />
+          </RectangleBotContent>
+        </Container>
       </TouchableWithoutFeedback>
-      <RectangleBotContent>
-        <NotHaveAccount onPress={() => router.push('/register/')}>
-          Não possui uma conta?
-        </NotHaveAccount>
-        <ReactangleBot source={require('@/assets/rectangleBot.png')} />
-      </RectangleBotContent>
-    </Container>
+    </KeyboardAvoidingView>
   );
 };
 

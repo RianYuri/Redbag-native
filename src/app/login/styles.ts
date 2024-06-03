@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
+  width: 100%;
 `;
 export const RectangleTop = styled.Image`
   position: absolute;
@@ -14,7 +14,7 @@ export const RectangleTop = styled.Image`
   z-index: -1;
 `;
 export const ReactangleBot = styled.Image`
-  position: relative;
+  position: absolute;
 `;
 export const NotHaveAccount = styled.Text`
   font-family: ${theme.fonts.text.regular};

@@ -6,7 +6,10 @@ export type CircleProps = {
 };
 
 export type FormData = {
+  username: string;
   name: string;
+  email: string;
+  password: string;
 };
 
 export type RegisterListProps = {
@@ -14,4 +17,5 @@ export type RegisterListProps = {
   description: string;
   name: string;
   labelName: string;
+  setFormData: any;
 };

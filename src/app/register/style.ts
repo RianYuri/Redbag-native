@@ -2,16 +2,15 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  position: relative;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 `;
 export const Content = styled.View`
   display: flex;
   align-items: center;
-  flex: 1;
+  width: 100%;
 `;
 export const RectangleTop = styled.Image`
   position: absolute;
