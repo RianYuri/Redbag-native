@@ -34,12 +34,12 @@ const Camera = () => {
     }
 
     const photo = await camera.current.takePictureAsync({
-      quality: 1,
+      quality: 0.7,
       base64: true,
       exif: true,
       skipProcessing: true,
     });
-    console.log('Foto tirada!', photo);
+    console.log('Foto tirada', photo);
   };
 
   if (!permission) {
