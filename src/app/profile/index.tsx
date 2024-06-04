@@ -17,6 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import Tab from '@/components/tabs/tab.component';
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Profile = () => {
   const [selectedTabRoute, setSelectedTabRoute] = React.useState<string>('');
   React.useEffect(() => {
@@ -29,6 +30,10 @@ const Profile = () => {
       });
     }
   }, [selectedTabRoute]);
+  const redirectLogin = async () => {
+    await AsyncStorage.removeItem('userToken');
+    router.navigate('/login/');
+  };
   return (
     <>
       <Container>
@@ -51,7 +56,7 @@ const Profile = () => {
             </EditView>
           </EditAndSuportContent>
         </Content>
-        <ExitButton onPress={() => router.navigate('/login/')}>
+        <ExitButton onPress={redirectLogin}>
           <Ionicons name="exit-outline" size={28} color="#FF4545" />
           <TextExit>Sair</TextExit>
         </ExitButton>

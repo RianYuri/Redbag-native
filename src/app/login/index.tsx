@@ -26,9 +26,11 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redBagApiService } from '@/services/redBagApi';
 import Loading from '@/components/loading/loading.component';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
-
+  const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
   const schema = yup.object({
     usernameOrEmail: yup
       .string()
@@ -48,10 +50,14 @@ const Login = () => {
       ...data,
       usernameOrEmail: data.usernameOrEmail.toLowerCase(),
     };
-    console.log(updatedFormData)
+    setIsLoading(true);
     try {
       const response = await redBagApiService.login(updatedFormData);
       console.log('Login successful', response);
+      const token = response.token;
+      if (token && hasKeepLoggedIn) {
+        await AsyncStorage.setItem('userToken', token);
+      }
       router.push('/home/');
     } catch (error: any) {
       console.error('Login failed', error.message);
@@ -87,7 +93,7 @@ const Login = () => {
                 error={errors.password}
               />
             </Content>
-            <CheckboxForget />
+            <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
             <ContinueButton onPress={handleSubmit(handleUserLogin)}>
               <TextButton>Entrar</TextButton>
             </ContinueButton>

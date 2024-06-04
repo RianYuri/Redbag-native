@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Checkbox,
   Container,
@@ -7,11 +7,14 @@ import {
   LoggedContent,
   LoggedText,
 } from './style';
-const CheckboxForget = () => {
+const CheckboxForget = ({ setHasKeepLoggedIn }: any) => {
   const [isChecked, setIsChecked] = React.useState(false);
   const handleChecked = () => {
     setIsChecked(!isChecked);
   };
+  useEffect(() => {
+    setHasKeepLoggedIn(isChecked);
+  }, [isChecked]);
   return (
     <Container>
       <LoggedContent>

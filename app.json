@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Lazy",
-    "slug": "Lazy",
+    "name": "RedBag",
+    "slug": "RedBag",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/lazy.png",
@@ -16,7 +16,8 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera."
+        "NSCameraUsageDescription": "Nós precisamos usar a câmera para que você possa tirar fotos.",
+        "NSPhotoLibraryUsageDescription": "Nós precisamos acessar suas fotos para que você possa selecionar uma foto."
       }
     },
     "android": {
@@ -24,7 +25,11 @@
         "foregroundImage": "./assets/images/lazy.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.CAMERA"],
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "package": "com.anonymous.Lazy"
     },
     "web": {
@@ -32,7 +37,17 @@
       "output": "static",
       "favicon": "./assets/images/lazy.png"
     },
-    "plugins": ["expo-router", "expo-font"],
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": " $(PRODUCT_NAME) está pedindo o acesso da sua câmera ",
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-router",
+      "expo-font"
+    ],
     "experiments": {
       "typedRoutes": true
     }

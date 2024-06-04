@@ -67,7 +67,7 @@ const Analysis = ({
             </MenuList>
           </Menu>
         </DropdownContent>
-        <NewDog onPress={()=>router.push("/create-animal/")}>
+        <NewDog onPress={() => router.push('/create-animal/')}>
           <AntDesign name="plus" size={24} color="white" />
         </NewDog>
       </DropwdownAndNewDog>

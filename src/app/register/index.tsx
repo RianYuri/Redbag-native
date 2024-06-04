@@ -53,7 +53,7 @@ const Register = () => {
       ...formData,
       username: formData.name,
     };
-    console.log(updatedFormData);
+    setIsLoading(true);
 
     try {
       const response = await redBagApiService.register(updatedFormData);
