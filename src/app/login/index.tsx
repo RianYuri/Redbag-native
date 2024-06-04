@@ -44,9 +44,13 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const handleUserLogin = async (data: FormData) => {
-    console.log(data);
+    const updatedFormData = {
+      ...data,
+      usernameOrEmail: data.usernameOrEmail.toLowerCase(),
+    };
+    console.log(updatedFormData)
     try {
-      const response = await redBagApiService.login(data);
+      const response = await redBagApiService.login(updatedFormData);
       console.log('Login successful', response);
       router.push('/home/');
     } catch (error: any) {

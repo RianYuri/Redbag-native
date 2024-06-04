@@ -31,7 +31,7 @@ const RegisterStep = (props: RegisterNameProps) => {
     setText(text);
     props.setFormData((prevState: any) => ({
       ...prevState,
-      [fieldName]: text,
+      [fieldName]: text.toLocaleLowerCase(),
     }));
   };
   const onSubmit = () => {
@@ -70,7 +70,7 @@ const RegisterStep = (props: RegisterNameProps) => {
             underlineColorAndroid="transparent"
             cursorColor={theme.colors.thirdRedColor}
             isFocused={text !== ''}
-            onChangeText={(text) => handleChangeText(text, props.name)}
+            onChangeText={(text) => handleChangeText(text.toLocaleLowerCase(), props.name)}
             secureTextEntry={props.name === 'password' ? true : false}
           />
           <LabelInput isFocused={text !== ''}>{props.labelName}</LabelInput>

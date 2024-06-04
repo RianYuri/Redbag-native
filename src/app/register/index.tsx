@@ -46,7 +46,6 @@ const Register = () => {
     }
     if (currentRegister === 2 && formData.password) {
       fetchRegister();
-      console.log('vai rodar a api');
     }
   };
   const fetchRegister = async () => {

@@ -21,7 +21,7 @@ export const DropwdownAndNewDog = styled.View`
   flex-direction: row;
   gap: 8px;
 `;
-export const NewDog = styled.View`
+export const NewDog = styled.Pressable`
   display: flex;
   justify-content: center;
   align-items: center;
