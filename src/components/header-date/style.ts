@@ -1,11 +1,6 @@
 import styled from 'styled-components/native';
 import { theme } from '@/themes';
 
-export const RectangleTop = styled.Image`
-  position: absolute;
-  z-index: -1;
-  top: 0;
-`;
 export const HeaderHome = styled.View`
   display: flex;
   align-items: center;

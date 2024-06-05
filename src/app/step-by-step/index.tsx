@@ -40,6 +40,7 @@ const StepByStep = () => {
       router.replace('/home/');
     }
   };
+
   return (
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
@@ -56,11 +57,7 @@ const StepByStep = () => {
           scrollEnabled={false}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
-            <StepComponent
-              icon={item.icon}
-              text={item.text}
-              step={currentRegister}
-            />
+            <StepComponent text={item.text} step={currentRegister} />
           )}
           initialScrollIndex={currentRegister}
         />

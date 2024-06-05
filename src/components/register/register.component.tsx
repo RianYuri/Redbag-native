@@ -13,13 +13,15 @@ import {
   TextContinue,
   TextHeader,
   TextInput,
-  UndrawImage,
 } from './style';
 
 import { RegisterNameProps } from './types';
 import BackIcon from '@/assets/backIcon.svg';
 import { theme } from '@/themes';
 import { Alert } from 'react-native';
+import UndrawName from '@/assets/undraw-people.svg';
+import UndrawEmail from '@/assets/undrawEmail.svg';
+import UndrawPassword from '@/assets/undrawPassword.svg';
 
 const RegisterStep = (props: RegisterNameProps) => {
   const [text, setText] = React.useState('');
@@ -45,10 +47,28 @@ const RegisterStep = (props: RegisterNameProps) => {
     }
     props.handleRegisterName();
   };
+  const getImage = (name: string) => {
+    switch (name) {
+      case 'name':
+        return (
+          <UndrawName style={{ height: 200, aspectRatio: 1, zIndex: -1 }} />
+        );
+      case 'email':
+        return (
+          <UndrawEmail style={{ height: 200, aspectRatio: 1, zIndex: -1 }} />
+        );
+      case 'password':
+        return (
+          <UndrawPassword style={{ height: 200, aspectRatio: 1, zIndex: -1 }} />
+        );
+      default:
+        return null;
+    }
+  };
   return (
     <Content>
       <TextHeader>Vamos lá!</TextHeader>
-      <UndrawImage source={props.image} />
+      {getImage(props.name)}
       <StepContainer>
         <CircleStep
           isStep={props.step === 0}

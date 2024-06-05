@@ -26,7 +26,7 @@ const Index = () => {
   }, []);
   return (
     <Container>
-      <RedBagIcon  />
+      <RedBagIcon />
       <Title>Red Bag</Title>
     </Container>
   );

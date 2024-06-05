@@ -7,7 +7,7 @@ export const Content = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   padding: 80px 20px 0px 32px;
   flex: 1;
 `;

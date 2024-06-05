@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Active,
-  Caret,
   Container,
   DropdownContent,
   Menu,
@@ -28,6 +27,9 @@ import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
+import Caret from '@/assets/caret.svg';
+import CatOpenCam from '@/assets/catOpenCam.svg';
+
 const Analysis = ({
   handleListAnimal,
   handleLibraryUpload,
@@ -43,7 +45,13 @@ const Analysis = ({
               <SelectCatDefault color="#D8491D" />
               <SelectedText>Aleatório</SelectedText>
             </Selected>
-            <Caret source={require('@/assets/caret.png')} isOpen={isOpen} />
+            <Caret
+              style={{
+                width: 15,
+                height: 10,
+                transform: [{ rotate: isOpen ? '180deg' : '0deg' }],
+              }}
+            />
           </Select>
           <Menu
             scrollEnabled
@@ -75,7 +83,7 @@ const Analysis = ({
         <ImageAnalysis source={{ uri: selectedImage }} />
       ) : (
         <OpenCamera>
-          <Image source={require('@/assets/cat-analysis.png')} />
+          <CatOpenCam />
           <OpenCameraText>Abrir câmera</OpenCameraText>
         </OpenCamera>
       )}

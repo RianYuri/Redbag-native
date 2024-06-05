@@ -50,7 +50,7 @@ const Profile = () => {
               <Feather name="edit" size={30} color="#FE5433" />
               <TextEditSuport>Editar perfil</TextEditSuport>
             </EditView>
-            <EditView>
+            <EditView onPress={() => router.replace('/step-by-step/')}>
               <FontAwesome5 name="question-circle" size={30} color="#FE5433" />
               <TextEditSuport>Suporte</TextEditSuport>
             </EditView>

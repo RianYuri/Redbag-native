@@ -1,6 +1,6 @@
 import RegisterStep from '@/components/register/register.component';
 import React from 'react';
-import { Container, Content, RectangleBot, RectangleTop } from './style';
+import { Container, Content } from './style';
 import {
   Alert,
   FlatList,
@@ -13,6 +13,8 @@ import Loading from '@/components/loading/loading.component';
 import { router } from 'expo-router';
 import { FormData } from './types';
 import { redBagApiService } from '@/services/redBagApi';
+import RectangleTop from '@/assets/rectangleTop.svg';
+import RectangleBot from '@/assets/rectangleBot.svg';
 const Register = () => {
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const registerListRef = React.useRef<any>(null);
@@ -84,7 +86,7 @@ const Register = () => {
     <KeyboardAvoidingView behavior="position">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
-          <RectangleTop source={require('@/assets/rectangleTop.png')} />
+          <RectangleTop style={{ position: 'absolute', top: 0, zIndex: 1 }} />
           <Content>
             <FlatList
               ref={registerListRef}
@@ -109,7 +111,7 @@ const Register = () => {
             />
           </Content>
 
-          <RectangleBot source={require('@/assets/rectangleBotRegister.png')} />
+          <RectangleBot style={{ position: 'relative', bottom: -20 }} />
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

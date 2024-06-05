@@ -29,7 +29,6 @@ import RectangleBot from '@/assets/rectangleBot.svg';
 
 import CatLogin from '@/assets/catLogin.svg';
 
-
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
@@ -83,7 +82,7 @@ const Login = () => {
             }}
           />
           <LoginFormContainer behavior="padding">
-            <CatLogin  />
+            <CatLogin />
             <Content>
               <ControlledInput
                 name="usernameOrEmail"
@@ -110,7 +109,7 @@ const Login = () => {
             <NotHaveAccount onPress={() => router.push('/register/')}>
               Não possui uma conta?
             </NotHaveAccount>
-            <RectangleBot style={{position:"absolute",top:50}} />
+            <RectangleBot style={{ position: 'absolute', top: 50 }} />
           </RectangleBotContent>
         </Container>
       </TouchableWithoutFeedback>

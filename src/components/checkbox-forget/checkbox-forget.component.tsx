@@ -3,10 +3,10 @@ import {
   Checkbox,
   Container,
   ForgetPasswordText,
-  IconCheck,
   LoggedContent,
   LoggedText,
 } from './style';
+import { Entypo } from '@expo/vector-icons';
 const CheckboxForget = ({ setHasKeepLoggedIn }: any) => {
   const [isChecked, setIsChecked] = React.useState(false);
   const handleChecked = () => {
@@ -18,10 +18,8 @@ const CheckboxForget = ({ setHasKeepLoggedIn }: any) => {
   return (
     <Container>
       <LoggedContent>
-        <Checkbox onPress={handleChecked}>
-          {isChecked ? (
-            <IconCheck source={require('@/assets/check-symbol.png')} />
-          ) : null}
+        <Checkbox onPress={handleChecked} isChecked={isChecked}>
+          {isChecked ? <Entypo name="check" size={14} color="white" /> : null}
         </Checkbox>
         <LoggedText>Continuar logado</LoggedText>
       </LoggedContent>
