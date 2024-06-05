@@ -1,35 +1,57 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import {
   CaptureButton,
+  CaptureOverlay,
   InnerCaptureButton,
+  LibraryButton,
   Overlay,
   StyledSafeAreaView,
 } from './style';
 import Toast from 'react-native-toast-message';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import React from 'react';
-
+import { Entypo } from '@expo/vector-icons';
 import ButtonCamera from '@/assets/buttonCamera.svg';
-const Camera = () => {
-  const camera = React.useRef<CameraView>(null);
-  const [permission, requestPermission] = useCameraPermissions();
-  console.log(permission);
+import { HandleLibraryProps } from '@/app/create-animal/types';
+import * as ImagePicker from 'expo-image-picker';
 
-  React.useEffect(() => {
-    (async () => {
-      if (!permission?.granted) {
+const Camera = ({
+  handleLibraryUpload,
+  setSelectedImage,
+  setHasCamera,
+}: HandleLibraryProps) => {
+  const camera = React.useRef<CameraView>(null);
+  const [permission] = useCameraPermissions();
+  const handleLibrary = () => {
+    handleLibraryUpload('');
+  };
+  const requestPermissions = async () => {
+    if (Platform.OS !== 'web') {
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      if (status !== 'granted') {
         Toast.show({
           type: 'error',
           text1: 'Permissão de câmera negada!',
           text2:
             'Você precisa permitir o acesso à câmera para usar esta funcionalidade.',
         });
-        await requestPermission();
+        setHasCamera(false);
       }
-    })();
-  }, [permission, requestPermission]);
+    }
+  };
+  React.useEffect(() => {
+    requestPermissions();
+  }, [,]);
   const takePicture = async () => {
     if (!camera.current) {
+      return;
+    }
+    if (!permission) {
+      return null;
+    }
+
+    if (permission?.canAskAgain && !permission?.granted) {
+      await requestPermissions();
       return;
     }
 
@@ -39,18 +61,10 @@ const Camera = () => {
       exif: true,
       skipProcessing: true,
     });
-    console.log('Foto tirada', photo);
+    setSelectedImage(photo?.uri);
+    setHasCamera(false);
   };
 
-  if (!permission) {
-    return null;
-  }
-
-  if (permission?.canAskAgain && !permission?.granted) {
-    requestPermission();
-  }
-
-  const handleCameraReady = () => {};
   return (
     <StyledSafeAreaView>
       <CameraView
@@ -65,10 +79,14 @@ const Camera = () => {
         onCameraReady={() => console.log('Camera ready!')}
       >
         <Overlay>
-          <CaptureButton onPress={takePicture}>
-            <InnerCaptureButton>
+          <CaptureOverlay />
+          <CaptureButton>
+            <InnerCaptureButton onPress={takePicture}>
               <ButtonCamera />
             </InnerCaptureButton>
+            <LibraryButton onPress={handleLibrary}>
+              <Entypo name="folder-images" size={24} color="#FFFFFF" />
+            </LibraryButton>
           </CaptureButton>
         </Overlay>
       </CameraView>

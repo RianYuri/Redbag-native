@@ -1,4 +1,4 @@
-import { FormData } from '@/app/login/types';
+import { FormData, SaveAnimalType } from './types';
 export type FormDataRegister = {
   name: string;
   username: string;
@@ -28,6 +28,22 @@ class ApiService {
   async login(data: FormData) {
     try {
       const response = await fetch(`${this.baseUrl}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const dataRes = await response.json();
+      if (!response.ok) {
+        throw new Error(dataRes.message || 'Algo deu errado');
+      }
+      return dataRes;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async saveAnimal(data: SaveAnimalType, userId: number) {
+    try {
+      const response = await fetch(`${this.baseUrl}/api/animals/${userId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

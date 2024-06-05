@@ -3,6 +3,7 @@ import { Control, Controller, FieldError } from 'react-hook-form';
 import Input from '../input/input.component';
 import { InputProps } from '@/app/login/types';
 import { Alert } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 type ControlledInputProps = InputProps & {
   control: Control<any>;
@@ -17,17 +18,11 @@ const ControlledInput = ({
 }: ControlledInputProps) => {
   React.useEffect(() => {
     if (error?.message) {
-      Alert.alert(
-        'Erro ao fazer login',
-        error?.message,
-        [
-          {
-            text: 'Ok',
-            style: 'default',
-          },
-        ],
-        { cancelable: false }
-      );
+      Toast.show({
+        type: 'error',
+        text1: 'Erro ao fazer login',
+        text2: error?.message,
+      });
     }
   }, [error]);
 

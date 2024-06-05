@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { theme } from '@/themes';
 import { ColorProps } from './types';
 import { LabelInputProps } from '../login/types';
-
+import Image from 'expo-camera';
 export const Container = styled.Pressable`
   display: flex;
   flex-direction: column;

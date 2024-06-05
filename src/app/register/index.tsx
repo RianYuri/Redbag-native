@@ -65,8 +65,6 @@ const Register = () => {
       console.error('Registration failed', error.message);
       Alert.alert('Erro de registro', error.message);
       setIsLoading(false);
-    } finally {
-      setIsLoading(true);
     }
   };
   const handleRegisterBack = () => {

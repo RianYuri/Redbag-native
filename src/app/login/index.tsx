@@ -12,6 +12,7 @@ import ControlledInput from '@/components/controlled-input/controlled-input.comp
 import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.component';
 import {
   Alert,
+  Image,
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -55,30 +56,29 @@ const Login = () => {
     try {
       const response = await redBagApiService.login(updatedFormData);
       console.log('Login successful', response);
-      const token = response.token;
-      if (token && hasKeepLoggedIn) {
-        await AsyncStorage.setItem('userToken', token);
+      const user = response.token;
+      if (user.token && hasKeepLoggedIn) {
+        await AsyncStorage.setItem('userToken', user);
       }
+      setIsLoading(false);
       router.push('/home/');
     } catch (error: any) {
+      setIsLoading(false);
       console.error('Login failed', error.message);
       Alert.alert('Erro de login', error.message);
-      setIsLoading(false);
-    } finally {
-      setIsLoading(true);
     }
   };
   return isLoading ? (
     <Loading />
   ) : (
-    <KeyboardAvoidingView behavior="height">
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView behavior="height">
         <Container>
           <RectangleTop
             style={{
               position: 'absolute',
               top: 0,
-              zIndex: -1,
+              zIndex: 0,
             }}
           />
           <LoginFormContainer behavior="padding">
@@ -112,8 +112,8 @@ const Login = () => {
             <RectangleBot style={{ position: 'absolute', top: 50 }} />
           </RectangleBotContent>
         </Container>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 

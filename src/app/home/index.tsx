@@ -9,6 +9,7 @@ import HistoriesAnalysis from '@/components/histories-analysis/histories-analysi
 import Tab from '@/components/tabs/tab.component';
 import HomeComponent from '@/components/home-component/home-component.component';
 import { useLocalSearchParams } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 type RouteParams = {
   selectedTabRoute: string;
 };
@@ -18,6 +19,7 @@ const Home = () => {
   const { setAnalyzedImage } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
+
   useEffect(() => {
     if (params.selectedTabRoute) {
       setSelectedTab(params.selectedTabRoute);

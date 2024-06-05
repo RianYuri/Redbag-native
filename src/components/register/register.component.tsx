@@ -22,6 +22,7 @@ import { Alert } from 'react-native';
 import UndrawName from '@/assets/undraw-people.svg';
 import UndrawEmail from '@/assets/undrawEmail.svg';
 import UndrawPassword from '@/assets/undrawPassword.svg';
+import Toast from 'react-native-toast-message';
 
 const RegisterStep = (props: RegisterNameProps) => {
   const [text, setText] = React.useState('');
@@ -38,11 +39,19 @@ const RegisterStep = (props: RegisterNameProps) => {
   };
   const onSubmit = () => {
     if (text === '') {
-      Alert.alert('Erro', `O campo ${props.labelName} não pode ser vazio`);
+      Toast.show({
+        type: 'error',
+        text1: 'Erro',
+        text2: `O campo ${props.labelName} não pode ser vazio`,
+      });
       return;
     }
     if (props.name === 'email' && !validateEmail(text)) {
-      Alert.alert('Erro', 'Formato de email inválido');
+      Toast.show({
+        type: 'error',
+        text1: 'Erro',
+        text2: 'Formato de email inválido',
+      });
       return;
     }
     props.handleRegisterName();

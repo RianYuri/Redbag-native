@@ -24,8 +24,8 @@ export const Checkbox = styled.Pressable<isCheckedProps>`
   width: 16px;
   height: 16px;
   border-width: 1px;
-  border-color: #fe5433;
-  background-color: ${(isChecked) => (isChecked ? '#FFFFFF' : '#fe5433')};
+  border-color: #000000;
+  background-color: ${({ isChecked }) => (isChecked ? '#000000' : '#FFFFFF')};
   border-radius: 3px;
   display: flex;
   justify-content: center;

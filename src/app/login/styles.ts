@@ -8,6 +8,7 @@ export const Container = styled.View`
   align-items: center;
   padding-top: 100px;
   width: 100%;
+  z-index: -1;
 `;
 
 export const NotHaveAccount = styled.Text`

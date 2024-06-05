@@ -27,7 +27,6 @@ const StepByStep = () => {
   };
   const handleStepByStep = () => {
     if (currentRegister < totalStepRegister) {
-      console.log(currentRegister);
       const newIndex = calculateNewIndex(currentRegister, 1);
 
       stepListRef.current?.scrollToIndex({

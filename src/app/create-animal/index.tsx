@@ -35,12 +35,16 @@ import {
 import ColorPicker from 'react-native-wheel-color-picker';
 import { theme } from '@/themes';
 import Camera from '@/components/camera/camera.component';
+import { redBagApiService } from '@/services/redBagApi';
 const CreateAnimal = () => {
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);
   const [text, setText] = React.useState('');
+  const [hasCamera, setHasCamera] = React.useState(false);
 
-  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = React.useState<string | undefined>(
+    ''
+  );
   const requestPermissions = async () => {
     if (Platform.OS !== 'web') {
       const { status } =
@@ -51,27 +55,47 @@ const CreateAnimal = () => {
     }
   };
   const handleLibraryUpload = async (type: string | null) => {
-    // if (type === 'cancel') {
-    //   setSelectedImage(null);
-    // }
+    setHasCamera(false);
+    if (type === 'cancel') {
+      setSelectedImage('');
+      return;
+    }
     await requestPermissions();
 
-    // const result: ImagePicker.ImagePickerResult =
-    //   await ImagePicker.launchImageLibraryAsync({
-    //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
-    //     allowsEditing: true,
-    //     aspect: [4, 3],
-    //     quality: 1,
-    //     base64: true,
-    //   });
+    const result: ImagePicker.ImagePickerResult =
+      await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+        base64: true,
+      });
 
-    // if (!result.canceled) {
-    //   const uri = result.assets[0].uri;
-    //   setSelectedImage(uri);
-    // }
+    if (!result.canceled) {
+      const uri = result.assets[0].uri;
+      setSelectedImage(uri);
+    }
   };
-  return true ? (
-    <Camera />
+  console.log();
+  const fetchSaveAnimal = async () => {
+    const data = {
+      name: text,
+      color: color,
+    };
+    try {
+      const response = await redBagApiService.saveAnimal(data, 2);
+      console.log('sucess save animal', response);
+      router.replace('/home/');
+    } catch (error: any) {
+      console.error('Login failed', error.message);
+    }
+  };
+  return hasCamera ? (
+    <Camera
+      handleLibraryUpload={handleLibraryUpload}
+      setSelectedImage={setSelectedImage}
+      setHasCamera={setHasCamera}
+    />
   ) : (
     <KeyboardAvoidingView behavior="height">
       <ScrollView scrollEnabled>
@@ -92,7 +116,7 @@ const CreateAnimal = () => {
                   <TextOpenCamera>Abrir câmera</TextOpenCamera>
                 </BoxUpdatePhoto>
               )}
-              <UploadButton onPress={() => handleLibraryUpload('')}>
+              <UploadButton onPress={() => setHasCamera(true)}>
                 <Feather name="upload" size={24} color="#FE5433" />
                 <UploadText>Upload</UploadText>
               </UploadButton>
@@ -111,7 +135,7 @@ const CreateAnimal = () => {
                   <ColorPicker
                     onColorChange={setColor}
                     sliderSize={0}
-                    thumbSize={20}
+                    thumbSize={30}
                     row={false}
                     style={{
                       width: 100,
@@ -124,7 +148,7 @@ const CreateAnimal = () => {
                 <ChoseColor color={color} />
                 <TextInputColor>Cor de identificação</TextInputColor>
               </InputColorContent>
-              <AddDog onPress={() => router.push('/create-animal/')}>
+              <AddDog onPress={fetchSaveAnimal}>
                 <FontAwesome name="plus" size={24} color="white" />
                 <TextAddDog>Adicionar pet</TextAddDog>
               </AddDog>

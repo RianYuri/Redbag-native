@@ -16,3 +16,8 @@ export type FormData = {
   usernameOrEmail: string;
   password: string;
 };
+
+export interface UserProps {
+  token: string;
+  id: 0;
+}
