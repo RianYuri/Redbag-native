@@ -13,7 +13,6 @@ export type FormData = {
 };
 
 export type RegisterListProps = {
-  image: ImageProps;
   description: string;
   name: string;
   labelName: string;

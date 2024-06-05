@@ -101,7 +101,6 @@ const Register = () => {
                   handleRegisterName={handleRegisterName}
                   handleRegisterBack={handleRegisterBack}
                   description={item.description}
-                  image={item.image}
                   labelName={item.labelName}
                   name={item.name}
                   setFormData={setFormData}
