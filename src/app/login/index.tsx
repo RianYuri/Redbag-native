@@ -4,11 +4,8 @@ import {
   Content,
   ContinueButton,
   LoginFormContainer,
-  LogoCat,
   NotHaveAccount,
-  ReactangleBot,
   RectangleBotContent,
-  RectangleTop,
   TextButton,
 } from './styles';
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
@@ -27,6 +24,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { redBagApiService } from '@/services/redBagApi';
 import Loading from '@/components/loading/loading.component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RectangleTop from '@/assets/rectangleTop.svg';
+import RectangleBot from '@/assets/rectangleBot.svg';
+
+import CatLogin from '@/assets/catLogin.svg';
+
 
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -73,9 +75,15 @@ const Login = () => {
     <KeyboardAvoidingView behavior="height">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
-          <RectangleTop source={require('@/assets/rectangleTop.png')} />
+          <RectangleTop
+            style={{
+              position: 'absolute',
+              top: 0,
+              zIndex: -1,
+            }}
+          />
           <LoginFormContainer behavior="padding">
-            <LogoCat source={require('@/assets/logoCat.png')} />
+            <CatLogin  />
             <Content>
               <ControlledInput
                 name="usernameOrEmail"
@@ -102,7 +110,7 @@ const Login = () => {
             <NotHaveAccount onPress={() => router.push('/register/')}>
               Não possui uma conta?
             </NotHaveAccount>
-            <ReactangleBot source={require('@/assets/rectangleBot.png')} />
+            <RectangleBot style={{position:"absolute",top:50}} />
           </RectangleBotContent>
         </Container>
       </TouchableWithoutFeedback>

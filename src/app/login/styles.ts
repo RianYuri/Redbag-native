@@ -6,28 +6,22 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding-top: 100px;
   width: 100%;
 `;
-export const RectangleTop = styled.Image`
-  position: absolute;
-  top: 0;
-  z-index: -1;
-`;
-export const ReactangleBot = styled.Image`
-  position: absolute;
-`;
+
 export const NotHaveAccount = styled.Text`
   font-family: ${theme.fonts.text.regular};
   font-size: 16px;
   color: ${theme.colors.white};
-  padding-top: 33px;
+  padding-top: 73px;
   z-index: 1;
   text-decoration: underline;
   position: absolute;
 `;
 export const RectangleBotContent = styled.View`
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   position: absolute;
   bottom: 0;
@@ -53,7 +47,7 @@ export const Content = styled.View`
   align-items: center;
   flex-direction: column;
   gap: 30px;
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 3px;
 `;
 
