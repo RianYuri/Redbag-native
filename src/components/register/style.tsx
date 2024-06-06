@@ -7,9 +7,10 @@ export const Content = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height:100%;
+  padding: 0 40px 0 40px;
   gap: 10px;
-  padding: 80px 20px 0px 32px;
-  flex: 1;
 `;
 
 export const TextHeader = styled.Text`

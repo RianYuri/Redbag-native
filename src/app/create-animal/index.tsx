@@ -36,6 +36,7 @@ import ColorPicker from 'react-native-wheel-color-picker';
 import { theme } from '@/themes';
 import Camera from '@/components/camera/camera.component';
 import { redBagApiService } from '@/services/redBagApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const CreateAnimal = () => {
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);
@@ -76,19 +77,25 @@ const CreateAnimal = () => {
       setSelectedImage(uri);
     }
   };
-  console.log();
   const fetchSaveAnimal = async () => {
     const data = {
       name: text,
       color: color,
     };
+    console.log(data)
+    const userId = await AsyncStorage.getItem('userId');
+    
+    if (userId !== null) {
+      const userIdNum: number = parseInt(userId);
     try {
-      const response = await redBagApiService.saveAnimal(data, 2);
+      const response = await redBagApiService.saveAnimal(data, userIdNum);
       console.log('sucess save animal', response);
       router.replace('/home/');
     } catch (error: any) {
       console.error('Login failed', error.message);
     }
+  }
+
   };
   return hasCamera ? (
     <Camera

@@ -12,9 +12,9 @@ import ControlledInput from '@/components/controlled-input/controlled-input.comp
 import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.component';
 import {
   Alert,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
+  ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
 import { router } from 'expo-router';
@@ -56,60 +56,66 @@ const Login = () => {
     try {
       const response = await redBagApiService.login(updatedFormData);
       console.log('Login successful', response);
-      const user = response.token;
-      if (user.token && hasKeepLoggedIn) {
-        await AsyncStorage.setItem('userToken', user);
+      const token = response.token;
+      const userId = response.id;
+console.log(response)
+      if (token && hasKeepLoggedIn) {
+        await AsyncStorage.setItem('userToken', token);
+        await AsyncStorage.setItem('userId',JSON.stringify(userId) );
       }
-      setIsLoading(false);
       router.push('/home/');
     } catch (error: any) {
-      setIsLoading(false);
       console.error('Login failed', error.message);
       Alert.alert('Erro de login', error.message);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(true);
     }
   };
   return isLoading ? (
     <Loading />
   ) : (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView behavior="height">
+      <KeyboardAvoidingView behavior="padding">
         <Container>
           <RectangleTop
             style={{
               position: 'absolute',
               top: 0,
-              zIndex: 0,
+              zIndex: -1,
             }}
           />
-          <LoginFormContainer behavior="padding">
-            <CatLogin />
-            <Content>
-              <ControlledInput
-                name="usernameOrEmail"
-                control={control}
-                labelName="Email"
-                inputMode="email"
-                autoCapitalize="none"
-                error={errors.usernameOrEmail}
-              />
-              <ControlledInput
-                name="password"
-                control={control}
-                labelName="Senha"
-                secureTextEntry={true}
-                error={errors.password}
-              />
-            </Content>
-            <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
-            <ContinueButton onPress={handleSubmit(handleUserLogin)}>
-              <TextButton>Entrar</TextButton>
-            </ContinueButton>
-          </LoginFormContainer>
+          <ScrollView scrollEnabled style={{ width: '100%' }}>
+            <LoginFormContainer>
+              <CatLogin />
+              <Content>
+                <ControlledInput
+                  name="usernameOrEmail"
+                  control={control}
+                  labelName="Email"
+                  inputMode="email"
+                  autoCapitalize="none"
+                  error={errors.usernameOrEmail}
+                />
+                <ControlledInput
+                  name="password"
+                  control={control}
+                  labelName="Senha"
+                  secureTextEntry={true}
+                  error={errors.password}
+                />
+              </Content>
+              <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
+              <ContinueButton onPress={handleSubmit(handleUserLogin)}>
+                <TextButton>Entrar</TextButton>
+              </ContinueButton>
+            </LoginFormContainer>
+          </ScrollView>
           <RectangleBotContent>
             <NotHaveAccount onPress={() => router.push('/register/')}>
               Não possui uma conta?
             </NotHaveAccount>
-            <RectangleBot style={{ position: 'absolute', top: 50 }} />
+            <RectangleBot style={{ position: 'absolute', top: -10 }} />
           </RectangleBotContent>
         </Container>
       </KeyboardAvoidingView>

@@ -7,6 +7,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import { registerList } from '@/data/registerList';
 import Loading from '@/components/loading/loading.component';
@@ -94,6 +95,7 @@ const Register = () => {
               scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
+
                 <RegisterStep
                   step={currentRegister}
                   handleRegisterName={handleRegisterName}
@@ -102,7 +104,7 @@ const Register = () => {
                   labelName={item.labelName}
                   name={item.name}
                   setFormData={setFormData}
-                />
+                  />
               )}
               initialScrollIndex={currentRegister}
             />

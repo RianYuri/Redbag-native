@@ -10,6 +10,8 @@ export const Container = styled.View`
 export const Content = styled.View`
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: row;
   width: 100%;
 `;
 export const RectangleTop = styled.Image`

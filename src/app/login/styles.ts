@@ -7,7 +7,9 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
   padding-top: 100px;
+position: relative;
   width: 100%;
+  height: 100%;
   z-index: -1;
 `;
 
@@ -15,7 +17,7 @@ export const NotHaveAccount = styled.Text`
   font-family: ${theme.fonts.text.regular};
   font-size: 16px;
   color: ${theme.colors.white};
-  padding-top: 73px;
+  padding-top: 20px;
   z-index: 1;
   text-decoration: underline;
   position: absolute;
@@ -25,10 +27,10 @@ export const RectangleBotContent = styled.View`
   justify-content: flex-start;
   align-items: center;
   position: absolute;
-  bottom: 0;
+  top: 100%;
   z-index: -1;
 `;
-export const LoginFormContainer = styled.KeyboardAvoidingView`
+export const LoginFormContainer = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +39,7 @@ export const LoginFormContainer = styled.KeyboardAvoidingView`
   padding: 50px 25px 0px;
 `;
 
-export const LogoCat = styled.Image`
+export const LogoCat = styled.View`
   max-width: 117px;
   max-height: 115px;
 `;

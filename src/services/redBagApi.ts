@@ -57,6 +57,22 @@ class ApiService {
       throw error;
     }
   }
+  async saveAnimalImage(data: SaveAnimalType, userId: number) {
+    try {
+      const response = await fetch(`${this.baseUrl}/api/animals/${userId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const dataRes = await response.json();
+      if (!response.ok) {
+        throw new Error(dataRes.message || 'Algo deu errado');
+      }
+      return dataRes;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export const redBagApiService = new ApiService();

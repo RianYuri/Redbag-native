@@ -3,9 +3,10 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
+  height: 100%;
   padding-left: 17px;
   padding-top: 20px;
 `;
@@ -57,11 +58,12 @@ export const ExitButton = styled.Pressable`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 160px;
   width: 203px;
   height: 50px;
   gap: 15px;
   background-color: #ff45450d;
-  margin-top: 70px;
   border-radius: 50px;
 `;
 
