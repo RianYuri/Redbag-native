@@ -55,21 +55,18 @@ const Login = () => {
     setIsLoading(true);
     try {
       const response = await redBagApiService.login(updatedFormData);
-      console.log('Login successful', response);
       const token = response.token;
-      const userId = response.id;
-console.log(response)
+      const user = response;
+      await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
+
+      setIsLoading(false);
       if (token && hasKeepLoggedIn) {
         await AsyncStorage.setItem('userToken', token);
-        await AsyncStorage.setItem('userId',JSON.stringify(userId) );
       }
       router.push('/home/');
     } catch (error: any) {
-      console.error('Login failed', error.message);
       Alert.alert('Erro de login', error.message);
       setIsLoading(false);
-    } finally {
-      setIsLoading(true);
     }
   };
   return isLoading ? (
@@ -115,7 +112,7 @@ console.log(response)
             <NotHaveAccount onPress={() => router.push('/register/')}>
               Não possui uma conta?
             </NotHaveAccount>
-            <RectangleBot style={{ position: 'absolute', top: -10 }} />
+            <RectangleBot style={{ position: 'relative', top: -10 }} />
           </RectangleBotContent>
         </Container>
       </KeyboardAvoidingView>

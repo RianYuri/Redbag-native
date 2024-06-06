@@ -4,3 +4,7 @@ export type AnalysisProps = {
   isOpen: boolean;
   selectedImage: string | null;
 };
+export type DropdownCreateAnimalProps = {
+  handleListAnimal: () => void;
+  isOpen: boolean;
+};

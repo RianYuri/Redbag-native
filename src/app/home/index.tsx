@@ -10,10 +10,14 @@ import Tab from '@/components/tabs/tab.component';
 import HomeComponent from '@/components/home-component/home-component.component';
 import { useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { redBagApiService } from '@/services/redBagApi';
+import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
+import { useDispatch } from 'react-redux';
 type RouteParams = {
   selectedTabRoute: string;
 };
 const Home = () => {
+  const dispatch = useDispatch();
   const params = useLocalSearchParams() as RouteParams;
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const { setAnalyzedImage } = useImageContext();
@@ -59,6 +63,24 @@ const Home = () => {
       setAnalyzedImage(uri);
     }
   };
+  const fetchAllAnimalsByUser = React.useCallback(async () => {
+    const user = await AsyncStorage.getItem('@userAuthentication');
+    if (user) {
+      const userObj = JSON.parse(user);
+      try {
+        const allAnimals = await redBagApiService.getAllAnimalsById(
+          userObj.id,
+          userObj.token
+        );
+        console.log(allAnimals, 'teste home');
+        dispatch(fetchAnimalsSuccess(allAnimals));
+      } catch {}
+    }
+  }, []);
+
+  React.useEffect(() => {
+    fetchAllAnimalsByUser();
+  }, [fetchAllAnimalsByUser]);
   const renderSelectedTab = () => {
     switch (selectedTab) {
       case 'home':

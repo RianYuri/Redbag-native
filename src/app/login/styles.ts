@@ -7,10 +7,9 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
   padding-top: 100px;
-position: relative;
+  position: relative;
   width: 100%;
   height: 100%;
-  z-index: -1;
 `;
 
 export const NotHaveAccount = styled.Text`
@@ -28,7 +27,6 @@ export const RectangleBotContent = styled.View`
   align-items: center;
   position: absolute;
   top: 100%;
-  z-index: -1;
 `;
 export const LoginFormContainer = styled.View`
   display: flex;

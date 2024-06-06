@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-  Active,
   Container,
-  DropdownContent,
-  Menu,
-  MenuList,
-  Select,
-  Selected,
-  SelectedText,
-  Divider,
   OpenCamera,
   OpenCameraText,
   UploadButton,
@@ -18,17 +10,12 @@ import {
   ButtonContent,
   CancelButton,
   CancelButtonText,
-  DropwdownAndNewDog,
-  NewDog,
 } from './style';
-import SelectCatDefault from '@/assets/select-cat.svg';
-import { Image } from 'react-native';
 import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { AntDesign } from '@expo/vector-icons';
-import Caret from '@/assets/caret.svg';
 import CatOpenCam from '@/assets/catOpenCam.svg';
+import DropdownCreateAnimalComponent from '../dropdown-create-animal/dropdown-create-animal.component';
 
 const Analysis = ({
   handleListAnimal,
@@ -38,47 +25,10 @@ const Analysis = ({
 }: AnalysisProps) => {
   return (
     <Container>
-      <DropwdownAndNewDog>
-        <DropdownContent>
-          <Select onTouchStart={handleListAnimal}>
-            <Selected>
-              <SelectCatDefault color="#D8491D" />
-              <SelectedText>Aleatório</SelectedText>
-            </Selected>
-            <Caret
-              style={{
-                width: 15,
-                height: 10,
-                transform: [{ rotate: isOpen ? '180deg' : '0deg' }],
-              }}
-            />
-          </Select>
-          <Menu
-            scrollEnabled
-            isOpen={isOpen}
-            style={{
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 3,
-            }}
-          >
-            <MenuList>
-              <Active>Aleatório</Active>
-              <Divider />
-              <Active>Aleatório</Active>
-              <Divider />
-              <Active>Aleatório</Active>
-              <Divider />
-              <Active>Aleatório</Active>
-            </MenuList>
-          </Menu>
-        </DropdownContent>
-        <NewDog onPress={() => router.push('/create-animal/')}>
-          <AntDesign name="plus" size={24} color="white" />
-        </NewDog>
-      </DropwdownAndNewDog>
+      <DropdownCreateAnimalComponent
+        isOpen={isOpen}
+        handleListAnimal={handleListAnimal}
+      />
       {selectedImage ? (
         <ImageAnalysis source={{ uri: selectedImage }} />
       ) : (

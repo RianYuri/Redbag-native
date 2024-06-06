@@ -95,7 +95,6 @@ const Register = () => {
               scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
-
                 <RegisterStep
                   step={currentRegister}
                   handleRegisterName={handleRegisterName}
@@ -104,7 +103,7 @@ const Register = () => {
                   labelName={item.labelName}
                   name={item.name}
                   setFormData={setFormData}
-                  />
+                />
               )}
               initialScrollIndex={currentRegister}
             />

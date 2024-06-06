@@ -37,15 +37,15 @@ import { theme } from '@/themes';
 import Camera from '@/components/camera/camera.component';
 import { redBagApiService } from '@/services/redBagApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import { ImagePickerAsset } from 'expo-image-picker';
 const CreateAnimal = () => {
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);
   const [text, setText] = React.useState('');
   const [hasCamera, setHasCamera] = React.useState(false);
 
-  const [selectedImage, setSelectedImage] = React.useState<string | undefined>(
-    ''
-  );
+  const [selectedImage, setSelectedImage] = React.useState<any>();
   const requestPermissions = async () => {
     if (Platform.OS !== 'web') {
       const { status } =
@@ -58,7 +58,7 @@ const CreateAnimal = () => {
   const handleLibraryUpload = async (type: string | null) => {
     setHasCamera(false);
     if (type === 'cancel') {
-      setSelectedImage('');
+      setSelectedImage(undefined);
       return;
     }
     await requestPermissions();
@@ -69,11 +69,10 @@ const CreateAnimal = () => {
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
-        base64: true,
       });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri;
+      const uri = result.assets[0];
       setSelectedImage(uri);
     }
   };
@@ -82,20 +81,38 @@ const CreateAnimal = () => {
       name: text,
       color: color,
     };
-    console.log(data)
-    const userId = await AsyncStorage.getItem('userId');
-    
-    if (userId !== null) {
-      const userIdNum: number = parseInt(userId);
-    try {
-      const response = await redBagApiService.saveAnimal(data, userIdNum);
-      console.log('sucess save animal', response);
-      router.replace('/home/');
-    } catch (error: any) {
-      console.error('Login failed', error.message);
-    }
-  }
+    const user = await AsyncStorage.getItem('@userAuthentication');
+    if (user && selectedImage) {
+      const userObj = JSON.parse(user);
+      try {
+        await redBagApiService.saveAnimalAndImage(
+          data,
+          selectedImage,
+          userObj.id,
+          userObj.token
+        );
 
+        Toast.show({
+          type: 'success',
+          text1: 'Sucesso',
+          text2: 'Animal salvo com sucesso!',
+        });
+        router.replace('/home/');
+      } catch (error) {
+        let errorMessage = 'Algo deu errado';
+
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        } else if (typeof error === 'string') {
+          errorMessage = error;
+        }
+        Toast.show({
+          type: 'error',
+          text1: 'Erro ao salvar animal',
+          text2: errorMessage,
+        });
+      }
+    }
   };
   return hasCamera ? (
     <Camera
@@ -116,7 +133,9 @@ const CreateAnimal = () => {
             <Content>
               <TextTitle>Novo Pet</TextTitle>
               {selectedImage ? (
-                <ImageAnalysis source={{ uri: selectedImage }} />
+                <ImageAnalysis
+                  source={{ uri: selectedImage.uri ?? selectedImage }}
+                />
               ) : (
                 <BoxUpdatePhoto>
                   <OpenCameraImage />

@@ -8,8 +8,8 @@ export const Content = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height:100%;
-  padding: 0 40px 0 40px;
+  height: 100%;
+  padding: 40px 40px 0 35px;
   gap: 10px;
 `;
 

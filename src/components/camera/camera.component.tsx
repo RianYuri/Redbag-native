@@ -57,7 +57,6 @@ const Camera = ({
 
     const photo = await camera.current.takePictureAsync({
       quality: 0.7,
-      base64: true,
       exif: true,
       skipProcessing: true,
     });
@@ -76,7 +75,6 @@ const Camera = ({
         flash="off"
         zoom={0}
         enableTorch={false}
-        onCameraReady={() => console.log('Camera ready!')}
       >
         <Overlay>
           <CaptureOverlay />
