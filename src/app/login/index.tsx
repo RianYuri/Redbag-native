@@ -58,8 +58,6 @@ const Login = () => {
       const token = response.token;
       const user = response;
       await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
-
-      setIsLoading(false);
       if (token && hasKeepLoggedIn) {
         await AsyncStorage.setItem('userToken', token);
       }

@@ -42,11 +42,11 @@ export const Selected = styled.View`
   justify-content: center;
   gap: 5px;
 `;
-export const SelectedText = styled.Text`
+export const SelectedText = styled.Text<ActiveProps>`
   font-family: ${theme.fonts.text.regular};
   font-weight: 400;
   font-size: 14px;
-  color: #9f9f9f;
+   color: ${({ color }) => color};
 `;
 
 export const Caret = styled.Image<IsOpenProps>`
@@ -89,7 +89,7 @@ export const Divider = styled.View`
   align-self: center;
 `;
 
-export const SelectionCat = styled.View`
+export const SelectionCat = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -72,7 +72,6 @@ const Home = () => {
           userObj.id,
           userObj.token
         );
-        console.log(allAnimals, 'teste home');
         dispatch(fetchAnimalsSuccess(allAnimals));
       } catch {}
     }

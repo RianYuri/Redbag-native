@@ -18,18 +18,31 @@ import { AntDesign } from '@expo/vector-icons';
 import Caret from '@/assets/caret.svg';
 import { router } from 'expo-router';
 import { DropdownCreateAnimalProps } from '../analysis/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
 
 const DropdownCreateAnimal = ({
   isOpen,
   handleListAnimal,
 }: DropdownCreateAnimalProps) => {
+  const allAnimals = useSelector((state:RootState)=>state.animals.animals)
+  const filteredAnimals = allAnimals.map(animal => ({
+    id: animal.id,
+    name: animal.name,
+    color: animal.color
+  }));
+  const [selectedAnimal, setSelectedAnimal] = React.useState({ name: 'Aleatório', color: '#f1f1f1' });
+  
+  const handleSelectChose = (animalName:string, color:string) =>{
+
+  }
   return (
     <DropwdownAndNewDog>
       <DropdownContent>
         <Select onTouchStart={handleListAnimal}>
           <Selected>
-            <CatIcon color="#f1f1f1" />
-            <SelectedText>Aleatório</SelectedText>
+            <CatIcon color={selectedAnimal.color} />
+            <SelectedText color={selectedAnimal.color}>{selectedAnimal.name}</SelectedText>
           </Selected>
           <Caret
             style={{
@@ -51,11 +64,15 @@ const DropdownCreateAnimal = ({
           }}
         >
           <MenuList>
-            <SelectionCat>
-              <CatIcon color="#D8491D" />
-              <Active color={'#D8491D'}>Aleatório</Active>
+          {filteredAnimals.map((item)=>(
+            <React.Fragment key={item.id}>
+            <SelectionCat onPress={()=>setSelectedAnimal({name:item.name, color:item.color})}>
+              <CatIcon color={item.color} />
+              <Active color={item.color}>{item.name}</Active>
             </SelectionCat>
             <Divider />
+            </React.Fragment>
+            ))}
           </MenuList>
         </Menu>
       </DropdownContent>
