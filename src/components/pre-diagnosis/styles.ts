@@ -33,7 +33,7 @@ export const NameDiagnosisText = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 30px;
   color: ${({ predictedClass }) =>
-    !predictedClass ? '#159D20' : theme.colors.fourthRedColor};
+    predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
 
 export const AccuracyBox = styled.View`
@@ -62,7 +62,7 @@ export const AccuracyText = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 50px;
   color: ${({ predictedClass }) =>
-    !predictedClass ? '#159D20' : theme.colors.fourthRedColor};
+    predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
 export const PorcentText = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};

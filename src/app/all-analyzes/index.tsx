@@ -56,6 +56,7 @@ const AllAnalyzes = () => {
               <CheckHistoricComponent
                 accurancy={item.accuracy}
                 dateAnalysis={item.date}
+                healthHistoryId={item.id}
                 predictClass={item.healthStatus}
                 key={item.id}
               />

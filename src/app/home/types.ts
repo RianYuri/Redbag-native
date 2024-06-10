@@ -32,5 +32,6 @@ export interface AnimalHistoriesProps {
 export interface CheckHistoricProps {
   predictClass: string;
   accurancy: number;
+  healthHistoryId: number;
   dateAnalysis: string;
 }

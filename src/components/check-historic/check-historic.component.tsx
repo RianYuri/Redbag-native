@@ -20,6 +20,7 @@ const CheckHistoric = ({
   predictClass,
   accurancy,
   dateAnalysis,
+  healthHistoryId,
 }: CheckHistoricProps) => {
   const formatConfidence = (value: number) => {
     const roundedValue = value?.toFixed(2);
@@ -35,8 +36,8 @@ const CheckHistoric = ({
   return (
     <ContentHistoric>
       <HistoricResults>
-        <TextAnalysis predictedClass={predictClass === 'UNHEALTHY'}>
-          {predictClass === 'UNHEALTHY' ? 'Saudavel' : 'Catarata'}
+        <TextAnalysis predictedClass={predictClass === 'HEALTHY'}>
+          {predictClass === 'UNHEALTHY' ? ' Catarata' : 'Saudavel'}
         </TextAnalysis>
         <TextPorcent>{formatConfidence(accurancy)}%</TextPorcent>
       </HistoricResults>
@@ -44,7 +45,14 @@ const CheckHistoric = ({
         <TextDateAnalyze>{formatDate(dateAnalysis)}</TextDateAnalyze>
         <LineViewContent>
           <BoxViewAnalyzeContent
-            onPress={() => router.push('/complete-analysis/')}
+            onPress={() =>
+              router.push({
+                pathname: '/complete-analysis/',
+                params: {
+                  healthHistoryId,
+                },
+              })
+            }
           >
             <BoxViewAnalyze>
               <EyeIcon />

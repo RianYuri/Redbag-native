@@ -59,7 +59,7 @@ const AnimalHistories = ({
         <DateContent>
           <TextDateDog>{animalName}</TextDateDog>
           <TextDateDog>
-            {predictClass === 'UNHEALTHY' ? 'Saudável' : 'Catarata'}
+            {predictClass === 'UNHEALTHY' ? 'Catarata' : ' Saudável'}
           </TextDateDog>
           <TextDateDog>{formatConfidence(accurancy)}%</TextDateDog>
         </DateContent>

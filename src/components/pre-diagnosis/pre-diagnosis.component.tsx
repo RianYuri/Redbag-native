@@ -1,4 +1,3 @@
-import { AnalyzedData } from '@/context/analysis-image';
 import {
   AccuracyBox,
   AccuracyContent,
@@ -29,9 +28,13 @@ const PreDiagnosis = (analyzedData: any) => {
       >
         <PreDiagnosisText>Pré-diagnóstico</PreDiagnosisText>
         <NameDiagnosisText
-          predictedClass={analyzedData.predictedClass === 'healthy'}
+          predictedClass={
+            analyzedData.analyzedData.predictedClass === 'healthy'
+          }
         >
-          {analyzedData.predictedClass === 'healthy' ? 'Catarata' : 'Saudável'}
+          {analyzedData.analyzedData.predictedClass === 'healthy'
+            ? 'Saudável'
+            : 'Catarata'}
         </NameDiagnosisText>
       </PreDiagnosisBox>
       <AccuracyBox
@@ -46,14 +49,16 @@ const PreDiagnosis = (analyzedData: any) => {
         <AssertivenessText>Assertividade</AssertivenessText>
         <AccuracyContent>
           <AccuracyText
-            predictedClass={analyzedData.predictedClass === 'healthy'}
+            predictedClass={
+              analyzedData.analyzedData.predictedClass === 'healthy'
+            }
           >
-            {formatConfidence(analyzedData.confidence)}
+            {formatConfidence(analyzedData.analyzedData.confidence)}
           </AccuracyText>
           <PorcentText>%</PorcentText>
         </AccuracyContent>
       </AccuracyBox>
-    </Container>
+    </Container>  
   );
 };
 
