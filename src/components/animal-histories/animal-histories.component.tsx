@@ -9,6 +9,7 @@ import {
 } from './style';
 import { router } from 'expo-router';
 import { AnimalHistoriesProps } from '@/app/home/types';
+import { formatDate } from '@/utils/format-date/format-date';
 
 const AnimalHistories = ({
   dateAnalysis,
@@ -22,14 +23,7 @@ const AnimalHistories = ({
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
-  const formatDate = (dateString: string) => {
-    const dateObject = new Date(dateString);
-    const day = dateObject.getDate().toString().padStart(2, '0');
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    const year = dateObject.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-  console.log(animalId);
+
   return (
     <Container
       onPress={() =>

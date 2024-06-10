@@ -64,9 +64,10 @@ export const AccuracyText = styled.Text<PredictedClassProps>`
   color: ${({ predictedClass }) =>
     predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
-export const PorcentText = styled.Text`
+export const PorcentText = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 16px;
-  color: ${theme.colors.fourthRedColor};
+  color: ${({ predictedClass }) =>
+    predictedClass ? '#159D20' : theme.colors.fourthRedColor};
   margin-bottom: 10px;
 `;

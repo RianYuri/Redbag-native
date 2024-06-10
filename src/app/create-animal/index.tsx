@@ -28,7 +28,6 @@ import React from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -45,22 +44,13 @@ const CreateAnimal = () => {
   const [hasCamera, setHasCamera] = React.useState(false);
 
   const [selectedImage, setSelectedImage] = React.useState<any>();
-  const requestPermissions = async () => {
-    if (Platform.OS !== 'web') {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Desculpe, precisamos da permissão para acessar as suas fotos!');
-      }
-    }
-  };
+
   const handleLibraryUpload = async (type: string | null) => {
     setHasCamera(false);
     if (type === 'cancel') {
       setSelectedImage(undefined);
       return;
     }
-    await requestPermissions();
 
     const result: ImagePicker.ImagePickerResult =
       await ImagePicker.launchImageLibraryAsync({

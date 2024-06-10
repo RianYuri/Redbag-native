@@ -2,7 +2,6 @@ import React from 'react';
 import { Control, Controller, FieldError } from 'react-hook-form';
 import Input from '../input/input.component';
 import { InputProps } from '@/app/login/types';
-import { Alert } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 type ControlledInputProps = InputProps & {
@@ -25,7 +24,6 @@ const ControlledInput = ({
       });
     }
   }, [error]);
-
   return (
     <>
       <Controller

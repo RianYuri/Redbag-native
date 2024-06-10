@@ -15,24 +15,20 @@ import {
 import EyeIcon from '@/assets/eyeAnalyzeIcon.svg';
 import { router } from 'expo-router';
 import { CheckHistoricProps } from '@/app/home/types';
+import { formatDate } from '@/utils/format-date/format-date';
 
 const CheckHistoric = ({
   predictClass,
   accurancy,
   dateAnalysis,
   healthHistoryId,
+  animalIdInt,
 }: CheckHistoricProps) => {
   const formatConfidence = (value: number) => {
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
-  const formatDate = (dateString: string) => {
-    const dateObject = new Date(dateString);
-    const day = dateObject.getDate().toString().padStart(2, '0');
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    const year = dateObject.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
+
   return (
     <ContentHistoric>
       <HistoricResults>
@@ -50,6 +46,7 @@ const CheckHistoric = ({
                 pathname: '/complete-analysis/',
                 params: {
                   healthHistoryId,
+                  animalIdInt,
                 },
               })
             }

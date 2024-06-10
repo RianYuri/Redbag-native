@@ -33,6 +33,14 @@ import CatLogin from '@/assets/catLogin.svg';
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
+  const [isFocus, setIsFocus] = React.useState(false);
+  const handleFocus = () => {
+    setIsFocus(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
   const schema = yup.object({
     usernameOrEmail: yup
       .string()
@@ -83,35 +91,43 @@ const Login = () => {
           <ScrollView scrollEnabled style={{ width: '100%' }}>
             <LoginFormContainer>
               <CatLogin />
-              <Content>
-                <ControlledInput
-                  name="usernameOrEmail"
-                  control={control}
-                  labelName="Email"
-                  inputMode="email"
-                  autoCapitalize="none"
-                  error={errors.usernameOrEmail}
-                />
-                <ControlledInput
-                  name="password"
-                  control={control}
-                  labelName="Senha"
-                  secureTextEntry={true}
-                  error={errors.password}
-                />
-              </Content>
+              <TouchableWithoutFeedback
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              >
+                <Content>
+                  <ControlledInput
+                    name="usernameOrEmail"
+                    control={control}
+                    labelName="Email"
+                    inputMode="email"
+                    autoCapitalize="none"
+                    error={errors.usernameOrEmail}
+                  />
+                  <ControlledInput
+                    name="password"
+                    control={control}
+                    labelName="Senha"
+                    secureTextEntry={true}
+                    error={errors.password}
+                  />
+                </Content>
+              </TouchableWithoutFeedback>
+
               <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
               <ContinueButton onPress={handleSubmit(handleUserLogin)}>
                 <TextButton>Entrar</TextButton>
               </ContinueButton>
             </LoginFormContainer>
           </ScrollView>
-          <RectangleBotContent>
-            <NotHaveAccount onPress={() => router.push('/register/')}>
-              Não possui uma conta?
-            </NotHaveAccount>
-            <RectangleBot style={{ position: 'relative', top: -10 }} />
-          </RectangleBotContent>
+          {!isFocus && (
+            <RectangleBotContent>
+              <NotHaveAccount onPress={() => router.push('/register/')}>
+                Não possui uma conta?
+              </NotHaveAccount>
+              <RectangleBot style={{ position: 'relative', top: -10 }} />
+            </RectangleBotContent>
+          )}
         </Container>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>

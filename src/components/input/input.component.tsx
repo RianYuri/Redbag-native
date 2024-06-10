@@ -10,6 +10,7 @@ const Input = ({
   onChangeText,
   value,
 }: InputProps) => {
+  console.log(value);
   return (
     <InputContainer>
       <TextInput

@@ -1,3 +1,4 @@
+import { AnalyzedData } from '@/context/analysis-image';
 import {
   AccuracyBox,
   AccuracyContent,
@@ -9,12 +10,15 @@ import {
   PreDiagnosisBox,
   PreDiagnosisText,
 } from './styles';
-
-const PreDiagnosis = (analyzedData: any) => {
+interface AnalyzedDataProps {
+  analyzedData: AnalyzedData;
+}
+const PreDiagnosis = ({ analyzedData }: AnalyzedDataProps) => {
   const formatConfidence = (value: number) => {
     const roundedValue = value.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
+  const isHealthy = analyzedData.predictedClass?.toLowerCase() === 'healthy';
   return (
     <Container>
       <PreDiagnosisBox
@@ -27,14 +31,8 @@ const PreDiagnosis = (analyzedData: any) => {
         }}
       >
         <PreDiagnosisText>Pré-diagnóstico</PreDiagnosisText>
-        <NameDiagnosisText
-          predictedClass={
-            analyzedData.analyzedData.predictedClass === 'healthy'
-          }
-        >
-          {analyzedData.analyzedData.predictedClass === 'healthy'
-            ? 'Saudável'
-            : 'Catarata'}
+        <NameDiagnosisText predictedClass={isHealthy}>
+          {isHealthy ? 'Saudável' : 'Catarata'}
         </NameDiagnosisText>
       </PreDiagnosisBox>
       <AccuracyBox
@@ -48,17 +46,13 @@ const PreDiagnosis = (analyzedData: any) => {
       >
         <AssertivenessText>Assertividade</AssertivenessText>
         <AccuracyContent>
-          <AccuracyText
-            predictedClass={
-              analyzedData.analyzedData.predictedClass === 'healthy'
-            }
-          >
-            {formatConfidence(analyzedData.analyzedData.confidence)}
+          <AccuracyText predictedClass={isHealthy}>
+            {formatConfidence(analyzedData.confidence)}
           </AccuracyText>
-          <PorcentText>%</PorcentText>
+          <PorcentText predictedClass={isHealthy}>%</PorcentText>
         </AccuracyContent>
       </AccuracyBox>
-    </Container>  
+    </Container>
   );
 };
 

@@ -25,7 +25,13 @@ const Home = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
   const [hasCamera, setHasCamera] = React.useState(false);
+  const localParams = useLocalSearchParams<{ healthHistoryId: any }>();
 
+  useEffect(() => {
+    return () => {
+      localParams.healthHistoryId = null;
+    };
+  }, [,]);
   useEffect(() => {
     if (params.selectedTabRoute) {
       setSelectedTab(params.selectedTabRoute);
@@ -70,6 +76,7 @@ const Home = () => {
         dispatch(fetchAnimalsSuccess(allAnimals));
       } catch (error) {
         console.log(error);
+        router.replace('/error-page/');
       }
     }
   }, []);
@@ -77,7 +84,6 @@ const Home = () => {
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user) {
       const userObj = JSON.parse(user);
-      console.log(selectedImage, analyzedData.animalId, userObj.token);
       try {
         const predictAnimal = await redBagApiService.predictByAnimalId(
           selectedImage,
@@ -89,8 +95,7 @@ const Home = () => {
           predictedClass: predictAnimal.predicted_class,
           confidence: predictAnimal.confidence,
         });
-        console.log(predictAnimal);
-        router.replace('/complete-analysis/');
+        router.push('/complete-analysis/');
       } catch (error) {
         console.log(error);
       }

@@ -34,7 +34,7 @@ const AllAnalyzes = () => {
   const filterAnimals = allAnimals.filter(
     (animal) => animal.id === animalIdInt
   );
-  console.log(filterAnimals[0]);
+
   return (
     <React.Fragment>
       <ScrollView scrollEnabled>
@@ -54,6 +54,7 @@ const AllAnalyzes = () => {
           <ContentDog>
             {filterAnimals[0].healthHistory.map((item) => (
               <CheckHistoricComponent
+                animalIdInt={animalIdInt}
                 accurancy={item.accuracy}
                 dateAnalysis={item.date}
                 healthHistoryId={item.id}

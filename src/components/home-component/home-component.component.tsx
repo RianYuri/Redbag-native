@@ -16,7 +16,6 @@ const HomeComponent = () => {
     .map((animal) => {
       const latestRecord =
         animal.healthHistory[animal.healthHistory.length - 1];
-      console.log(animal.id);
       return {
         ...latestRecord,
         animalId: animal.id,
