@@ -39,6 +39,7 @@ const Camera = ({
       }
     }
   };
+
   React.useEffect(() => {
     requestPermissions();
   }, [,]);

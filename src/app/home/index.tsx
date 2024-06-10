@@ -8,21 +8,23 @@ import HeaderDate from '@/components/header-date/header-date.component';
 import HistoriesAnalysis from '@/components/histories-analysis/histories-analysis.component';
 import Tab from '@/components/tabs/tab.component';
 import HomeComponent from '@/components/home-component/home-component.component';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { redBagApiService } from '@/services/redBagApi';
 import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
 import { useDispatch } from 'react-redux';
+import Camera from '@/components/camera/camera.component';
 type RouteParams = {
   selectedTabRoute: string;
 };
 const Home = () => {
   const dispatch = useDispatch();
   const params = useLocalSearchParams() as RouteParams;
-  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
-  const { setAnalyzedImage } = useImageContext();
+  const [selectedImage, setSelectedImage] = React.useState<any>(null);
+  const { analyzedData, setAnalyzedData } = useImageContext();
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
+  const [hasCamera, setHasCamera] = React.useState(false);
 
   useEffect(() => {
     if (params.selectedTabRoute) {
@@ -33,36 +35,29 @@ const Home = () => {
     setIsOpen(!isOpen);
   };
 
-  const requestPermissions = async () => {
-    if (Platform.OS !== 'web') {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Desculpe, precisamos da permissão para acessar as suas fotos!');
-      }
-    }
-  };
-
   const handleLibraryUpload = async (type: string | null) => {
+    if (!hasCamera) {
+      setHasCamera(!hasCamera);
+      return;
+    }
+    setHasCamera(!hasCamera);
     if (type === 'cancel') {
       setSelectedImage(null);
     }
-    await requestPermissions();
     const result: ImagePicker.ImagePickerResult =
       await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
-        base64: true,
       });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri;
+      const uri = result.assets[0];
       setSelectedImage(uri);
-      setAnalyzedImage(uri);
     }
   };
+
   const fetchAllAnimalsByUser = React.useCallback(async () => {
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user) {
@@ -73,10 +68,34 @@ const Home = () => {
           userObj.token
         );
         dispatch(fetchAnimalsSuccess(allAnimals));
-      } catch {}
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, []);
-
+  const handlePredictAnimal = async () => {
+    const user = await AsyncStorage.getItem('@userAuthentication');
+    if (user) {
+      const userObj = JSON.parse(user);
+      console.log(selectedImage, analyzedData.animalId, userObj.token);
+      try {
+        const predictAnimal = await redBagApiService.predictByAnimalId(
+          selectedImage,
+          analyzedData.animalId,
+          userObj.token
+        );
+        setAnalyzedData({
+          analyzedImage: selectedImage ?? selectedImage.uri,
+          predictedClass: predictAnimal.predicted_class,
+          confidence: predictAnimal.confidence,
+        });
+        console.log(predictAnimal);
+        router.replace('/complete-analysis/');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   React.useEffect(() => {
     fetchAllAnimalsByUser();
   }, [fetchAllAnimalsByUser]);
@@ -87,6 +106,7 @@ const Home = () => {
       case 'analysis':
         return (
           <Analysis
+            handlePredictAnimal={handlePredictAnimal}
             handleListAnimal={handleListAnimal}
             handleLibraryUpload={handleLibraryUpload}
             isOpen={isOpen}
@@ -99,7 +119,13 @@ const Home = () => {
         return null;
     }
   };
-  return (
+  return hasCamera ? (
+    <Camera
+      handleLibraryUpload={handleLibraryUpload}
+      setSelectedImage={setSelectedImage}
+      setHasCamera={setHasCamera}
+    />
+  ) : (
     <Container>
       <HeaderDate />
       {renderSelectedTab()}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Active,
   DropdownContent,
@@ -17,32 +17,47 @@ import CatIcon from '@/assets/catIcon';
 import { AntDesign } from '@expo/vector-icons';
 import Caret from '@/assets/caret.svg';
 import { router } from 'expo-router';
-import { DropdownCreateAnimalProps } from '../analysis/types';
+import {
+  DropdownCreateAnimalProps,
+  SelectedAnimalProps,
+} from '../analysis/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
+import { useImageContext } from '@/context/analysis-image';
 
 const DropdownCreateAnimal = ({
   isOpen,
   handleListAnimal,
 }: DropdownCreateAnimalProps) => {
-  const allAnimals = useSelector((state:RootState)=>state.animals.animals)
-  const filteredAnimals = allAnimals.map(animal => ({
-    id: animal.id,
-    name: animal.name,
-    color: animal.color
-  }));
-  const [selectedAnimal, setSelectedAnimal] = React.useState({ name: 'Aleatório', color: '#f1f1f1' });
-  
-  const handleSelectChose = (animalName:string, color:string) =>{
+  const { setAnalyzedData } = useImageContext();
 
-  }
+  const allAnimals = useSelector((state: RootState) => state.animals.animals);
+  const filteredAnimals = [
+    { id: null, name: 'Aleatório', color: '#9F9F9F' },
+    ...allAnimals.map((animal) => ({
+      id: animal.id,
+      name: animal.name,
+      color: animal.color,
+    })),
+  ];
+
+  const [selectedAnimal, setSelectedAnimal] =
+    React.useState<SelectedAnimalProps>(filteredAnimals[0]);
+  useEffect(() => {
+    setAnalyzedData({
+      animalId: selectedAnimal.id,
+      nameAnimal: selectedAnimal.name,
+    });
+  }, [selectedAnimal]);
   return (
     <DropwdownAndNewDog>
       <DropdownContent>
         <Select onTouchStart={handleListAnimal}>
           <Selected>
             <CatIcon color={selectedAnimal.color} />
-            <SelectedText color={selectedAnimal.color}>{selectedAnimal.name}</SelectedText>
+            <SelectedText color={selectedAnimal.color}>
+              {selectedAnimal.name}
+            </SelectedText>
           </Selected>
           <Caret
             style={{
@@ -64,14 +79,27 @@ const DropdownCreateAnimal = ({
           }}
         >
           <MenuList>
-          {filteredAnimals.map((item)=>(
-            <React.Fragment key={item.id}>
-            <SelectionCat onPress={()=>setSelectedAnimal({name:item.name, color:item.color})}>
-              <CatIcon color={item.color} />
-              <Active color={item.color}>{item.name}</Active>
-            </SelectionCat>
-            <Divider />
-            </React.Fragment>
+            {filteredAnimals.map((item, index) => (
+              <React.Fragment key={item.id}>
+                <SelectionCat
+                  onPress={() =>
+                    setSelectedAnimal({
+                      id: item.id,
+                      name: item.name,
+                      color: item.color,
+                    })
+                  }
+                  style={{
+                    backgroundColor:
+                      selectedAnimal.id === item.id ? '#F1f1f1' : '#FFFFFF',
+                  }}
+                >
+                  <CatIcon color={item.color} />
+                  <Active color={item.color}>{item.name}</Active>
+                </SelectionCat>
+
+                {index < filteredAnimals.length - 1 && <Divider />}
+              </React.Fragment>
             ))}
           </MenuList>
         </Menu>

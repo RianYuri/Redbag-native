@@ -13,11 +13,11 @@ import {
 } from './style';
 import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import CatOpenCam from '@/assets/catOpenCam.svg';
 import DropdownCreateAnimalComponent from '../dropdown-create-animal/dropdown-create-animal.component';
 
 const Analysis = ({
+  handlePredictAnimal,
   handleListAnimal,
   handleLibraryUpload,
   isOpen,
@@ -30,7 +30,7 @@ const Analysis = ({
         handleListAnimal={handleListAnimal}
       />
       {selectedImage ? (
-        <ImageAnalysis source={{ uri: selectedImage }} />
+        <ImageAnalysis source={{ uri: selectedImage.uri ?? selectedImage }} />
       ) : (
         <OpenCamera>
           <CatOpenCam />
@@ -39,7 +39,7 @@ const Analysis = ({
       )}
       {selectedImage ? (
         <ButtonContent>
-          <UploadButton onPress={() => router.push('/complete-analysis/')}>
+          <UploadButton onPress={handlePredictAnimal}>
             <UploadText>Continuar</UploadText>
           </UploadButton>
           <CancelButton onPress={() => handleLibraryUpload('cancel')}>

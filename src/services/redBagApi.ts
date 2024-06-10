@@ -141,6 +141,38 @@ class ApiService {
       throw error;
     }
   }
+  async predictByAnimalId(
+    imageUri: any,
+    animalId: number | null | undefined,
+    userToken: string
+  ) {
+    const formData = new FormData();
+
+    formData.append('file', {
+      uri: imageUri.uri ?? imageUri,
+      name: imageUri.fileName ?? imageUri.split('/').pop(),
+      type: imageUri.mimeType ?? `image/${imageUri?.split('.').pop()}`,
+      lastModified: new Date().getTime(),
+    } as any);
+    try {
+      const response = await fetch(`${this.baseUrl}/predict/${animalId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: userToken,
+        },
+        body: formData,
+      });
+
+      const dataRes = await response.json();
+      if (response === null) {
+        throw new Error(dataRes.message || 'Algo deu errado');
+      }
+      return dataRes;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export const redBagApiService = new ApiService();

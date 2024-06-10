@@ -1,3 +1,4 @@
+import { PredictedClassProps } from '@/app/complete-analysis/types';
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 
@@ -16,10 +17,11 @@ export const HistoricResults = styled.View`
   align-items: flex-start;
   gap: 8px;
 `;
-export const TextAnalysis = styled.Text`
+export const TextAnalysis = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 18px;
-  color: #ff4545;
+  color: ${({ predictedClass }) =>
+    predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
 export const TextPorcent = styled.Text`
   color: #000000;

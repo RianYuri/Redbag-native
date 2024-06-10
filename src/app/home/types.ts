@@ -20,3 +20,17 @@ export interface Animal {
   imageDetails: ImageDetails | null;
   healthHistory: any[];
 }
+export interface AnimalHistoriesProps {
+  dateAnalysis: string;
+  animalName: string;
+  predictClass: string;
+  accurancy: number;
+  animalImage: string | null;
+  animalId: number;
+}
+
+export interface CheckHistoricProps {
+  predictClass: string;
+  accurancy: number;
+  dateAnalysis: string;
+}

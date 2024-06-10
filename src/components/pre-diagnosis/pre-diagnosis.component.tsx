@@ -1,3 +1,4 @@
+import { AnalyzedData } from '@/context/analysis-image';
 import {
   AccuracyBox,
   AccuracyContent,
@@ -10,7 +11,11 @@ import {
   PreDiagnosisText,
 } from './styles';
 
-const PreDiagnosis = () => {
+const PreDiagnosis = (analyzedData: any) => {
+  const formatConfidence = (value: number) => {
+    const roundedValue = value.toFixed(2);
+    return roundedValue.toString().slice(0, 2);
+  };
   return (
     <Container>
       <PreDiagnosisBox
@@ -23,7 +28,11 @@ const PreDiagnosis = () => {
         }}
       >
         <PreDiagnosisText>Pré-diagnóstico</PreDiagnosisText>
-        <NameDiagnosisText>Catarata </NameDiagnosisText>
+        <NameDiagnosisText
+          predictedClass={analyzedData.predictedClass === 'healthy'}
+        >
+          {analyzedData.predictedClass === 'healthy' ? 'Catarata' : 'Saudável'}
+        </NameDiagnosisText>
       </PreDiagnosisBox>
       <AccuracyBox
         style={{
@@ -36,7 +45,11 @@ const PreDiagnosis = () => {
       >
         <AssertivenessText>Assertividade</AssertivenessText>
         <AccuracyContent>
-          <AccuracyText>93</AccuracyText>
+          <AccuracyText
+            predictedClass={analyzedData.predictedClass === 'healthy'}
+          >
+            {formatConfidence(analyzedData.confidence)}
+          </AccuracyText>
           <PorcentText>%</PorcentText>
         </AccuracyContent>
       </AccuracyBox>

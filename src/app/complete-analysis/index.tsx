@@ -16,7 +16,7 @@ import { router } from 'expo-router';
 import { getDate } from '@/utils/get-date/get-date';
 import HeaderDate from '@/components/header-date/header-date.component';
 const CompleteAnalysis = () => {
-  const { analyzedImage } = useImageContext();
+  const { analyzedData } = useImageContext();
   const year = new Date().getFullYear();
 
   return (
@@ -26,12 +26,16 @@ const CompleteAnalysis = () => {
         <Entypo name="chevron-left" size={28} color="#9D2D15" />
         <BackText>Voltar</BackText>
       </BackContent>
-      {analyzedImage ? (
-        <ImageAnalysis source={{ uri: analyzedImage }} />
+      {analyzedData.analyzedImage ? (
+        <ImageAnalysis
+          source={{
+            uri: analyzedData.analyzedImage.uri ?? analyzedData.analyzedImage,
+          }}
+        />
       ) : (
         <LoadingImage />
       )}
-      <PreDiagnosis />
+      <PreDiagnosis analyzedData={analyzedData} />
       <DateDiagnosis>
         Pré-diagnóstico realizado no dia {getDate()} de {year}.
       </DateDiagnosis>

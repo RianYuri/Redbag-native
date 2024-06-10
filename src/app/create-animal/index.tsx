@@ -38,7 +38,6 @@ import Camera from '@/components/camera/camera.component';
 import { redBagApiService } from '@/services/redBagApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
-import { ImagePickerAsset } from 'expo-image-picker';
 const CreateAnimal = () => {
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);

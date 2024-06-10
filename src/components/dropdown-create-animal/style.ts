@@ -46,7 +46,7 @@ export const SelectedText = styled.Text<ActiveProps>`
   font-family: ${theme.fonts.text.regular};
   font-weight: 400;
   font-size: 14px;
-   color: ${({ color }) => color};
+  color: ${({ color }) => color};
 `;
 
 export const Caret = styled.Image<IsOpenProps>`

@@ -11,7 +11,7 @@ const HeaderDate = () => {
       <HeaderHome>
         <Settings
           style={{ right: 9, top: 32, position: 'absolute' }}
-          onPress={() => router.push('/profile/')}
+          onPress={() => router.replace('/profile/')}
         />
       </HeaderHome>
       <TextDay>{getDate()}</TextDay>

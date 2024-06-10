@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { theme } from '@/themes';
+import { PredictedClassProps } from '@/app/complete-analysis/types';
 
 export const Container = styled.View`
   display: flex;
@@ -28,10 +29,11 @@ export const PreDiagnosisText = styled.Text`
   font-size: 14px;
   color: #929292;
 `;
-export const NameDiagnosisText = styled.Text`
+export const NameDiagnosisText = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 30px;
-  color: ${theme.colors.fourthRedColor};
+  color: ${({ predictedClass }) =>
+    !predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
 
 export const AccuracyBox = styled.View`
@@ -56,10 +58,11 @@ export const AccuracyContent = styled.View`
   justify-content: center;
   align-items: flex-end;
 `;
-export const AccuracyText = styled.Text`
+export const AccuracyText = styled.Text<PredictedClassProps>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 50px;
-  color: ${theme.colors.fourthRedColor};
+  color: ${({ predictedClass }) =>
+    !predictedClass ? '#159D20' : theme.colors.fourthRedColor};
 `;
 export const PorcentText = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};
