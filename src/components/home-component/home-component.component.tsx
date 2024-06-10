@@ -16,12 +16,7 @@ const HomeComponent = () => {
     .map((animal) => {
       const latestRecord =
         animal.healthHistory[animal.healthHistory.length - 1];
-      console.log(
-        'Processing animal:',
-        animal.id,
-        'with latest record:',
-        latestRecord
-      );
+      console.log(animal.id);
       return {
         ...latestRecord,
         animalId: animal.id,
@@ -29,8 +24,6 @@ const HomeComponent = () => {
         imageDetails: animal.imageDetails,
       };
     });
-
-  console.log(allAnimals);
 
   return (
     <ScrollView scrollEnabled>
@@ -50,7 +43,7 @@ const HomeComponent = () => {
               dateAnalysis={record.date}
               predictClass={record.healthStatus}
               animalImage={record.imageDetails?.url}
-              animalId={record.id}
+              animalId={record.animalId}
             />
           ))}
         </Content>

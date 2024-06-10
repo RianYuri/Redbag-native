@@ -29,6 +29,7 @@ const AnimalHistories = ({
     const year = dateObject.getFullYear();
     return `${day}/${month}/${year}`;
   };
+  console.log(animalId);
   return (
     <Container
       onPress={() =>
