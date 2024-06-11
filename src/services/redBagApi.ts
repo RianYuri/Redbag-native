@@ -136,7 +136,6 @@ class ApiService {
       if (response === null) {
         throw new Error(dataRes.message || 'Algo deu errado');
       }
-      console.log(dataRes.status);
       return dataRes;
     } catch (error) {
       throw error;

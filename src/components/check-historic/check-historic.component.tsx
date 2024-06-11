@@ -33,7 +33,7 @@ const CheckHistoric = ({
     <ContentHistoric>
       <HistoricResults>
         <TextAnalysis predictedClass={predictClass === 'HEALTHY'}>
-          {predictClass === 'UNHEALTHY' ? ' Catarata' : 'Saudavel'}
+          {predictClass === 'UNHEALTHY' ? 'Catarata' : 'Saudavel'}
         </TextAnalysis>
         <TextPorcent>{formatConfidence(accurancy)}%</TextPorcent>
       </HistoricResults>

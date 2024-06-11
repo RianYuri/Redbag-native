@@ -149,14 +149,17 @@ const CreateAnimal = () => {
                 {isColor && (
                   <ColorPicker
                     onColorChange={setColor}
-                    sliderSize={0}
-                    thumbSize={30}
-                    row={false}
+                    sliderSize={40}
+                    thumbSize={1}
+                    shadeSliderThumb
+                    sliderLoadingIndicator
+                    row
                     style={{
-                      width: 100,
+                      width: 80,
                       height: 100,
                       position: 'absolute',
                       bottom: 200,
+                      left: 15,
                     }}
                   />
                 )}

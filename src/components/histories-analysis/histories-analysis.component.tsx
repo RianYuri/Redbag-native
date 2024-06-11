@@ -13,6 +13,7 @@ const HistoriesAnalysis = () => {
       return animal.healthHistory.map((record) => {
         return {
           ...record,
+          animalId: animal.id,
           name: animal.name,
           imageDetails: animal.imageDetails,
         };
@@ -26,7 +27,7 @@ const HistoriesAnalysis = () => {
         <HistoryFilterComponent />
         {allHealthRecords.map((item) => (
           <AnimalHistoriesComponent
-            animalId={item.id}
+            animalId={item.animalId}
             key={item.id}
             accurancy={item.accuracy}
             animalName={item.name}
