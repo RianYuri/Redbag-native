@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const ErrorPage = () => {
   const redirectLogin = async () => {
     await AsyncStorage.removeItem('userToken');
+    await AsyncStorage.removeItem('@userAuthentication');
     router.navigate('/login/');
   };
   return (

@@ -21,7 +21,11 @@ class ApiService {
       if (!response.ok) {
         throw new Error(dataRes.message || 'Algo deu errado');
       }
-      return dataRes;
+      const loginData = {
+        usernameOrEmail: data.email,
+        password: data.password,
+      };
+      return await this.login(loginData);
     } catch (error) {
       throw error;
     }

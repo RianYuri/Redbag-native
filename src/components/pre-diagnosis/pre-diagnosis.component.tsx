@@ -18,7 +18,7 @@ const PreDiagnosis = ({ analyzedData }: AnalyzedDataProps) => {
     const roundedValue = value.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
-  const isHealthy = analyzedData.predictedClass?.toLowerCase() === 'healthy';
+  const isHealthy = analyzedData.predictedClass.toLowerCase() === 'healthy';
   return (
     <Container>
       <PreDiagnosisBox

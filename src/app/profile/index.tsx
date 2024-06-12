@@ -32,6 +32,8 @@ const Profile = () => {
   }, [selectedTabRoute]);
   const redirectLogin = async () => {
     await AsyncStorage.removeItem('userToken');
+    await AsyncStorage.removeItem('@userAuthentication');
+
     router.navigate('/login/');
   };
   return (

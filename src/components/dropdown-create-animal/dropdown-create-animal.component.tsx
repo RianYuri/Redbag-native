@@ -32,14 +32,20 @@ const DropdownCreateAnimal = ({
   const { setAnalyzedData } = useImageContext();
 
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  const filteredAnimals = [
-    { id: null, name: 'Aleatório', color: '#9F9F9F' },
-    ...allAnimals.map((animal) => ({
-      id: animal.id,
-      name: animal.name,
-      color: animal.color,
-    })),
-  ];
+  console.log(allAnimals);
+  let filteredAnimals;
+  if (allAnimals.length > 0) {
+    filteredAnimals = [
+      { id: null, name: 'Aleatório', color: '#9F9F9F' },
+      ...allAnimals.map((animal) => ({
+        id: animal.id,
+        name: animal.name,
+        color: animal.color,
+      })),
+    ];
+  } else {
+    filteredAnimals = [{ id: null, name: 'Aleatório', color: '#9F9F9F' }];
+  }
 
   const [selectedAnimal, setSelectedAnimal] =
     React.useState<SelectedAnimalProps>(filteredAnimals[0]);

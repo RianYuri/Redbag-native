@@ -42,3 +42,9 @@ export const PositiveCaseText = styled.Text`
   font-size: 16px;
   color: ${theme.colors.black};
 `;
+export const NotAnimalsText = styled.Text`
+  text-align: center;
+  font-family: ${theme.fonts.subtitle.medium};
+  font-size: 16px;
+  color: ${theme.colors.black};
+`;

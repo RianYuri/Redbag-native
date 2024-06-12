@@ -32,13 +32,23 @@ const CompleteAnalysis = () => {
 
   const uriAnalyzeData =
     analyzedData?.analyzedImage?.uri ?? analyzedData?.analyzedImage;
+  console.log(healthHistoryId !== undefined);
   const finalData = {
     predictedClass:
-      healthHistoryObject.healthStatus || analyzedData.predictedClass,
-    confidence: healthHistoryObject.accuracy || analyzedData.confidence,
+      healthHistoryId !== undefined
+        ? healthHistoryObject.healthStatus
+        : analyzedData.predictedClass,
+    confidence:
+      healthHistoryId !== undefined
+        ? healthHistoryObject.accuracy
+        : analyzedData.confidence,
     date: healthHistoryObject.date,
-    analyzedImage: filterAnimals?.imageDetails?.url || uriAnalyzeData,
+    analyzedImage:
+      healthHistoryId !== undefined
+        ? healthHistoryObject?.image?.url
+        : uriAnalyzeData,
   };
+  console.log(finalData, 'esse e o final data');
   const formatDate = (dateString: string) => {
     const dateObject = new Date(dateString);
     const day = dateObject.getDate().toString().padStart(2, '0');

@@ -15,6 +15,7 @@ import React from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
+import { NotAnimalsText } from '@/components/home-component/styles';
 
 const AllAnalyzes = () => {
   const [selectedTabRoute, setSelectedTabRoute] = React.useState<string>('');
@@ -52,16 +53,22 @@ const AllAnalyzes = () => {
           </ContentDog>
           <Divider />
           <ContentDog>
-            {filterAnimals[0].healthHistory.map((item) => (
-              <CheckHistoricComponent
-                animalIdInt={animalIdInt}
-                accurancy={item.accuracy}
-                dateAnalysis={item.date}
-                healthHistoryId={item.id}
-                predictClass={item.healthStatus}
-                key={item.id}
-              />
-            ))}
+            {filterAnimals[0].healthHistory ? (
+              filterAnimals[0].healthHistory.map((item) => (
+                <CheckHistoricComponent
+                  animalIdInt={animalIdInt}
+                  accurancy={item.accuracy}
+                  dateAnalysis={item.date}
+                  healthHistoryId={item.id}
+                  predictClass={item.healthStatus}
+                  key={item.id}
+                />
+              ))
+            ) : (
+              <NotAnimalsText>
+                O Animal não possui nenhuma analise
+              </NotAnimalsText>
+            )}
           </ContentDog>
         </Container>
       </ScrollView>

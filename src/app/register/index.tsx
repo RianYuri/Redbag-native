@@ -16,6 +16,7 @@ import { FormData } from './types';
 import { redBagApiService } from '@/services/redBagApi';
 import RectangleTop from '@/assets/rectangleTop.svg';
 import RectangleBot from '@/assets/rectangleBot.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Register = () => {
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const registerListRef = React.useRef<any>(null);
@@ -60,6 +61,9 @@ const Register = () => {
 
     try {
       const response = await redBagApiService.register(updatedFormData);
+      const user = response;
+      await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
+      console.log(user);
       router.replace('/step-by-step/');
     } catch (error: any) {
       console.error('Registration failed', error.message);

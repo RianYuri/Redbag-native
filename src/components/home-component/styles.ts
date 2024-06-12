@@ -1,3 +1,4 @@
+import { theme } from '@/themes';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -27,4 +28,11 @@ export const Content = styled.View`
   align-items: center;
   gap: 15px;
   padding-bottom: 180px;
+`;
+
+export const NotAnimalsText = styled.Text`
+  text-align: center;
+  font-family: ${theme.fonts.subtitle.semibold};
+  font-size: 16px;
+  color: ${theme.colors.black};
 `;

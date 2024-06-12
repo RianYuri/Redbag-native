@@ -26,7 +26,7 @@ const Home = () => {
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
   const [hasCamera, setHasCamera] = React.useState(false);
   const localParams = useLocalSearchParams<{ healthHistoryId: any }>();
-
+  console.log(localParams.healthHistoryId, 'esse e o localParams');
   useEffect(() => {
     return () => {
       localParams.healthHistoryId = null;
@@ -70,9 +70,14 @@ const Home = () => {
       const userObj = JSON.parse(user);
       try {
         const allAnimals = await redBagApiService.getAllAnimalsById(
-          userObj.id,
+          userObj.userId,
           userObj.token
         );
+
+        if (allAnimals.status === 400) {
+          dispatch(fetchAnimalsSuccess([]));
+          return;
+        }
         dispatch(fetchAnimalsSuccess(allAnimals));
       } catch (error) {
         console.log(error);

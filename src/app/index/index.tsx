@@ -16,6 +16,7 @@ const Index = () => {
           router.replace('/home/');
         }, 1000);
       } else {
+        await AsyncStorage.removeItem('@userAuthentication');
         const timeoutId = setTimeout(navigateToLogin, 2000);
 
         return () => clearTimeout(timeoutId);

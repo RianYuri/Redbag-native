@@ -70,6 +70,7 @@ const CreateAnimal = () => {
       name: text,
       color: color,
     };
+
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user && selectedImage) {
       const userObj = JSON.parse(user);
@@ -77,10 +78,9 @@ const CreateAnimal = () => {
         await redBagApiService.saveAnimalAndImage(
           data,
           selectedImage,
-          userObj.id,
+          userObj.userId,
           userObj.token
         );
-
         Toast.show({
           type: 'success',
           text1: 'Sucesso',
