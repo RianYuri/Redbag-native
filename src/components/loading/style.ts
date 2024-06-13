@@ -8,10 +8,12 @@ export const Container = styled.View`
   background-color: ${theme.colors.firstRedColor};
   flex-direction: column;
   gap: 30px;
+  padding: 0 20px;
 `;
 
 export const TextLoading = styled.Text`
-  font-family: ${theme.fonts.text.regular};
+  font-family: ${theme.fonts.text.medium};
   font-size: 16px;
   color: ${theme.colors.white};
+  text-align: center;
 `;

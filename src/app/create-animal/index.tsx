@@ -37,13 +37,14 @@ import Camera from '@/components/camera/camera.component';
 import { redBagApiService } from '@/services/redBagApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
+import Loading from '@/components/loading/loading.component';
 const CreateAnimal = () => {
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);
   const [text, setText] = React.useState('');
   const [hasCamera, setHasCamera] = React.useState(false);
-
   const [selectedImage, setSelectedImage] = React.useState<any>();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleLibraryUpload = async (type: string | null) => {
     setHasCamera(false);
@@ -70,7 +71,7 @@ const CreateAnimal = () => {
       name: text,
       color: color,
     };
-
+    setIsLoading(true);
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user && selectedImage) {
       const userObj = JSON.parse(user);
@@ -88,6 +89,8 @@ const CreateAnimal = () => {
         });
         router.replace('/home/');
       } catch (error) {
+        setIsLoading(false);
+
         let errorMessage = 'Algo deu errado';
 
         if (error instanceof Error) {
@@ -103,13 +106,21 @@ const CreateAnimal = () => {
       }
     }
   };
-  return hasCamera ? (
-    <Camera
-      handleLibraryUpload={handleLibraryUpload}
-      setSelectedImage={setSelectedImage}
-      setHasCamera={setHasCamera}
-    />
-  ) : (
+  if (!isLoading) {
+    return (
+      <Loading textLoading="Salvando os dados do seu animal de estimação..." />
+    );
+  }
+  if (hasCamera) {
+    return (
+      <Camera
+        handleLibraryUpload={handleLibraryUpload}
+        setSelectedImage={setSelectedImage}
+        setHasCamera={setHasCamera}
+      />
+    );
+  }
+  return (
     <KeyboardAvoidingView behavior="height">
       <ScrollView scrollEnabled>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
