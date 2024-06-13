@@ -76,7 +76,7 @@ const Login = () => {
     }
   };
   return isLoading ? (
-    <Loading />
+    <Loading textLoading="Analisando suas informações..." />
   ) : (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView behavior="padding">

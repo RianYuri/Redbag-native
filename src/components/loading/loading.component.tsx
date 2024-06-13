@@ -1,12 +1,15 @@
 import { ActivityIndicator } from 'react-native';
 import { Container, TextLoading } from './style';
 import CatLoading from '@/assets/catLoading.svg';
-const Loading = () => {
+interface LoadingProps {
+  textLoading: string;
+}
+const Loading = ({ textLoading }: LoadingProps) => {
   return (
     <Container>
       <CatLoading />
       <ActivityIndicator size="large" color="#FFFFFF" />
-      <TextLoading>Analisando suas informações...</TextLoading>
+      <TextLoading>{textLoading}</TextLoading>
     </Container>
   );
 };

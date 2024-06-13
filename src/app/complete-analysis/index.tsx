@@ -23,32 +23,32 @@ const CompleteAnalysis = () => {
   const healthHistoryId = useLocalSearchParams<{ healthHistoryId: any }>();
   const healthHistoryIdInt = parseInt(healthHistoryId.healthHistoryId, 10);
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  const filterAnimals = allAnimals.find((animal) =>
-    animal.healthHistory.some((history) => history.id === healthHistoryIdInt)
-  );
-  const healthHistoryObject = filterAnimals?.healthHistory.find(
-    (history) => history.id === healthHistoryIdInt
-  );
-
-  const uriAnalyzeData =
-    analyzedData?.analyzedImage?.uri ?? analyzedData?.analyzedImage;
-  console.log(healthHistoryId !== undefined);
-  const finalData = {
-    predictedClass:
-      healthHistoryId !== undefined
-        ? healthHistoryObject.healthStatus
-        : analyzedData.predictedClass,
-    confidence:
-      healthHistoryId !== undefined
-        ? healthHistoryObject.accuracy
-        : analyzedData.confidence,
-    date: healthHistoryObject.date,
+  let finalData = {
+    predictedClass: analyzedData?.predictedClass ?? '',
+    confidence: analyzedData?.confidence ?? 0,
+    date: new Date().toISOString(),
     analyzedImage:
-      healthHistoryId !== undefined
-        ? healthHistoryObject?.image?.url
-        : uriAnalyzeData,
+      analyzedData?.analyzedImage?.uri ?? analyzedData?.analyzedImage ?? '',
   };
-  console.log(finalData, 'esse e o final data');
+
+  if (healthHistoryId !== undefined) {
+    const filterAnimals = allAnimals.find((animal) =>
+      animal.healthHistory.some((history) => history.id === healthHistoryIdInt)
+    );
+
+    const healthHistoryObject = filterAnimals?.healthHistory.find(
+      (history) => history.id === healthHistoryIdInt
+    );
+
+    if (healthHistoryObject) {
+      finalData = {
+        predictedClass: healthHistoryObject.healthStatus,
+        confidence: healthHistoryObject.accuracy,
+        date: healthHistoryObject.time,
+        analyzedImage: healthHistoryObject.image?.url,
+      };
+    }
+  }
   const formatDate = (dateString: string) => {
     const dateObject = new Date(dateString);
     const day = dateObject.getDate().toString().padStart(2, '0');
@@ -75,10 +75,10 @@ const CompleteAnalysis = () => {
       )}
       <PreDiagnosis analyzedData={finalData} />
       <DateDiagnosis>
-        Pré-diagnóstico realizado no dia{' '}
+        Pré-diagnóstico realizado no dia
         {finalData.date
           ? formatDate(finalData.date)
-          : `${getDate()} de ${year}}`}
+          : `${getDate()} de ${year}`}
         .
       </DateDiagnosis>
       <NewAnalysisButton>

@@ -40,7 +40,7 @@ const HistoriesAnalysis = () => {
               key={item.id}
               accurancy={item.accuracy}
               animalName={item.name}
-              dateAnalysis={item.date}
+              dateAnalysis={item.time}
               predictClass={item.healthStatus}
               animalImage={item.imageDetails?.url}
             />

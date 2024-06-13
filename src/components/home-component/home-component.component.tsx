@@ -16,7 +16,7 @@ import { RootState } from '@/redux/store/store';
 const HomeComponent = () => {
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
   console.log(allAnimals.length);
-  let latestHealthRecords;
+  let latestHealthRecords: any[] = [];
   if (allAnimals.length > 0) {
     latestHealthRecords = allAnimals
       .filter(
@@ -43,13 +43,13 @@ const HomeComponent = () => {
         <CaseHistories />
         <Content>
           <InputSearch />
-          {latestHealthRecords!.length > 0 ? (
-            latestHealthRecords!.map((record) => (
+          {latestHealthRecords.length > 0 ? (
+            latestHealthRecords.map((record) => (
               <AnimalHistoriesComponent
                 key={record.id}
                 accurancy={record.accuracy}
                 animalName={record.name}
-                dateAnalysis={record.date}
+                dateAnalysis={record.time}
                 predictClass={record.healthStatus}
                 animalImage={record.imageDetails?.url}
                 animalId={record.animalId}

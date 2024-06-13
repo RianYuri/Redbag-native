@@ -83,7 +83,7 @@ const Register = () => {
     setCurrentRegister(newIndex);
   };
   return isLoading ? (
-    <Loading />
+    <Loading textLoading="Analisando suas informações..." />
   ) : (
     <KeyboardAvoidingView behavior="position">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
