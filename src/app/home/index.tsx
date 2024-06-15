@@ -14,6 +14,7 @@ import { redBagApiService } from '@/services/redBagApi';
 import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
 import { useDispatch } from 'react-redux';
 import Camera from '@/components/camera/camera.component';
+import Loading from '@/components/loading/loading.component';
 type RouteParams = {
   selectedTabRoute: string;
 };
@@ -25,6 +26,7 @@ const Home = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
   const [hasCamera, setHasCamera] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const localParams = useLocalSearchParams<{ healthHistoryId: any }>();
   useEffect(() => {
     return () => {
@@ -41,14 +43,17 @@ const Home = () => {
   };
 
   const handleLibraryUpload = async (type: string | null) => {
+    if (type === 'cancel') {
+      setSelectedImage(null);
+      setHasCamera(false);
+
+      return;
+    }
     if (!hasCamera) {
       setHasCamera(!hasCamera);
       return;
     }
     setHasCamera(!hasCamera);
-    if (type === 'cancel') {
-      setSelectedImage(null);
-    }
     const result: ImagePicker.ImagePickerResult =
       await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -84,6 +89,7 @@ const Home = () => {
     }
   }, []);
   const handlePredictAnimal = async () => {
+    setIsLoading(true);
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user) {
       const userObj = JSON.parse(user);
@@ -98,8 +104,11 @@ const Home = () => {
           predictedClass: predictAnimal.predicted_class,
           confidence: predictAnimal.confidence,
         });
+        console.log(predictAnimal);
         router.push('/complete-analysis/');
-      } catch (error) {}
+      } catch (error) {
+        setIsLoading(false);
+      }
     }
   };
   React.useEffect(() => {
@@ -125,6 +134,12 @@ const Home = () => {
         return null;
     }
   };
+
+  if (isLoading) {
+    return (
+      <Loading textLoading="Explorando o mundo pelos olhos do cachorro, um pixel de cada vez." />
+    );
+  }
   return (
     <>
       <Camera
