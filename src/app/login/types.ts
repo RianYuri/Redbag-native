@@ -21,3 +21,6 @@ export interface UserProps {
   token: string;
   id: 0;
 }
+export interface InputContainerProps {
+  isColor: boolean;
+}

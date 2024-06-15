@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
 const HomeComponent = () => {
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  console.log(allAnimals.length);
   let latestHealthRecords: any[] = [];
   if (allAnimals.length > 0) {
     latestHealthRecords = allAnimals

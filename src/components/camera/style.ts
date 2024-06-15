@@ -1,15 +1,20 @@
+import { theme } from '@/themes';
 import styled from 'styled-components/native';
-
-export const StyledSafeAreaView = styled.SafeAreaView`
+interface StyledSafeAreaViewProps {
+  hasCamera: boolean;
+}
+export const StyledSafeAreaView = styled.SafeAreaView<StyledSafeAreaViewProps>`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: ${(props) => (props.hasCamera ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   margin: 0;
+  z-index: 999;
 `;
 export const CaptureOverlay = styled.View`
   width: 300px;
+  margin-top: 20px;
   align-self: center;
   height: 400px;
   background-color: #f1f1f14d;
@@ -23,7 +28,7 @@ export const Overlay = styled.View`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 `;
 
 export const CaptureButton = styled.View`
@@ -54,4 +59,17 @@ export const LibraryButton = styled.TouchableOpacity`
   background-color: #fe5433;
   position: absolute;
   right: 20px;
+`;
+export const BackContent = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: flex-start;
+  margin-left: 20px;
+`;
+export const BackText = styled.Text`
+  font-family: ${theme.fonts.subtitle.semibold};
+  font-size: 20px;
+  color: ${theme.colors.white};
 `;

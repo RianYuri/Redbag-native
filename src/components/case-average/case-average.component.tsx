@@ -12,7 +12,6 @@ import { RootState } from '@/redux/store/store';
 
 const CaseAverage = () => {
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  console.log(allAnimals, 'esse é o log');
   let totalAnalyses = 0;
   let positiveCases = 0;
   if (allAnimals.length > 0) {

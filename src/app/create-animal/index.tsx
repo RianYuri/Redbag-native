@@ -106,86 +106,89 @@ const CreateAnimal = () => {
       }
     }
   };
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <Loading textLoading="Salvando os dados do seu animal de estimação..." />
     );
   }
-  if (hasCamera) {
-    return (
+
+  return (
+    <>
       <Camera
+        hasCamera={hasCamera}
         handleLibraryUpload={handleLibraryUpload}
         setSelectedImage={setSelectedImage}
         setHasCamera={setHasCamera}
       />
-    );
-  }
-  return (
-    <KeyboardAvoidingView behavior="height">
-      <ScrollView scrollEnabled>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <Container onPress={() => setIsColor(false)}>
-            <HeaderDate />
-            <BackContent onTouchStart={() => router.back()}>
-              <Entypo name="chevron-left" size={28} color="#9D2D15" />
-              <BackText>Voltar</BackText>
-            </BackContent>
-            <Content>
-              <TextTitle>Novo Pet</TextTitle>
-              {selectedImage ? (
-                <ImageAnalysis
-                  source={{ uri: selectedImage.uri ?? selectedImage }}
-                />
-              ) : (
-                <BoxUpdatePhoto>
-                  <OpenCameraImage />
-                  <TextOpenCamera>Abrir câmera</TextOpenCamera>
-                </BoxUpdatePhoto>
-              )}
-              <UploadButton onPress={() => setHasCamera(true)}>
-                <Feather name="upload" size={24} color="#FE5433" />
-                <UploadText>Upload</UploadText>
-              </UploadButton>
-              <InputContainer>
-                <TextInput
-                  underlineColorAndroid="transparent"
-                  cursorColor={theme.colors.thirdRedColor}
-                  isFocused={text !== ''}
-                  onChangeText={setText}
-                  value={text}
-                />
-                <LabelInput isFocused={text !== ''}>Nome</LabelInput>
-              </InputContainer>
-              <InputColorContent onPress={() => setIsColor(!isColor)}>
-                {isColor && (
-                  <ColorPicker
-                    onColorChange={setColor}
-                    sliderSize={40}
-                    thumbSize={1}
-                    shadeSliderThumb
-                    sliderLoadingIndicator
-                    row
-                    style={{
-                      width: 80,
-                      height: 100,
-                      position: 'absolute',
-                      bottom: 200,
-                      left: 15,
-                    }}
+      <KeyboardAvoidingView behavior="height">
+        <ScrollView scrollEnabled>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <Container onPress={() => setIsColor(false)}>
+              <HeaderDate />
+              <BackContent onTouchStart={() => router.back()}>
+                <Entypo name="chevron-left" size={28} color="#9D2D15" />
+                <BackText>Voltar</BackText>
+              </BackContent>
+              <Content>
+                <TextTitle>Novo Pet</TextTitle>
+                {selectedImage ? (
+                  <ImageAnalysis
+                    source={{ uri: selectedImage.uri ?? selectedImage }}
                   />
+                ) : (
+                  <BoxUpdatePhoto>
+                    <OpenCameraImage />
+                    <TextOpenCamera>Abrir câmera</TextOpenCamera>
+                  </BoxUpdatePhoto>
                 )}
-                <ChoseColor color={color} />
-                <TextInputColor>Cor de identificação</TextInputColor>
-              </InputColorContent>
-              <AddDog onPress={fetchSaveAnimal}>
-                <FontAwesome name="plus" size={24} color="white" />
-                <TextAddDog>Adicionar pet</TextAddDog>
-              </AddDog>
-            </Content>
-          </Container>
-        </TouchableWithoutFeedback>
-      </ScrollView>
-    </KeyboardAvoidingView>
+                <UploadButton
+                  onPress={() => setHasCamera(true)}
+                  isColor={isColor}
+                >
+                  <Feather name="upload" size={24} color="#FE5433" />
+                  <UploadText>Upload</UploadText>
+                </UploadButton>
+                <InputContainer isColor={isColor}>
+                  <TextInput
+                    underlineColorAndroid="transparent"
+                    cursorColor={theme.colors.thirdRedColor}
+                    isFocused={text !== ''}
+                    onChangeText={setText}
+                    value={text}
+                  />
+                  <LabelInput isFocused={text !== ''}>Nome</LabelInput>
+                </InputContainer>
+                <InputColorContent onPress={() => setIsColor(!isColor)}>
+                  {isColor && (
+                    <ColorPicker
+                      onColorChange={setColor}
+                      sliderSize={40}
+                      thumbSize={1}
+                      shadeSliderThumb
+                      sliderLoadingIndicator
+                      row
+                      style={{
+                        width: 80,
+                        height: 100,
+                        position: 'absolute',
+                        bottom: 150,
+                        left: 30,
+                      }}
+                    />
+                  )}
+                  <ChoseColor color={color} />
+                  <TextInputColor>Cor de identificação</TextInputColor>
+                </InputColorContent>
+                <AddDog onPress={fetchSaveAnimal}>
+                  <FontAwesome name="plus" size={24} color="white" />
+                  <TextAddDog>Adicionar pet</TextAddDog>
+                </AddDog>
+              </Content>
+            </Container>
+          </TouchableWithoutFeedback>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 

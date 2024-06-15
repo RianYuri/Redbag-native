@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { theme } from '@/themes';
 import { ColorProps } from './types';
-import { LabelInputProps } from '../login/types';
-import Image from 'expo-camera';
+import { InputContainerProps, LabelInputProps } from '../login/types';
+
 export const Container = styled.Pressable`
   display: flex;
   flex-direction: column;
@@ -58,8 +58,8 @@ export const TextOpenCamera = styled.Text`
   font-size: 18px;
   color: #b8b8b8;
 `;
-export const UploadButton = styled.Pressable`
-  width: 100%;
+export const UploadButton = styled.Pressable<InputContainerProps>`
+  width: ${(props) => (props.isColor ? '80%' : '100%')};
   height: 50px;
   background-color: ${theme.colors.white};
   border-radius: 5px;
@@ -68,6 +68,7 @@ export const UploadButton = styled.Pressable`
   justify-content: center;
   flex-direction: row;
   gap: 5px;
+  align-self: ${(props) => (props.isColor ? 'flex-start' : 'auto')};
 `;
 
 export const UploadText = styled.Text`
@@ -106,13 +107,15 @@ export const ChoseColor = styled.View<ColorProps>`
   height: 20px;
   background-color: ${({ color }) => color};
 `;
-export const InputContainer = styled.View`
+
+export const InputContainer = styled.View<InputContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100%;
+  width: ${(props) => (props.isColor ? '90%' : '100%')};
   margin-top: 5px;
+  align-self: ${(props) => (props.isColor ? 'flex-start' : 'center')};
 `;
 
 export const LabelInput = styled.Text<LabelInputProps>`

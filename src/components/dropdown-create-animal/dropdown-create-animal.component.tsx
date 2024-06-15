@@ -32,7 +32,6 @@ const DropdownCreateAnimal = ({
   const { setAnalyzedData } = useImageContext();
 
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  console.log(allAnimals);
   let filteredAnimals;
   if (allAnimals.length > 0) {
     filteredAnimals = [

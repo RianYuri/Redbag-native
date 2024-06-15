@@ -1,5 +1,7 @@
-import { Platform, StyleSheet } from 'react-native';
+import { BackHandler, Platform, StyleSheet } from 'react-native';
 import {
+  BackContent,
+  BackText,
   CaptureButton,
   CaptureOverlay,
   InnerCaptureButton,
@@ -14,11 +16,13 @@ import { Entypo } from '@expo/vector-icons';
 import ButtonCamera from '@/assets/buttonCamera.svg';
 import { HandleLibraryProps } from '@/app/create-animal/types';
 import * as ImagePicker from 'expo-image-picker';
+import { useFocusEffect } from 'expo-router';
 
 const Camera = ({
   handleLibraryUpload,
   setSelectedImage,
   setHasCamera,
+  hasCamera,
 }: HandleLibraryProps) => {
   const camera = React.useRef<CameraView>(null);
   const [permission] = useCameraPermissions();
@@ -64,9 +68,26 @@ const Camera = ({
     setSelectedImage(photo?.uri);
     setHasCamera(false);
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        if (hasCamera) {
+          setHasCamera(false);
+          return true;
+        }
+        return false;
+      };
 
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    }, [hasCamera])
+  );
   return (
-    <StyledSafeAreaView>
+    <StyledSafeAreaView hasCamera={hasCamera}>
       <CameraView
         style={styles.camera}
         ref={camera}
@@ -78,6 +99,10 @@ const Camera = ({
         enableTorch={false}
       >
         <Overlay>
+          <BackContent onTouchStart={() => setHasCamera(false)}>
+            <Entypo name="chevron-left" size={28} color="#FFFFFF" />
+            <BackText>Voltar</BackText>
+          </BackContent>
           <CaptureOverlay />
           <CaptureButton>
             <InnerCaptureButton onPress={takePicture}>

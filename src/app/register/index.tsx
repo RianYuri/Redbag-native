@@ -63,7 +63,6 @@ const Register = () => {
       const response = await redBagApiService.register(updatedFormData);
       const user = response;
       await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
-      console.log(user);
       router.replace('/step-by-step/');
     } catch (error: any) {
       console.error('Registration failed', error.message);

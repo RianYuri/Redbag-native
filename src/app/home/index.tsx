@@ -26,7 +26,6 @@ const Home = () => {
   const [selectedTab, setSelectedTab] = React.useState<string>('home');
   const [hasCamera, setHasCamera] = React.useState(false);
   const localParams = useLocalSearchParams<{ healthHistoryId: any }>();
-  console.log(localParams.healthHistoryId, 'esse e o localParams');
   useEffect(() => {
     return () => {
       localParams.healthHistoryId = null;
@@ -80,7 +79,6 @@ const Home = () => {
         }
         dispatch(fetchAnimalsSuccess(allAnimals));
       } catch (error) {
-        console.log(error);
         router.replace('/error-page/');
       }
     }
@@ -101,9 +99,7 @@ const Home = () => {
           confidence: predictAnimal.confidence,
         });
         router.push('/complete-analysis/');
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
   };
   React.useEffect(() => {
@@ -129,19 +125,20 @@ const Home = () => {
         return null;
     }
   };
-  return hasCamera ? (
-    <Camera
-      handleLibraryUpload={handleLibraryUpload}
-      setSelectedImage={setSelectedImage}
-      setHasCamera={setHasCamera}
-    />
-  ) : (
-    <Container>
-      <HeaderDate />
-      {renderSelectedTab()}
-      <Tab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-    </Container>
+  return (
+    <>
+      <Camera
+        hasCamera={hasCamera}
+        handleLibraryUpload={handleLibraryUpload}
+        setSelectedImage={setSelectedImage}
+        setHasCamera={setHasCamera}
+      />
+      <Container>
+        <HeaderDate />
+        {renderSelectedTab()}
+        <Tab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      </Container>
+    </>
   );
 };
-
 export default Home;
