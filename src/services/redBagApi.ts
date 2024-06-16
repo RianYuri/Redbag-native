@@ -1,6 +1,5 @@
 import { ImagePickerAsset } from 'expo-image-picker';
 import { FormDataLogin, SaveAnimalType } from './types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 export type FormDataRegister = {
   name: string;
   username: string;
@@ -173,6 +172,33 @@ class ApiService {
         throw new Error(dataRes.message || 'Algo deu errado');
       }
       return dataRes;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async deleteUser(userToken: string) {
+    try {
+      await fetch(`${this.baseUrl}/api/users`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: userToken,
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+  async updateUser(userToken: string, data: FormDataRegister) {
+    try {
+      await fetch(`${this.baseUrl}/api/users`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: userToken,
+        },
+        body: JSON.stringify(data),
+      });
     } catch (error) {
       throw error;
     }

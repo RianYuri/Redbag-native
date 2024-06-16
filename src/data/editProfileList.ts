@@ -5,7 +5,7 @@ type EditProfileListProps = {
 };
 export const editProfileList: EditProfileListProps[] = [
   {
-    name: 'text',
+    name: 'name',
     labelName: 'Nome',
     secureTextEntry: false,
   },

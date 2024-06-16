@@ -17,6 +17,8 @@ import { redBagApiService } from '@/services/redBagApi';
 import RectangleTop from '@/assets/rectangleTop.svg';
 import RectangleBot from '@/assets/rectangleBot.svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
+import { useDispatch } from 'react-redux';
 const Register = () => {
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const registerListRef = React.useRef<any>(null);
@@ -28,6 +30,7 @@ const Register = () => {
     password: '',
   });
 
+  const dispatch = useDispatch();
   const totalStepRegister = registerList.length - 1;
 
   const calculateNewIndex = (currentIndex: number, step: number) => {
@@ -58,7 +61,7 @@ const Register = () => {
       username: formData.name,
     };
     setIsLoading(true);
-
+    dispatch(fetchAnimalsSuccess([]));
     try {
       const response = await redBagApiService.register(updatedFormData);
       const user = response;

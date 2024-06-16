@@ -5,8 +5,15 @@ import HistoryFilterComponent from '../history-filter/history-filter.component';
 import InputSearch from '../input-search/input-search.component';
 import { Container } from './style';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store/store';
 import { NotAnimalsText } from '../home-component/styles';
+import {
+  startOfWeek,
+  endOfWeek,
+  isSameDay,
+  isSameMonth,
+  parseISO,
+} from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 interface HealthRecord {
   id: string;
@@ -26,7 +33,6 @@ const HistoriesAnalysis = () => {
   >('Hoje');
   const allAnimals = useSelector((state: any) => state.animals.animals);
 
-  // Função para mapear e extrair registros de saúde de todos os animais
   const extractHealthRecords = (animals: HealthRecord[]) =>
     animals.flatMap((animal) =>
       animal.healthHistory.map((record: any) => ({
@@ -47,37 +53,25 @@ const HistoriesAnalysis = () => {
     switch (filterType) {
       case 'Hoje':
         return records.filter((record) =>
-          isSameDay(new Date(record.time), today)
+          isSameDay(parseISO(record.time), today)
         );
       case 'Semanal':
-        return records.filter((record) =>
-          isSameWeek(new Date(record.time), today)
-        );
+        return records.filter((record) => {
+          const recordDate = parseISO(record.time);
+          return (
+            recordDate >= startOfWeek(today, { locale: ptBR }) &&
+            recordDate <= endOfWeek(today, { locale: ptBR })
+          );
+        });
       case 'Mensal':
         return records.filter((record) =>
-          isSameMonth(new Date(record.time), today)
+          isSameMonth(parseISO(record.time), today)
         );
       case 'Todos':
       default:
         return records;
     }
   };
-
-  const isSameDay = (date1: Date, date2: Date): boolean =>
-    date1.getDate() === date2.getDate() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getFullYear() === date2.getFullYear();
-
-  const isSameWeek = (date1: Date, date2: Date): boolean => {
-    const firstDayOfWeek = new Date(
-      date2.setDate(date2.getDate() - date2.getDay())
-    );
-    return date1 >= firstDayOfWeek;
-  };
-
-  const isSameMonth = (date1: Date, date2: Date): boolean =>
-    date1.getMonth() === date2.getMonth() &&
-    date1.getFullYear() === date2.getFullYear();
 
   const filteredHealthRecords = useMemo(() => {
     if (allAnimals.length === 0) return [];
@@ -98,17 +92,19 @@ const HistoriesAnalysis = () => {
             Nenhum análise encontrada
           </NotAnimalsText>
         ) : (
-          filteredHealthRecords.map((item) => (
-            <AnimalHistoriesComponent
-              key={item.id}
-              animalId={item.animalId}
-              accuracy={item.accuracy}
-              animalName={item.name}
-              dateAnalysis={item.time}
-              predictClass={item.healthStatus}
-              animalImage={item.imageDetails?.url}
-            />
-          ))
+          filteredHealthRecords
+            .reverse()
+            .map((item) => (
+              <AnimalHistoriesComponent
+                key={item.id}
+                animalId={item.animalId}
+                accuracy={item.accuracy}
+                animalName={item.name}
+                dateAnalysis={item.time}
+                predictClass={item.healthStatus}
+                animalImage={item.imageDetails?.url}
+              />
+            ))
         )}
       </Container>
     </ScrollView>

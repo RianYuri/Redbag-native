@@ -12,13 +12,34 @@ import HeaderDate from '@/components/header-date/header-date.component';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
-import { useForm } from 'react-hook-form';
+import { FieldError, useForm } from 'react-hook-form';
 import { editProfileList } from '@/data/editProfileList';
 import { KeyboardAvoidingView } from 'react-native';
 import Modal from '@/components/modal/modal.component';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { FormData } from './types';
+
 const EditProfile = () => {
-  const { control, handleSubmit } = useForm();
   const [hasModal, setHasModal] = React.useState<boolean>(false);
+  const schema = yup.object({
+    password: yup.string().required('Informe sua senha'),
+    name: yup.string().required('Informe sua senha'),
+    email: yup
+      .string()
+      .email('E-mail inválido')
+      .required('Informe o seu email'),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>({
+    resolver: yupResolver(schema),
+  });
+  const handleChangeProfile = (data: FormData) => {
+    console.log(data);
+  };
   return (
     <>
       {hasModal && <Modal setHasModal={setHasModal} />}
@@ -38,17 +59,22 @@ const EditProfile = () => {
             </UserProfile>
           </EditProfileContent>
           <FormEditContent>
-            {editProfileList.map((item) => (
-              <ControlledInput
-                key={item.labelName}
-                name={item.name}
-                labelName={item.labelName}
-                inputMode={item.name}
-                control={control}
-                secureTextEntry={item.secureTextEntry}
-              />
-            ))}
-            <ButtonSave>
+            {editProfileList.map((item) => {
+              const error = errors[item.name] as FieldError | undefined;
+              return (
+                <ControlledInput
+                  key={item.labelName}
+                  name={item.name}
+                  labelName={item.labelName}
+                  inputMode={item.name}
+                  control={control}
+                  secureTextEntry={item.secureTextEntry}
+                  error={error}
+                />
+              );
+            })}
+
+            <ButtonSave onPress={handleSubmit(handleChangeProfile)}>
               <TextSave>SALVAR</TextSave>
             </ButtonSave>
           </FormEditContent>

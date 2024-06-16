@@ -18,7 +18,6 @@ import {
 import { RegisterNameProps } from './types';
 import BackIcon from '@/assets/backIcon.svg';
 import { theme } from '@/themes';
-import { Alert } from 'react-native';
 import UndrawName from '@/assets/undraw-people.svg';
 import UndrawEmail from '@/assets/undrawEmail.svg';
 import UndrawPassword from '@/assets/undrawPassword.svg';

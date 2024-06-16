@@ -27,7 +27,7 @@ export const RectangleText = styled.View`
 
 export const PorcentText = styled.Text`
   font-family: ${theme.fonts.subtitle.semibold};
-  font-size: 50px;
+  font-size: 44px;
   color: ${theme.colors.black};
 `;
 export const Line = styled.View`
