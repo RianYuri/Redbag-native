@@ -24,7 +24,7 @@ export interface AnimalHistoriesProps {
   dateAnalysis: string;
   animalName: string;
   predictClass: string;
-  accurancy: number;
+  accuracy: number;
   animalImage: string | null;
   animalId: number;
 }

@@ -65,7 +65,6 @@ const Register = () => {
       await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
       router.replace('/step-by-step/');
     } catch (error: any) {
-      console.error('Registration failed', error.message);
       Alert.alert('Erro de registro', error.message);
       setIsLoading(false);
     }

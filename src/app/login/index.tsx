@@ -29,11 +29,13 @@ import RectangleTop from '@/assets/rectangleTop.svg';
 import RectangleBot from '@/assets/rectangleBot.svg';
 
 import CatLogin from '@/assets/catLogin.svg';
-
+import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
+import { useDispatch } from 'react-redux';
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
   const [isFocus, setIsFocus] = React.useState(false);
+  const dispatch = useDispatch();
   const handleFocus = () => {
     setIsFocus(true);
   };
@@ -56,6 +58,7 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const handleUserLogin = async (data: FormData) => {
+    dispatch(fetchAnimalsSuccess([]));
     const updatedFormData = {
       ...data,
       usernameOrEmail: data.usernameOrEmail.toLowerCase(),

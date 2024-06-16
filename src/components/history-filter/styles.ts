@@ -6,18 +6,19 @@ export const FilterContainer = styled.View`
   align-items: center;
   gap: 20px;
 `;
-export const Filter = styled.View`
+export const Filter = styled.Pressable<{ isActive: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
   height: 30px;
-  background-color: #fab49e33;
+  background-color: ${(props) => (props.isActive ? '#FE5433' : '#fab49e33')};
   border-radius: 3px;
 `;
 
-export const TextFilter = styled.Text`
+export const TextFilter = styled.Text<{ isActive: boolean }>`
   font-family: ${theme.fonts.subtitle.semibold};
   font-size: 16px;
-  color: ${theme.colors.fourthRedColor};
+  color: ${(props) =>
+    props.isActive ? theme.colors.white : theme.colors.fourthRedColor};
 `;

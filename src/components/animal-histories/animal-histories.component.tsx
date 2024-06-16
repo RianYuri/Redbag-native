@@ -15,7 +15,7 @@ const AnimalHistories = ({
   dateAnalysis,
   animalName,
   predictClass,
-  accurancy,
+  accuracy,
   animalImage,
   animalId,
 }: AnimalHistoriesProps) => {
@@ -23,7 +23,6 @@ const AnimalHistories = ({
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
-
   return (
     <Container
       onPress={() =>
@@ -55,7 +54,7 @@ const AnimalHistories = ({
           <TextDateDog>
             {predictClass === 'UNHEALTHY' ? 'Catarata' : ' Saudável'}
           </TextDateDog>
-          <TextDateDog>{formatConfidence(accurancy)}%</TextDateDog>
+          <TextDateDog>{formatConfidence(accuracy)}%</TextDateDog>
         </DateContent>
       </BoxInformations>
     </Container>

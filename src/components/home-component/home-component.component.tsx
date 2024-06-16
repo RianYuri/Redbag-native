@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Content,
@@ -13,9 +13,13 @@ import AnimalHistoriesComponent from '../animal-histories/animal-histories.compo
 import { ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
+
 const HomeComponent = () => {
+  const [searchText, setSearchText] = useState('');
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
-  let latestHealthRecords: any[] = [];
+  let latestHealthRecords = [];
+
+  // Filtrar e mapear os registros de saúde mais recentes
   if (allAnimals.length > 0) {
     latestHealthRecords = allAnimals
       .filter(
@@ -32,6 +36,11 @@ const HomeComponent = () => {
         };
       });
   }
+
+  const filteredRecords = latestHealthRecords.filter((record) =>
+    record.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <ScrollView scrollEnabled>
       <Container>
@@ -41,12 +50,12 @@ const HomeComponent = () => {
         </SectionCasesAnalysis>
         <CaseHistories />
         <Content>
-          <InputSearch />
-          {latestHealthRecords.length > 0 ? (
-            latestHealthRecords.map((record) => (
+          <InputSearch setSearchText={setSearchText} />
+          {filteredRecords.length > 0 ? (
+            filteredRecords.map((record) => (
               <AnimalHistoriesComponent
                 key={record.id}
-                accurancy={record.accuracy}
+                accuracy={record.accuracy} // Corrigi o nome da propriedade
                 animalName={record.name}
                 dateAnalysis={record.time}
                 predictClass={record.healthStatus}
@@ -55,7 +64,7 @@ const HomeComponent = () => {
               />
             ))
           ) : (
-            <NotAnimalsText> Nenhum analise feita</NotAnimalsText>
+            <NotAnimalsText>Nenhum animal encontrado</NotAnimalsText>
           )}
         </Content>
       </Container>

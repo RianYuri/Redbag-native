@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Container } from './styles';
 import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
-import { Platform } from 'react-native';
 import { useImageContext } from '@/context/analysis-image';
 import HeaderDate from '@/components/header-date/header-date.component';
 import HistoriesAnalysis from '@/components/histories-analysis/histories-analysis.component';
@@ -104,7 +103,6 @@ const Home = () => {
           predictedClass: predictAnimal.predicted_class,
           confidence: predictAnimal.confidence,
         });
-        console.log(predictAnimal);
         router.push('/complete-analysis/');
       } catch (error) {
         setIsLoading(false);
