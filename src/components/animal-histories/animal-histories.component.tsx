@@ -2,7 +2,9 @@ import React from 'react';
 import {
   BoxInformations,
   Container,
+  ContentDog,
   DateContent,
+  IconDog,
   ImageDog,
   TextDate,
   TextDateDog,
@@ -10,6 +12,7 @@ import {
 import { router } from 'expo-router';
 import { AnimalHistoriesProps } from '@/app/home/types';
 import { formatDate } from '@/utils/format-date/format-date';
+import CatIcon from '@/assets/catIcon';
 
 const AnimalHistories = ({
   dateAnalysis,
@@ -18,6 +21,7 @@ const AnimalHistories = ({
   accuracy,
   animalImage,
   animalId,
+  color,
 }: AnimalHistoriesProps) => {
   const formatConfidence = (value: number) => {
     const roundedValue = value?.toFixed(2);
@@ -34,7 +38,12 @@ const AnimalHistories = ({
         })
       }
     >
-      <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
+      <ContentDog>
+        <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
+        <IconDog>
+          <CatIcon color={color} width="35" height="35" />
+        </IconDog>
+      </ContentDog>
       <BoxInformations
         style={{
           shadowColor: '#000',

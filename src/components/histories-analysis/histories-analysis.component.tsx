@@ -24,6 +24,7 @@ interface HealthRecord {
   healthHistory: any[];
   healthStatus: string;
   imageDetails?: any;
+  color: string;
 }
 
 const HistoriesAnalysis = () => {
@@ -40,6 +41,7 @@ const HistoriesAnalysis = () => {
         animalId: animal.id,
         name: animal.name,
         imageDetails: animal.imageDetails,
+        color: animal.color,
       }))
     );
 
@@ -103,6 +105,7 @@ const HistoriesAnalysis = () => {
                 dateAnalysis={item.time}
                 predictClass={item.healthStatus}
                 animalImage={item.imageDetails?.url}
+                color={item.color}
               />
             ))
         )}

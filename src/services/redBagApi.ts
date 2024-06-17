@@ -168,8 +168,36 @@ class ApiService {
       });
 
       const dataRes = await response.json();
-      if (response === null) {
-        throw new Error(dataRes.message || 'Algo deu errado');
+      if (response.status === 400) {
+        throw new Error('Algo deu errado durante o upload da imagem');
+      }
+      return dataRes;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async predictAnimal(imageUri: any, userToken: string) {
+    const formData = new FormData();
+
+    formData.append('file', {
+      uri: imageUri.uri ?? imageUri,
+      name: imageUri.fileName ?? imageUri.split('/').pop(),
+      type: imageUri.mimeType ?? `image/${imageUri?.split('.').pop()}`,
+      lastModified: new Date().getTime(),
+    } as any);
+    try {
+      const response = await fetch(`${this.baseUrl}/predict`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: userToken,
+        },
+        body: formData,
+      });
+
+      const dataRes = await response.json();
+      if (response.status === 400) {
+        throw new Error('Algo deu errado durante o upload da imagem');
       }
       return dataRes;
     } catch (error) {
@@ -198,6 +226,19 @@ class ApiService {
           Authorization: userToken,
         },
         body: JSON.stringify(data),
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+  async deleteAnimal(userId: number, animalId: number, userToken: string) {
+    try {
+      await fetch(`${this.baseUrl}/api/animals/${userId}/${animalId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: userToken,
+        },
       });
     } catch (error) {
       throw error;

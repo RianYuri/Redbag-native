@@ -81,7 +81,16 @@ const CompleteAnalysis = () => {
           : `${getDate()} de ${year}`}
         .
       </DateDiagnosis>
-      <NewAnalysisButton>
+      <NewAnalysisButton
+        onPress={() =>
+          router.push({
+            pathname: '/home/',
+            params: {
+              selectedTabRoute: 'analysis',
+            },
+          })
+        }
+      >
         <NewAnalysisText>Nova Análise</NewAnalysisText>
       </NewAnalysisButton>
     </Container>

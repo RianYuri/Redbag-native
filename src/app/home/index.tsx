@@ -14,6 +14,7 @@ import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
 import { useDispatch } from 'react-redux';
 import Camera from '@/components/camera/camera.component';
 import Loading from '@/components/loading/loading.component';
+import Toast from 'react-native-toast-message';
 type RouteParams = {
   selectedTabRoute: string;
 };
@@ -91,21 +92,56 @@ const Home = () => {
     setIsLoading(true);
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user) {
-      const userObj = JSON.parse(user);
-      try {
-        const predictAnimal = await redBagApiService.predictByAnimalId(
-          selectedImage,
-          analyzedData.animalId,
-          userObj.token
-        );
-        setAnalyzedData({
-          analyzedImage: selectedImage ?? selectedImage.uri,
-          predictedClass: predictAnimal.predicted_class,
-          confidence: predictAnimal.confidence,
-        });
-        router.push('/complete-analysis/');
-      } catch (error) {
-        setIsLoading(false);
+      if (analyzedData.nameAnimal !== 'Aleatório') {
+        const userObj = JSON.parse(user);
+        try {
+          const predictAnimal = await redBagApiService.predictByAnimalId(
+            selectedImage,
+            analyzedData.animalId,
+            userObj.token
+          );
+          setAnalyzedData({
+            analyzedImage: selectedImage ?? selectedImage.uri,
+            predictedClass: predictAnimal.predicted_class,
+            confidence: predictAnimal.confidence,
+          });
+
+          console.log(predictAnimal, 'com id');
+          router.push('/complete-analysis/');
+        } catch (error) {
+          setIsLoading(false);
+          Toast.show({
+            type: 'error',
+            text1: 'Erro ao salvar animal',
+            text2:
+              'Ocorreu um erro ao enviar a imagem. Por favor, tente novamente.',
+          });
+        }
+      } else {
+        const user = await AsyncStorage.getItem('@userAuthentication');
+        const userObj = JSON.parse(user!);
+        try {
+          const predictAnimal = await redBagApiService.predictAnimal(
+            selectedImage,
+            userObj.token
+          );
+          setAnalyzedData({
+            analyzedImage: selectedImage ?? selectedImage.uri,
+            predictedClass: predictAnimal.predicted_class,
+            confidence: predictAnimal.confidence,
+          });
+          console.log(predictAnimal, 'sem id');
+
+          router.push('/complete-analysis/');
+        } catch (error) {
+          setIsLoading(false);
+          Toast.show({
+            type: 'error',
+            text1: 'Erro ao salvar animal',
+            text2:
+              'Ocorreu um erro ao enviar a imagem. Por favor, tente novamente.',
+          });
+        }
       }
     }
   };

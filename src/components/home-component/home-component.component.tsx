@@ -33,6 +33,7 @@ const HomeComponent = () => {
           animalId: animal.id,
           name: animal.name,
           imageDetails: animal.imageDetails,
+          color: animal.color,
         };
       });
   }
@@ -55,12 +56,13 @@ const HomeComponent = () => {
             filteredRecords.map((record) => (
               <AnimalHistoriesComponent
                 key={record.id}
-                accuracy={record.accuracy} // Corrigi o nome da propriedade
+                accuracy={record.accuracy}
                 animalName={record.name}
                 dateAnalysis={record.time}
                 predictClass={record.healthStatus}
                 animalImage={record.imageDetails?.url}
                 animalId={record.animalId}
+                color={record.color}
               />
             ))
           ) : (

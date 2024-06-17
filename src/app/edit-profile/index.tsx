@@ -19,6 +19,10 @@ import Modal from '@/components/modal/modal.component';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FormData } from './types';
+import Toast from 'react-native-toast-message';
+import { router } from 'expo-router';
+import { redBagApiService } from '@/services/redBagApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EditProfile = () => {
   const [hasModal, setHasModal] = React.useState<boolean>(false);
@@ -37,12 +41,58 @@ const EditProfile = () => {
   } = useForm<any>({
     resolver: yupResolver(schema),
   });
-  const handleChangeProfile = (data: FormData) => {
-    console.log(data);
-  };
+  const handleChangeProfile = React.useCallback(async (data: FormData) => {
+    const user = await AsyncStorage.getItem('@userAuthentication');
+    const userInfo = {
+      ...data,
+      username: data.name,
+    };
+    if (user) {
+      const userObj = JSON.parse(user);
+      try {
+        await redBagApiService.updateUser(userObj.token, userInfo);
+        router.replace('/login/');
+        Toast.show({
+          type: 'success',
+          text1: 'Salvo',
+          text2: `Os seus dados foram atualizados com sucesso!`,
+        });
+      } catch (error) {
+        Toast.show({
+          type: 'error',
+          text1: 'Erro',
+          text2: `Parece que algo deu errado ao tentar excluir seu perfil`,
+        });
+      }
+    }
+  }, []);
+  const handleDeleteAccount = React.useCallback(async () => {
+    const user = await AsyncStorage.getItem('@userAuthentication');
+    if (user) {
+      const userObj = JSON.parse(user);
+      try {
+        await redBagApiService.deleteUser(userObj.token);
+        router.replace('/login/');
+      } catch (error) {
+        Toast.show({
+          type: 'error',
+          text1: 'Erro',
+          text2: `Parece que algo deu errado ao tentar excluir seu perfil`,
+        });
+        setHasModal(false);
+      }
+    }
+  }, []);
   return (
     <>
-      {hasModal && <Modal setHasModal={setHasModal} />}
+      {hasModal && (
+        <Modal
+          setHasModal={setHasModal}
+          textDescription="Usuários excluídos não recuperam seus dados após sua exclusão."
+          buttonDelete="Sim, excluir minha conta"
+          handleDelete={handleDeleteAccount}
+        />
+      )}
       <KeyboardAvoidingView behavior="position">
         <Container>
           <HeaderDate />

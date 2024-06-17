@@ -9,7 +9,7 @@ export const Container = styled.View`
   align-items: center;
   background-color: #00000066;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   padding: 0 17px;
 `;
 

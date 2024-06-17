@@ -11,7 +11,20 @@ export const Container = styled.TouchableOpacity`
 
 export const ImageDog = styled.Image`
   width: 100%;
+  height: 100%;
+`;
+export const ContentDog = styled.View`
+  display: flex;
+  position: relative;
+  width: 100%;
   height: 170px;
+`;
+export const IconDog = styled.View`
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  right: 20px;
+  top: 20px;
 `;
 export const BoxInformations = styled.View`
   display: flex;

@@ -17,6 +17,7 @@ export const ImageDog = styled.Image`
 `;
 
 export const ContentDog = styled.View`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -45,4 +46,17 @@ export const Divider = styled.View`
   width: 98%;
   background-color: #d9d9d9;
   margin-top: 10px;
+`;
+export const DeletePerfil = styled.Pressable`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  left: 20px;
+  top: 10px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  background-color: #ffffff;
 `;

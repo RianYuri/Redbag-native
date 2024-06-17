@@ -59,7 +59,7 @@ const DropdownCreateAnimal = ({
       <DropdownContent>
         <Select onTouchStart={handleListAnimal}>
           <Selected>
-            <CatIcon color={selectedAnimal.color} />
+            <CatIcon color={selectedAnimal.color} width="20.31" height="20" />
             <SelectedText color={selectedAnimal.color}>
               {selectedAnimal.name}
             </SelectedText>
@@ -99,7 +99,7 @@ const DropdownCreateAnimal = ({
                       selectedAnimal.id === item.id ? '#F1f1f1' : '#FFFFFF',
                   }}
                 >
-                  <CatIcon color={item.color} />
+                  <CatIcon color={item.color} width="20.31" height="20" />
                   <Active color={item.color}>{item.name}</Active>
                 </SelectionCat>
 

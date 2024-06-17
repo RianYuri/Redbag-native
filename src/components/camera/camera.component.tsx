@@ -26,9 +26,11 @@ const Camera = ({
 }: HandleLibraryProps) => {
   const camera = React.useRef<CameraView>(null);
   const [permission] = useCameraPermissions();
+
   const handleLibrary = () => {
     handleLibraryUpload('');
   };
+
   const requestPermissions = async () => {
     if (Platform.OS !== 'web') {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -46,20 +48,21 @@ const Camera = ({
 
   React.useEffect(() => {
     requestPermissions();
-  }, [,]);
+  }, []);
+
   const takePicture = async () => {
     if (!camera.current) {
       return;
     }
-    if (!permission) {
-      return null;
-    }
-
-    if (permission?.canAskAgain && !permission?.granted) {
-      await requestPermissions();
+    if (!permission?.granted) {
+      Toast.show({
+        type: 'error',
+        text1: 'Permissão de câmera necessária!',
+        text2: 'Você precisa permitir o acesso à câmera para tirar fotos.',
+      });
+      setHasCamera(false);
       return;
     }
-
     const photo = await camera.current.takePictureAsync({
       quality: 0.7,
       exif: true,
@@ -68,6 +71,7 @@ const Camera = ({
     setSelectedImage(photo?.uri);
     setHasCamera(false);
   };
+
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
@@ -86,17 +90,17 @@ const Camera = ({
       return () => subscription.remove();
     }, [hasCamera])
   );
+
   return (
     <StyledSafeAreaView hasCamera={hasCamera}>
       <CameraView
         style={styles.camera}
         ref={camera}
         facing="back"
-        autofocus={'on'}
-        mode={'picture'}
-        flash="off"
+        autofocus="on"
+        mode="picture"
+        flash="auto"
         zoom={0}
-        enableTorch={false}
       >
         <Overlay>
           <BackContent onTouchStart={() => setHasCamera(false)}>
@@ -117,6 +121,7 @@ const Camera = ({
     </StyledSafeAreaView>
   );
 };
+
 const styles = StyleSheet.create({
   camera: {
     width: '100%',
@@ -127,4 +132,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
 export default Camera;

@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, Keyboard, TouchableOpacity } from 'react-native';
 import { BoxTabs, Container } from './styles';
 import React from 'react';
 import { tabsList } from '@/data/tabsList';
@@ -24,8 +24,28 @@ const Tab = ({ selectedTab, setSelectedTab }: TabsProps) => {
         return;
     }
   };
+  const [keyboardVisible, setKeyboardVisible] = React.useState(true);
 
-  return (
+  React.useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+  return keyboardVisible ? (
     <Container>
       {tabsList.map((tab) => (
         <TouchableOpacity
@@ -38,7 +58,7 @@ const Tab = ({ selectedTab, setSelectedTab }: TabsProps) => {
         </TouchableOpacity>
       ))}
     </Container>
-  );
+  ) : null;
 };
 
 export default Tab;
