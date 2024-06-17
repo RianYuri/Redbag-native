@@ -4,15 +4,17 @@
     "slug": "RedBag",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/lazy.png",
+    "icon": "./assets/images/bag.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/lazy.png",
+      "image": "./assets/images/bag.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -22,20 +24,21 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/lazy.png",
+        "foregroundImage": "./assets/images/bag.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA"
       ],
       "package": "com.anonymous.Lazy"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/lazy.png"
+      "favicon": "./assets/images/bag.png"
     },
     "plugins": [
       [
@@ -50,6 +53,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "fdda1fd0-9203-42f8-bd9e-a30241ce94c9"
+      }
     }
   }
 }
