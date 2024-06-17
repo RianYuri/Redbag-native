@@ -99,7 +99,8 @@ const Camera = ({
         facing="back"
         autofocus="on"
         mode="picture"
-        flash="auto"
+        flash="off"
+        enableTorch
         zoom={0}
       >
         <Overlay>
