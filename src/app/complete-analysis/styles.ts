@@ -8,6 +8,8 @@ export const Container = styled.View`
   align-items: center;
   width: 100%;
   padding: 0 17px;
+  z-index: 5;
+
   gap: 20px;
 `;
 export const BackContent = styled.View`

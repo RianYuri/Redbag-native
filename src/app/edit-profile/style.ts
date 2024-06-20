@@ -9,6 +9,7 @@ export const Container = styled.View`
   width: 100%;
   padding: 0 17px;
   gap: 20px;
+  z-index: 5;
 `;
 export const EditProfileContent = styled.View`
   display: flex;

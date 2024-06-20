@@ -8,7 +8,7 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/bag.png",
+      "image": "./assets/images/bigBag.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -44,7 +44,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": " $(PRODUCT_NAME) está pedindo o acesso da sua câmera ",
+          "cameraPermission": " RedBag está pedindo o acesso da sua câmera ",
           "recordAudioAndroid": false
         }
       ],
@@ -59,7 +59,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "fdda1fd0-9203-42f8-bd9e-a30241ce94c9"
+        "projectId": "f782f4f3-8d58-4d11-a334-39bf21f9bba5"
       }
     }
   }

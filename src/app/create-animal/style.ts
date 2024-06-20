@@ -11,6 +11,7 @@ export const Container = styled.Pressable`
   width: 100%;
   padding: 0 17px;
   gap: 10px;
+  z-index: 5;
 `;
 export const BackContent = styled.View`
   display: flex;
