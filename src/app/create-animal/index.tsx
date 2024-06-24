@@ -114,12 +114,14 @@ const CreateAnimal = () => {
 
   return (
     <>
-      <Camera
-        hasCamera={hasCamera}
-        handleLibraryUpload={handleLibraryUpload}
-        setSelectedImage={setSelectedImage}
-        setHasCamera={setHasCamera}
-      />
+      {hasCamera && (
+        <Camera
+          hasCamera={hasCamera}
+          handleLibraryUpload={handleLibraryUpload}
+          setSelectedImage={setSelectedImage}
+          setHasCamera={setHasCamera}
+        />
+      )}
       <KeyboardAvoidingView behavior="height">
         <ScrollView scrollEnabled>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

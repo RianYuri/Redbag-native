@@ -1,12 +1,10 @@
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
-interface StyledSafeAreaViewProps {
-  hasCamera: boolean;
-}
-export const StyledSafeAreaView = styled.SafeAreaView<StyledSafeAreaViewProps>`
+
+export const StyledSafeAreaView = styled.SafeAreaView`
   width: 100%;
   height: 100%;
-  display: ${(props) => (props.hasCamera ? 'flex' : 'none')};
+  display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;

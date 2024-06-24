@@ -176,12 +176,14 @@ const Home = () => {
   }
   return (
     <>
-      <Camera
-        hasCamera={hasCamera}
-        handleLibraryUpload={handleLibraryUpload}
-        setSelectedImage={setSelectedImage}
-        setHasCamera={setHasCamera}
-      />
+      {hasCamera && (
+        <Camera
+          hasCamera={hasCamera}
+          handleLibraryUpload={handleLibraryUpload}
+          setSelectedImage={setSelectedImage}
+          setHasCamera={setHasCamera}
+        />
+      )}
       <Container>
         <HeaderDate />
         {renderSelectedTab()}

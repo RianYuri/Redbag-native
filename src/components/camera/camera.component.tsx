@@ -92,7 +92,7 @@ const Camera = ({
   );
 
   return (
-    <StyledSafeAreaView hasCamera={hasCamera}>
+    <StyledSafeAreaView>
       <CameraView
         style={styles.camera}
         ref={camera}
