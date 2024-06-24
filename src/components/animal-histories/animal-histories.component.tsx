@@ -30,7 +30,7 @@ const AnimalHistories = ({
   return (
     <Container
       onPress={() =>
-        router.replace({
+        router.push({
           pathname: '/all-analyzes/',
           params: {
             animalId,

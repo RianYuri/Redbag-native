@@ -87,7 +87,7 @@ const CreateAnimal = () => {
           text1: 'Sucesso',
           text2: 'Animal salvo com sucesso!',
         });
-        router.replace('/home/');
+        router.push('/home/');
       } catch (error) {
         setIsLoading(false);
 

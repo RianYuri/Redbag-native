@@ -36,13 +36,26 @@ const Login = () => {
   const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
   const [isFocus, setIsFocus] = React.useState(false);
   const dispatch = useDispatch();
-  const handleFocus = () => {
-    setIsFocus(true);
-  };
 
-  const handleBlur = () => {
-    setIsFocus(false);
-  };
+  React.useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setIsFocus(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setIsFocus(false);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   const schema = yup.object({
     usernameOrEmail: yup
       .string()
@@ -94,28 +107,24 @@ const Login = () => {
           <ScrollView scrollEnabled style={{ width: '100%' }}>
             <LoginFormContainer>
               <CatLogin />
-              <TouchableWithoutFeedback
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              >
-                <Content>
-                  <ControlledInput
-                    name="usernameOrEmail"
-                    control={control}
-                    labelName="Email"
-                    inputMode="email"
-                    autoCapitalize="none"
-                    error={errors.usernameOrEmail}
-                  />
-                  <ControlledInput
-                    name="password"
-                    control={control}
-                    labelName="Senha"
-                    secureTextEntry={true}
-                    error={errors.password}
-                  />
-                </Content>
-              </TouchableWithoutFeedback>
+
+              <Content>
+                <ControlledInput
+                  name="usernameOrEmail"
+                  control={control}
+                  labelName="Email"
+                  inputMode="email"
+                  autoCapitalize="none"
+                  error={errors.usernameOrEmail}
+                />
+                <ControlledInput
+                  name="password"
+                  control={control}
+                  labelName="Senha"
+                  secureTextEntry={true}
+                  error={errors.password}
+                />
+              </Content>
 
               <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
               <ContinueButton onPress={handleSubmit(handleUserLogin)}>

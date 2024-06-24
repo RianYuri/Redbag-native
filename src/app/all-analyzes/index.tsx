@@ -59,7 +59,7 @@ const AllAnalyzes = () => {
           text2: `Seu animal foi excluido com sucesso`,
         });
         console.log(res);
-        router.replace('/home/');
+        router.push('/home/');
       } catch (error) {
         Toast.show({
           type: 'error',

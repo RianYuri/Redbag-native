@@ -60,7 +60,6 @@ const Camera = ({
         text1: 'Permissão de câmera necessária!',
         text2: 'Você precisa permitir o acesso à câmera para tirar fotos.',
       });
-      setHasCamera(false);
       return;
     }
     const photo = await camera.current.takePictureAsync({
