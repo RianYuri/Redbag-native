@@ -13,7 +13,8 @@ import { router } from 'expo-router';
 import { AnimalHistoriesProps } from '@/app/home/types';
 import { formatDate } from '@/utils/format-date/format-date';
 import CatIcon from '@/assets/catIcon';
-
+import { MotiTransitionProp } from 'moti';
+import { Skeleton } from 'moti/skeleton';
 const AnimalHistories = ({
   dateAnalysis,
   animalName,
@@ -27,6 +28,13 @@ const AnimalHistories = ({
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
+  const SkeletonProps = {
+    transition: {
+      type: 'timing',
+      duration: 1000,
+    } as MotiTransitionProp,
+    backgroundColor: '#D4D4D4',
+  } as const;
   return (
     <Container
       onPress={() =>
@@ -39,7 +47,14 @@ const AnimalHistories = ({
       }
     >
       <ContentDog>
-        <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
+        <Skeleton
+          show={!animalImage}
+          colorMode="light"
+          radius={'square'}
+          {...SkeletonProps}
+        >
+          <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
+        </Skeleton>
         <IconDog>
           <CatIcon color={color} width="35" height="35" />
         </IconDog>
