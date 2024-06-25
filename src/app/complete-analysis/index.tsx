@@ -84,7 +84,7 @@ const CompleteAnalysis = () => {
           width={'100%'}
           height={200}
           {...SkeletonProps}
-        ></Skeleton>
+        />
       )}
 
       <PreDiagnosis analyzedData={finalData} />

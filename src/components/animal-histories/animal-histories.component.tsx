@@ -23,6 +23,7 @@ const AnimalHistories = ({
   animalImage,
   animalId,
   color,
+  hasSkeleton,
 }: AnimalHistoriesProps) => {
   const formatConfidence = (value: number) => {
     const roundedValue = value?.toFixed(2);
@@ -48,13 +49,14 @@ const AnimalHistories = ({
     >
       <ContentDog>
         <Skeleton
-          show={!animalImage}
+          show={hasSkeleton || !animalImage}
           colorMode="light"
           radius={'square'}
           {...SkeletonProps}
-        >
-          <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
-        </Skeleton>
+          children={
+            <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
+          }
+        ></Skeleton>
         <IconDog>
           <CatIcon color={color} width="35" height="35" />
         </IconDog>

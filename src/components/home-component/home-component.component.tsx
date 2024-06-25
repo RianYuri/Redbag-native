@@ -16,10 +16,11 @@ import { RootState } from '@/redux/store/store';
 
 const HomeComponent = () => {
   const [searchText, setSearchText] = useState('');
+  const [hasSkeleton, setHasSkeleton] = useState(true);
+
   const allAnimals = useSelector((state: RootState) => state.animals.animals);
   let latestHealthRecords = [];
-
-  // Filtrar e mapear os registros de saúde mais recentes
+  let image: string | undefined;
   if (allAnimals.length > 0) {
     latestHealthRecords = allAnimals
       .filter(
@@ -28,6 +29,7 @@ const HomeComponent = () => {
       .map((animal) => {
         const latestRecord =
           animal.healthHistory[animal.healthHistory.length - 1];
+        image = animal.imageDetails?.url;
         return {
           ...latestRecord,
           animalId: animal.id,
@@ -37,10 +39,14 @@ const HomeComponent = () => {
         };
       });
   }
-
   const filteredRecords = latestHealthRecords.filter((record) =>
     record.name.toLowerCase().includes(searchText.toLowerCase())
   );
+  React.useEffect(() => {
+    if (image) {
+      setHasSkeleton(false);
+    }
+  }, [allAnimals]);
 
   return (
     <ScrollView scrollEnabled>
@@ -63,6 +69,7 @@ const HomeComponent = () => {
                 animalImage={record.imageDetails?.url}
                 animalId={record.animalId}
                 color={record.color}
+                hasSkeleton={hasSkeleton}
               />
             ))
           ) : (

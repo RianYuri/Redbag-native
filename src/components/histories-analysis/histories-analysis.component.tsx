@@ -28,6 +28,7 @@ interface HealthRecord {
 }
 
 const HistoriesAnalysis = () => {
+  const [hasSkeleton, setHasSkeleton] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [filterType, setFilterType] = useState<
     'Hoje' | 'Semanal' | 'Mensal' | 'Todos'
@@ -83,7 +84,11 @@ const HistoriesAnalysis = () => {
     extractedRecords = filterRecordsByDate(extractedRecords, filterType);
     return extractedRecords;
   }, [allAnimals, searchText, filterType]);
-
+  React.useEffect(() => {
+    if (filteredHealthRecords.length !== 0) {
+      setHasSkeleton(false);
+    }
+  }, [allAnimals]);
   return (
     <ScrollView scrollEnabled>
       <Container>
@@ -106,6 +111,7 @@ const HistoriesAnalysis = () => {
                 predictClass={item.healthStatus}
                 animalImage={item.imageDetails?.url}
                 color={item.color}
+                hasSkeleton={hasSkeleton}
               />
             ))
         )}

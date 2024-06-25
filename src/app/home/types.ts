@@ -28,6 +28,7 @@ export interface AnimalHistoriesProps {
   animalImage: string | null;
   animalId: number;
   color: string;
+  hasSkeleton: boolean;
 }
 
 export interface CheckHistoricProps {
