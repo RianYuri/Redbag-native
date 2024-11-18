@@ -15,9 +15,6 @@ An artificial intelligence-based application using Convolutional Neural Networks
 # RedBag
 
 # Como executar a aplicação
-
-<br>
-
 ## Requisitos
 
 1. Certifique-se de ter o **Node.js** na versão `20.5.1` instalado em sua máquina. Caso não tenha, faça o download no site oficial: [Node.js](https://nodejs.org/).
