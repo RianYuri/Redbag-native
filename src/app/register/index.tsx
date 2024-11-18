@@ -7,7 +7,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  View,
 } from 'react-native';
 import { registerList } from '@/data/registerList';
 import Loading from '@/components/loading/loading.component';
@@ -68,7 +67,12 @@ const Register = () => {
       await AsyncStorage.setItem('@userAuthentication', JSON.stringify(user));
       router.replace('/step-by-step/');
     } catch (error: any) {
-      Alert.alert('Erro de registro', error.message);
+      Alert.alert(
+        'Erro de registro',
+        'Erro ao processar o registro. Por favor, tente novamente mais tarde.'
+      );
+      router.replace('/login/');
+
       setIsLoading(false);
     }
   };

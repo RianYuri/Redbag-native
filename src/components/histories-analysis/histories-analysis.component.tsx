@@ -17,7 +17,7 @@ import { ptBR } from 'date-fns/locale';
 
 interface HealthRecord {
   id: string;
-  animalId: string;
+  animalId: number;
   accuracy: number;
   name: string;
   time: string;
@@ -39,7 +39,7 @@ const HistoriesAnalysis = () => {
     animals.flatMap((animal) =>
       animal.healthHistory.map((record: any) => ({
         ...record,
-        animalId: animal.id,
+        animalId: Number(animal.id),
         name: animal.name,
         imageDetails: animal.imageDetails,
         color: animal.color,
@@ -76,19 +76,54 @@ const HistoriesAnalysis = () => {
     }
   };
 
+  const compareByDate = (a: HealthRecord, b: HealthRecord): number => {
+    const dateA = parseISO(a.time).getTime();
+    const dateB = parseISO(b.time).getTime();
+    return dateA - dateB;
+  };
+
+  const quickSort = (
+    arr: HealthRecord[],
+    compareFn: (a: HealthRecord, b: HealthRecord) => number
+  ): HealthRecord[] => {
+    if (arr.length <= 1) return arr;
+
+    const pivot = arr[arr.length - 1];
+    const left: HealthRecord[] = [];
+    const right: HealthRecord[] = [];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (compareFn(arr[i], pivot) < 0) {
+        left.push(arr[i]);
+      } else {
+        right.push(arr[i]);
+      }
+    }
+
+    return [
+      ...quickSort(left, compareFn),
+      pivot,
+      ...quickSort(right, compareFn),
+    ];
+  };
+
   const filteredHealthRecords = useMemo(() => {
     if (allAnimals.length === 0) return [];
 
     let extractedRecords = extractHealthRecords(allAnimals);
     extractedRecords = filterRecordsByText(extractedRecords, searchText);
     extractedRecords = filterRecordsByDate(extractedRecords, filterType);
-    return extractedRecords;
+
+    return quickSort(extractedRecords, compareByDate).reverse();
   }, [allAnimals, searchText, filterType]);
+
   React.useEffect(() => {
     if (filteredHealthRecords.length !== 0) {
       setHasSkeleton(false);
+      setFilterType('Hoje');
     }
-  }, [allAnimals]);
+  }, [allAnimals, filteredHealthRecords]);
+
   return (
     <ScrollView scrollEnabled>
       <Container>
@@ -99,21 +134,19 @@ const HistoriesAnalysis = () => {
             Nenhum análise encontrada
           </NotAnimalsText>
         ) : (
-          filteredHealthRecords
-            .reverse()
-            .map((item) => (
-              <AnimalHistoriesComponent
-                key={item.id}
-                animalId={item.animalId}
-                accuracy={item.accuracy}
-                animalName={item.name}
-                dateAnalysis={item.time}
-                predictClass={item.healthStatus}
-                animalImage={item.imageDetails?.url}
-                color={item.color}
-                hasSkeleton={hasSkeleton}
-              />
-            ))
+          filteredHealthRecords.map((item) => (
+            <AnimalHistoriesComponent
+              key={item.id}
+              animalId={item.animalId}
+              accuracy={item.accuracy}
+              animalName={item.name}
+              dateAnalysis={item.time}
+              predictClass={item.healthStatus}
+              animalImage={item.imageDetails?.url}
+              color={item.color}
+              hasSkeleton={hasSkeleton}
+            />
+          ))
         )}
       </Container>
     </ScrollView>

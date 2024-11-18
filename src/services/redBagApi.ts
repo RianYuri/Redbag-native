@@ -7,7 +7,7 @@ export type FormDataRegister = {
   password: string;
 };
 class ApiService {
-  baseUrl = 'https://redbag-api-java.onrender.com';
+  baseUrl = 'https://18.234.67.220';
 
   async register(data: FormDataRegister) {
     try {
