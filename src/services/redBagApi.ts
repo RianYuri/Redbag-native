@@ -7,7 +7,7 @@ export type FormDataRegister = {
   password: string;
 };
 class ApiService {
-  baseUrl = 'https://18.234.67.220';
+  baseUrl = 'https://javaredbag.zapto.org';
 
   async register(data: FormDataRegister) {
     try {
