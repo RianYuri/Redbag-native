@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Filter, FilterContainer, TextFilter } from './styles';
+import { useTranslation } from 'react-i18next';
 
 const HistoryFilter = ({ onSelectFilter }: any) => {
+  const { t } = useTranslation('history');
   const [activeFilter, setActiveFilter] = useState<string>('Hoje');
 
   const handleFilterClick = (filterType: string) => {
@@ -11,7 +13,7 @@ const HistoryFilter = ({ onSelectFilter }: any) => {
 
   return (
     <FilterContainer>
-      {['Hoje', 'Semanal', 'Mensal', 'Todos'].map((item) => (
+      {[t('today'), t('weekly'), t('monthly'), t('all')].map((item) => (
         <Filter
           key={item}
           isActive={activeFilter === item}

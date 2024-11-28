@@ -14,7 +14,7 @@ import {
 } from './style';
 import EyeIcon from '@/assets/eyeAnalyzeIcon.svg';
 import { router } from 'expo-router';
-import { CheckHistoricProps } from '@/app/home/types';
+import { CheckHistoricProps } from '@/app/home/_types';
 import { formatDate } from '@/utils/format-date/format-date';
 
 const CheckHistoric = ({
@@ -43,7 +43,7 @@ const CheckHistoric = ({
           <BoxViewAnalyzeContent
             onPress={() =>
               router.push({
-                pathname: '/complete-analysis/',
+                pathname: '/complete-analysis',
                 params: {
                   healthHistoryId,
                   animalIdInt,

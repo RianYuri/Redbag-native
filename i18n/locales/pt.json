@@ -1,0 +1,130 @@
+{
+    "login": {
+        "labelEmail": "Email",
+        "labelPassword": "Senha",
+        "stayLoggedIn": "Continuar logado",
+        "forgotPassword": "Esqueci minha senha",
+        "loginButton": "Entrar",
+        "noAccount": "Não possui uma conta?",
+        "loading": "Analisando suas informações...",
+        "emailInvalid": "Informe o seu email",
+        "passwordInvalid": "Informe sua senha"
+    },
+    "register": {
+        "welcome": "Vamos lá!",
+        "namePrompt": "Como podemos chamá-lo(a)?",
+        "bestEmailPrompt": "Digite o seu melhor email!",
+        "setPasswordPrompt": "Defina a sua senha",
+        "labelName": "Nome",
+        "labelEmail": "Email",
+        "labelPassword": "Senha",
+        "continue": "Continuar",
+        "loading": "Analisando suas informações...",
+        "toastError": {
+            "title": "Erro de registro",
+            "subtitle": "Erro ao processar o registro. Por favor, tente novamente mais tarde."
+        }
+    },
+    "step-by-step": {
+        "step1": "Passo a passo",
+        "step2": "Antes de entrar, gostaríamos de ajudar em sua experiência",
+        "textMenuHome": "Clique no menu “Página inicial” para visualizar os dados gerais das suas análises.",
+        "textMenuAnalysis": "Clique no menu “Análises” para realizar uma nova análise do seu animal.",
+        "textMenuRecords": "Clique no menu “Prontuários” para visualizar seu histórico de análise e seus prontuários digitais.",
+        "textMenuSettings": "Clique no menu “Ajustes” para aplicar alterações em seu perfil, suporte e encerrar sua conta.",
+        "continue": "Continuar",
+        "finish": "Finalizar",
+        "skip": "Pular"
+    },
+    "home": {
+        "positiveCases": "Casos positivos",
+        "newAnalysis": "Nova Análise",
+        "generalHistory": "Histórico geral",
+        "search": "Buscar",
+        "patientRecords": {
+            "diagnosis": "Diagnóstico",
+            "condition": "Catarata",
+            "accuracy": "Assertividade"
+        },
+        "condition": {
+            "unhealthy": "Catarata",
+            "healthy": "Saudavel"
+        },
+        "anonymous-records": {
+            "diagnosis": "Diagnóstico",
+            "accuracy": "Assertividade"
+        },
+        "toastError": {
+            "text1": "Erro ao fazer analise do animal",
+            "text2": "Ocorreu um erro ao enviar a imagem. Por favor, tente novamente."
+        },
+        "loading": "Explorando o mundo pelos olhos do cachorro, um pixel de cada vez.",
+        "noAnimals": "Nenhum animal encontrado"
+    },
+    "analysis": {
+        "instructions": "Faça uma nova análise do seu animal, aproxime o olho dele da câmera para uma melhor experiência.",
+        "openCamera": "Abrir câmera",
+        "buttons": {
+            "upload": "Upload",
+            "continue": "Continuar",
+            "cancel": "Cancelar"
+        },
+        "noAnimals": "Nenhum animal encontrado"
+    },
+    "history": {
+        "search": "Buscar",
+        "patientHistory": {
+            "diagnosis": "Diagnóstico",
+            "accuracy": "Assertividade"
+        },
+        "today": "Hoje",
+        "weekly": "Semanal",
+        "monthly": "Mensal",
+        "all": "Todos",
+        "noAnalysis": "Nenhum análise encontrada"
+    },
+    "profile": {
+        "account": "Sua conta",
+        "accountInfo": "Veja as informações sobre sua conta, edite seus dados pessoais e configurações.",
+        "editProfile": "Editar perfil",
+        "support": "Suporte",
+        "logout": "Sair"
+    },
+    "edit-profile": {
+        "buttonSave": "SALVAR",
+        "toast": {
+            "success": {
+                "text1": "Salvo",
+                "text2": "Os seus dados foram atualizados com sucesso!"
+            },
+            "error": {
+                "text1": "Erro",
+                "text2": "Parece que algo deu errado ao tentar excluir seu perfil"
+            }
+        },
+        "modal": {
+            "textDescription": "Usuários excluídos não recuperam seus dados após sua exclusão.",
+            "buttonDelete": "Sim, excluir minha conta"
+        }
+    },
+    "create-animal": {
+        "back": "Voltar",
+        "newPet": "Novo Pet",
+        "openCamera": "Abrir câmera",
+        "upload": "Upload",
+        "name": "Nome",
+        "identificationColor": "Cor de identificação",
+        "addPet": "Adicionar pet",
+        "loading": "Salvando os dados do seu animal de estimação...",
+        "toast": {
+            "success": {
+                "text1": "Sucesso",
+                "text2": "Animal salvo com sucesso!"
+            },
+            "error": {
+                "text1": "Erro ao salvar animal",
+                "text2": "Algo deu erradol"
+            }
+        }
+    }
+}

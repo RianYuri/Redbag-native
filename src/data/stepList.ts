@@ -1,16 +1,18 @@
-import { StepListProps } from '@/app/step-by-step/types';
+import { StepListProps } from '@/app/step-by-step/_types';
+import { useTranslation } from 'react-i18next';
+const { t } = useTranslation('step-by-step');
 
 export const stepList: StepListProps[] = [
   {
-    text: 'Clique no menu “Página inicial” para visualizar os dados gerais das suas análises.',
+    text: t('textMenuHome'),
   },
   {
-    text: 'Clique no menu “Análises” para realizar uma nova análise do seu animal.',
+    text: t('textMenuAnalysis'),
   },
   {
-    text: 'Clique no menu “Prontuários” para visualizar seu histórico de análise e seus prontuários digitais.',
+    text: t('textMenuRecords'),
   },
   {
-    text: 'Clique no menu “Ajustes” para aplicar alterações em seu perfil, suporte e encerrar sua conta.',
+    text: t('textMenuSettings'),
   },
 ];

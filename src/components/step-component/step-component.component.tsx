@@ -7,7 +7,7 @@ import {
   StepContainer,
   TextDescriptionStep,
 } from './style';
-import { StepListProps } from '@/app/step-by-step/types';
+import { StepListProps } from '@/app/step-by-step/_types';
 import HomeIcon from '@/assets/homeIcon.svg';
 import AnalysisIcon from '@/assets/analysisActive.svg';
 import ProntuarioIcon from '@/assets/prontuarioIcon.svg';

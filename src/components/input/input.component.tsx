@@ -1,6 +1,6 @@
 import { theme } from '@/themes';
 import { InputContainer, LabelInput, TextInput } from './style';
-import { InputProps } from '@/app/login/types';
+import { InputProps } from '@/app/login/_types';
 
 const Input = ({
   inputMode,

@@ -7,7 +7,7 @@ import {
   NotHaveAccount,
   RectangleBotContent,
   TextButton,
-} from './styles';
+} from './_styles';
 import ControlledInput from '@/components/controlled-input/controlled-input.component';
 import CheckboxForget from '@/components/checkbox-forget/checkbox-forget.component';
 import {
@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { useForm } from 'react-hook-form';
-import { FormData } from './types';
+import { FormData } from './_types';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { redBagApiService } from '@/services/redBagApi';
@@ -31,10 +31,12 @@ import RectangleBot from '@/assets/rectangleBot.svg';
 import CatLogin from '@/assets/catLogin.svg';
 import { fetchAnimalsSuccess } from '@/redux/reducer/home/home.reducer';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 const Login = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [hasKeepLoggedIn, setHasKeepLoggedIn] = React.useState(false);
   const [isFocus, setIsFocus] = React.useState(false);
+  const { t } = useTranslation('login');
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -60,8 +62,8 @@ const Login = () => {
     usernameOrEmail: yup
       .string()
       .email('E-mail inválido')
-      .required('Informe o seu email'),
-    password: yup.string().required('Informe sua senha'),
+      .required(t('emailInvalid')),
+    password: yup.string().required(t('passwordInvalid')),
   });
   const {
     control,
@@ -85,14 +87,14 @@ const Login = () => {
       if (token && hasKeepLoggedIn) {
         await AsyncStorage.setItem('userToken', token);
       }
-      router.push('/home/');
+      router.push('/home');
     } catch (error: any) {
       Alert.alert('Erro de login', error.message);
       setIsLoading(false);
     }
   };
   return isLoading ? (
-    <Loading textLoading="Analisando suas informações..." />
+    <Loading textLoading={t('loading')} />
   ) : (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView behavior="padding">
@@ -112,7 +114,7 @@ const Login = () => {
                 <ControlledInput
                   name="usernameOrEmail"
                   control={control}
-                  labelName="Email"
+                  labelName={t('labelEmail')}
                   inputMode="email"
                   autoCapitalize="none"
                   error={errors.usernameOrEmail}
@@ -120,7 +122,7 @@ const Login = () => {
                 <ControlledInput
                   name="password"
                   control={control}
-                  labelName="Senha"
+                  labelName={t('labelPassword')}
                   secureTextEntry={true}
                   error={errors.password}
                 />
@@ -128,14 +130,14 @@ const Login = () => {
 
               <CheckboxForget setHasKeepLoggedIn={setHasKeepLoggedIn} />
               <ContinueButton onPress={handleSubmit(handleUserLogin)}>
-                <TextButton>Entrar</TextButton>
+                <TextButton>{t('loginButton')}</TextButton>
               </ContinueButton>
             </LoginFormContainer>
           </ScrollView>
           {!isFocus && (
             <RectangleBotContent>
-              <NotHaveAccount onPress={() => router.push('/register/')}>
-                Não possui uma conta?
+              <NotHaveAccount onPress={() => router.push('/register')}>
+                {t('noAccount')}
               </NotHaveAccount>
               <RectangleBot style={{ position: 'relative', top: -10 }} />
             </RectangleBotContent>

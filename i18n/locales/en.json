@@ -1,0 +1,128 @@
+{
+    "login": {
+        "labelEmail": "Email",
+        "labelPassword": "Password",
+        "stayLoggedIn": "Stay logged in",
+        "forgotPassword": "Forgot your password",
+        "loginButton": "Login",
+        "noAccount": "Don't have an account?",
+        "loading": "Analyzing your information..."
+    },
+    "register": {
+        "welcome": "Let's get started!",
+        "namePrompt": "What should we call you?",
+        "bestEmailPrompt": "Enter your best email!",
+        "setPasswordPrompt": "Set your password",
+        "labelName": "Name",
+        "labelEmail": "Email",
+        "labelPassword": "Password",
+        "continue": "Continue",
+        "loading": "Analyzing your information...",
+        "toastError": {
+            "title": "Registration Error",
+            "subtitle": "There was an error processing the registration. Please try again later."
+        }
+    },
+    "step-by-step": {
+        "step1": "Step-by-step",
+        "step2": "Before you begin, we'd like to help improve your experience",
+        "textMenuHome": "Click on the 'Home' menu to view general data of your analyses.",
+        "textMenuAnalysis": "Click on the 'Analysis' menu to perform a new animal analysis.",
+        "textMenuRecords": "Click on the 'Records' menu to view your analysis history and digital records.",
+        "textMenuSettings": "Click on the 'Settings' menu to update your profile, get support, or close your account.",
+        "continue": "Continue",
+        "finish": "Finish",
+        "skip": "Skip"
+    },
+    "home": {
+        "positiveCases": "Positive Cases",
+        "newAnalysis": "New Analysis",
+        "generalHistory": "General History",
+        "search": "Search",
+        "patientRecords": {
+            "diagnosis": "Diagnosis",
+            "condition": "Cataract",
+            "accuracy": "Accuracy"
+        },
+        "condition": {
+            "unhealthy": "Cataract",
+            "healthy": "Healthy"
+        },
+        "anonymous-records": {
+            "diagnosis": "Diagnosis",
+            "accuracy": "Accuracy"
+        },
+        "toast-error": {
+            "text1": "Error saving animal",
+            "text2": "There was an error submitting the image. Please try again."
+        },
+        "loading": "Exploring the world through the dog's eyes, one pixel at a time.",
+        "noAnimals": "No animals found"
+    },
+    "analysis": {
+        "instructions": "Perform a new analysis of your animal, bring its eye close to the camera for a better experience.",
+        "openCamera": "Open camera",
+        "buttons": {
+            "upload": "Upload",
+            "continue": "Continue",
+            "cancel": "Cancel"
+        },
+        "noAnimals": "No animals found"
+    },
+    "history": {
+        "search": "Search",
+        "patientHistory": {
+            "diagnosis": "Diagnosis",
+            "accuracy": "Accuracy"
+        },
+        "today": "Today",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "all": "All",
+        "noAnalysis": "No analysis found"
+    },
+    "profile": {
+        "account": "Your Account",
+        "accountInfo": "View your account information, edit your personal details and settings.",
+        "editProfile": "Edit Profile",
+        "support": "Support",
+        "logout": "Logout"
+    },
+    "edit-profile": {
+        "buttonSave": "SAVE",
+        "toast": {
+            "sucess": {
+                "text1": "Saved",
+                "text2": "Your data was successfully updated!"
+            },
+            "error": {
+                "text1": "Error",
+                "text2": "Something went wrong while trying to delete your profile"
+            }
+        },
+        "modal": {
+            "textDescription": "Deleted users cannot recover their data after deletion.",
+            "buttonDelete": "Yes, delete my account"
+        }
+    },
+    "create-animal": {
+        "back": "Back",
+        "newPet": "New Pet",
+        "openCamera": "Open camera",
+        "upload": "Upload",
+        "name": "Name",
+        "identificationColor": "Identification color",
+        "addPet": "Add pet",
+        "loading": "Saving your pet's data...",
+        "toast": {
+            "sucess": {
+                "text1": "Success",
+                "text2": "Animal successfully saved!"
+            },
+            "error": {
+                "text1": "Error saving animal",
+                "text2": "Something went wrong"
+            }
+        }
+    }
+}

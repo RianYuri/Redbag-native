@@ -7,7 +7,7 @@ import {
   ImageAnalysis,
   NewAnalysisButton,
   NewAnalysisText,
-} from './styles';
+} from './_styles';
 import { Entypo } from '@expo/vector-icons';
 import { useImageContext } from '@/context/analysis-image';
 import PreDiagnosis from '@/components/pre-diagnosis/pre-diagnosis.component';
@@ -98,7 +98,7 @@ const CompleteAnalysis = () => {
       <NewAnalysisButton
         onPress={() =>
           router.push({
-            pathname: '/home/',
+            pathname: '/home',
             params: {
               selectedTabRoute: 'analysis',
             },

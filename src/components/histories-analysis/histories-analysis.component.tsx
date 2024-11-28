@@ -14,6 +14,7 @@ import {
   parseISO,
 } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
 
 interface HealthRecord {
   id: string;
@@ -28,6 +29,8 @@ interface HealthRecord {
 }
 
 const HistoriesAnalysis = () => {
+  const { t } = useTranslation('history');
+
   const [hasSkeleton, setHasSkeleton] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [filterType, setFilterType] = useState<
@@ -131,7 +134,7 @@ const HistoriesAnalysis = () => {
         <HistoryFilterComponent onSelectFilter={setFilterType} />
         {filteredHealthRecords.length === 0 ? (
           <NotAnimalsText style={{ marginTop: 100 }}>
-            Nenhum análise encontrada
+            {t('noAnalysis')}
           </NotAnimalsText>
         ) : (
           filteredHealthRecords.map((item) => (

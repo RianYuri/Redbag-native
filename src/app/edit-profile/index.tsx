@@ -7,7 +7,7 @@ import {
   FormEditContent,
   TextSave,
   UserProfile,
-} from './style';
+} from './_style';
 import HeaderDate from '@/components/header-date/header-date.component';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -18,13 +18,16 @@ import { KeyboardAvoidingView } from 'react-native';
 import Modal from '@/components/modal/modal.component';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { FormData } from './types';
+import { FormData } from './_types';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
 import { redBagApiService } from '@/services/redBagApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 const EditProfile = () => {
+  const { t } = useTranslation('edit-profile');
+
   const [hasModal, setHasModal] = React.useState<boolean>(false);
   const schema = yup.object({
     password: yup.string().required('Informe sua senha'),
@@ -51,17 +54,17 @@ const EditProfile = () => {
       const userObj = JSON.parse(user);
       try {
         await redBagApiService.updateUser(userObj.token, userInfo);
-        router.replace('/login/');
+        router.replace('/login');
         Toast.show({
           type: 'success',
-          text1: 'Salvo',
-          text2: `Os seus dados foram atualizados com sucesso!`,
+          text1: t('toast.sucess.text1'),
+          text2: t('toast.sucess.text2'),
         });
       } catch (error) {
         Toast.show({
           type: 'error',
-          text1: 'Erro',
-          text2: `Parece que algo deu errado ao tentar excluir seu perfil`,
+          text1: t('toast.error.text1'),
+          text2: t('toast.error.text2'),
         });
       }
     }
@@ -72,12 +75,12 @@ const EditProfile = () => {
       const userObj = JSON.parse(user);
       try {
         await redBagApiService.deleteUser(userObj.token);
-        router.replace('/login/');
+        router.replace('/login');
       } catch (error) {
         Toast.show({
           type: 'error',
-          text1: 'Erro',
-          text2: `Parece que algo deu errado ao tentar excluir seu perfil`,
+          text1: t('toast.error.text1'),
+          text2: t('toast.error.text2'),
         });
         setHasModal(false);
       }
@@ -88,8 +91,8 @@ const EditProfile = () => {
       {hasModal && (
         <Modal
           setHasModal={setHasModal}
-          textDescription="Usuários excluídos não recuperam seus dados após sua exclusão."
-          buttonDelete="Sim, excluir minha conta"
+          textDescription={t('modal.textDescription')}
+          buttonDelete={t('modal.buttonDelete')}
           handleDelete={handleDeleteAccount}
         />
       )}
@@ -125,7 +128,7 @@ const EditProfile = () => {
             })}
 
             <ButtonSave onPress={handleSubmit(handleChangeProfile)}>
-              <TextSave>SALVAR</TextSave>
+              <TextSave>{t('buttonSave')}</TextSave>
             </ButtonSave>
           </FormEditContent>
         </Container>

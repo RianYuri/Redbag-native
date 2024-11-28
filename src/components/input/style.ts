@@ -1,6 +1,6 @@
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
-import { LabelInputProps } from '../../app/login/types';
+import { LabelInputProps } from '../../app/login/_types';
 
 export const InputContainer = styled.View`
   display: flex;

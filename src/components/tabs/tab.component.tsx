@@ -2,7 +2,7 @@ import { Image, Keyboard, TouchableOpacity } from 'react-native';
 import { BoxTabs, Container } from './styles';
 import React from 'react';
 import { tabsList } from '@/data/tabsList';
-import { TabsProps } from '@/app/home/types';
+import { TabsProps } from '@/app/home/_types';
 import AnalysisIconActive from '@/assets/analysisActive.svg';
 import AnalysisIconNoActive from '@/assets/analysisNoActive.svg';
 import HomeIconActive from '@/assets/homeIcon.svg';
