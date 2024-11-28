@@ -14,7 +14,6 @@ import { AnimalHistoriesProps } from '@/app/home/_types';
 import { formatDate } from '@/utils/format-date/format-date';
 import CatIcon from '@/assets/catIcon';
 import { MotiTransitionProp } from 'moti';
-import { Skeleton } from 'moti/skeleton';
 import { useTranslation } from 'react-i18next';
 const AnimalHistories = ({
   dateAnalysis,
@@ -32,13 +31,7 @@ const AnimalHistories = ({
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
   };
-  const SkeletonProps = {
-    transition: {
-      type: 'timing',
-      duration: 1000,
-    } as MotiTransitionProp,
-    backgroundColor: '#D4D4D4',
-  } as const;
+
   return (
     <Container
       onPress={() =>
@@ -51,15 +44,7 @@ const AnimalHistories = ({
       }
     >
       <ContentDog>
-        <Skeleton
-          show={hasSkeleton || !animalImage}
-          colorMode="light"
-          radius={'square'}
-          {...SkeletonProps}
-          children={
             <ImageDog source={{ uri: animalImage! }} resizeMode="cover" />
-          }
-        ></Skeleton>
         <IconDog>
           <CatIcon color={color} width="35" height="35" />
         </IconDog>

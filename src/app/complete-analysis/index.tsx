@@ -16,8 +16,6 @@ import { getDate } from '@/utils/get-date/get-date';
 import HeaderDate from '@/components/header-date/header-date.component';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
-import { Skeleton } from 'moti/skeleton';
-import { MotiTransitionProp } from 'moti';
 const CompleteAnalysis = () => {
   const { analyzedData } = useImageContext();
   const year = new Date().getFullYear();
@@ -57,13 +55,7 @@ const CompleteAnalysis = () => {
     const year = dateObject.getFullYear();
     return `${day}/${month} de ${year}`;
   };
-  const SkeletonProps = {
-    transition: {
-      type: 'timing',
-      duration: 1000,
-    } as MotiTransitionProp,
-    backgroundColor: '#D4D4D4',
-  } as const;
+
   return (
     <Container>
       <HeaderDate />
@@ -78,13 +70,7 @@ const CompleteAnalysis = () => {
           }}
         />
       ) : (
-        <Skeleton
-          show
-          colorMode="light"
-          width={'100%'}
-          height={200}
-          {...SkeletonProps}
-        />
+        <DateDiagnosis>Nenhuma imagem encontrada</DateDiagnosis>
       )}
 
       <PreDiagnosis analyzedData={finalData} />
