@@ -15,6 +15,9 @@ import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import store from '@/redux/store/store';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
+
 const Layout = () => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
@@ -31,56 +34,58 @@ const Layout = () => {
 
   return (
     <Provider store={store}>
-      <View
-        style={{
-          zIndex: 9,
-        }}
-      >
-        <Toast
-          topOffset={100}
-          config={{
-            success: (props) => (
-              <BaseToast
-                {...props}
-                text2NumberOfLines={2}
-                style={{ borderLeftColor: '#33FE55' }}
-                text1Style={{
-                  fontWeight: 700,
-                  fontSize: 17,
-                  fontFamily: 'Poppins_700Bold',
-                }}
-                text2Style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  fontFamily: 'Ubuntu_500Medium',
-                }}
-              />
-            ),
-            error: (props) => (
-              <ErrorToast
-                {...props}
-                text2NumberOfLines={2}
-                style={{
-                  borderLeftColor: '#800000',
-                }}
-                text1Style={{
-                  fontWeight: 700,
-                  fontSize: 17,
-                  fontFamily: 'Poppins_700Bold',
-                }}
-                text2Style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  fontFamily: 'Ubuntu_500Medium',
-                }}
-              />
-            ),
+      <I18nextProvider i18n={i18n}>
+        <View
+          style={{
+            zIndex: 9,
           }}
-        />
-      </View>
-      <ImageProvider>
-        <Slot />
-      </ImageProvider>
+        >
+          <Toast
+            topOffset={100}
+            config={{
+              success: (props) => (
+                <BaseToast
+                  {...props}
+                  text2NumberOfLines={2}
+                  style={{ borderLeftColor: '#33FE55' }}
+                  text1Style={{
+                    fontWeight: 700,
+                    fontSize: 17,
+                    fontFamily: 'Poppins_700Bold',
+                  }}
+                  text2Style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    fontFamily: 'Ubuntu_500Medium',
+                  }}
+                />
+              ),
+              error: (props) => (
+                <ErrorToast
+                  {...props}
+                  text2NumberOfLines={2}
+                  style={{
+                    borderLeftColor: '#800000',
+                  }}
+                  text1Style={{
+                    fontWeight: 700,
+                    fontSize: 17,
+                    fontFamily: 'Poppins_700Bold',
+                  }}
+                  text2Style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    fontFamily: 'Ubuntu_500Medium',
+                  }}
+                />
+              ),
+            }}
+          />
+        </View>
+        <ImageProvider>
+          <Slot />
+        </ImageProvider>
+      </I18nextProvider>
     </Provider>
   );
 };

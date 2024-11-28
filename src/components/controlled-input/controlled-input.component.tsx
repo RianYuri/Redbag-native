@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Controller, FieldError } from 'react-hook-form';
 import Input from '../input/input.component';
-import { InputProps } from '@/app/login/types';
+import { InputProps } from '@/app/login/_types';
 import Toast from 'react-native-toast-message';
 
 type ControlledInputProps = InputProps & {

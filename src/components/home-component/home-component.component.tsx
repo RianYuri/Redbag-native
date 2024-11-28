@@ -13,8 +13,11 @@ import AnimalHistoriesComponent from '../animal-histories/animal-histories.compo
 import { ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store/store';
+import { useTranslation } from 'react-i18next';
 
 const HomeComponent = () => {
+  const { t } = useTranslation('home');
+
   const [searchText, setSearchText] = useState('');
   const [hasSkeleton, setHasSkeleton] = useState(true);
 
@@ -73,7 +76,7 @@ const HomeComponent = () => {
               />
             ))
           ) : (
-            <NotAnimalsText>Nenhum animal encontrado</NotAnimalsText>
+            <NotAnimalsText> {t('noAnimals')} </NotAnimalsText>
           )}
         </Content>
       </Container>

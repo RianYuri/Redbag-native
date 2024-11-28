@@ -22,9 +22,13 @@ import UndrawName from '@/assets/undraw-people.svg';
 import UndrawEmail from '@/assets/undrawEmail.svg';
 import UndrawPassword from '@/assets/undrawPassword.svg';
 import Toast from 'react-native-toast-message';
+import { Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const RegisterStep = (props: RegisterNameProps) => {
   const [text, setText] = React.useState('');
+  const { t } = useTranslation('register');
+
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -75,7 +79,7 @@ const RegisterStep = (props: RegisterNameProps) => {
   };
   return (
     <Content>
-      <TextHeader>Vamos lá!</TextHeader>
+      <TextHeader>{t('welcome')}</TextHeader>
       {getImage(props.name)}
       <StepContainer>
         <CircleStep
@@ -92,7 +96,7 @@ const RegisterStep = (props: RegisterNameProps) => {
         />
       </StepContainer>
       <SubtitleInput>{props.description}</SubtitleInput>
-      <FormRegister behavior="padding">
+      <FormRegister behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <InputContainer>
           <TextInput
             underlineColorAndroid="transparent"
@@ -111,7 +115,7 @@ const RegisterStep = (props: RegisterNameProps) => {
           <BackIcon />
         </BackButton>
         <ContinueButton onPress={onSubmit}>
-          <TextContinue>Continuar</TextContinue>
+          <TextContinue>{t('continue')}</TextContinue>
         </ContinueButton>
       </ButtonContent>
     </Content>

@@ -1,3 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
+const { t } = useTranslation('register');
+
 type RegisterListProps = {
   description: string;
   name: string;
@@ -5,18 +9,18 @@ type RegisterListProps = {
 };
 export const registerList: RegisterListProps[] = [
   {
-    description: 'Como podemos chamá-lo(a)?',
+    description: t('namePrompt'),
     name: 'name',
-    labelName: 'Nome',
+    labelName: t('labelName'),
   },
   {
-    description: 'Digite o seu melhor email!',
+    description: t('bestEmailPrompt'),
     name: 'email',
-    labelName: 'Email',
+    labelName: t('labelEmail'),
   },
   {
-    description: 'Defina a sua senha',
+    description: t('setPasswordPrompt'),
     name: 'password',
-    labelName: 'Senha',
+    labelName: t('labelPassword'),
   },
 ];

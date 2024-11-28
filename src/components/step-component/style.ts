@@ -1,4 +1,4 @@
-import { CircleProps } from '@/app/register/types';
+import { CircleProps } from '@/app/register/_types';
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 

@@ -1,4 +1,4 @@
-import { Animal } from '@/app/home/types';
+import { Animal } from '@/app/home/_types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AnimalsState {

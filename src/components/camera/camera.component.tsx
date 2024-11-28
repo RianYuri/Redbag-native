@@ -14,7 +14,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import React from 'react';
 import { Entypo } from '@expo/vector-icons';
 import ButtonCamera from '@/assets/buttonCamera.svg';
-import { HandleLibraryProps } from '@/app/create-animal/types';
+import { HandleLibraryProps } from '@/app/create-animal/_types';
 import * as ImagePicker from 'expo-image-picker';
 import { useFocusEffect } from 'expo-router';
 
@@ -49,7 +49,6 @@ const Camera = ({
   React.useEffect(() => {
     requestPermissions();
   }, []);
-
   const takePicture = async () => {
     if (!camera.current) {
       return;
@@ -67,7 +66,7 @@ const Camera = ({
       exif: true,
       skipProcessing: true,
     });
-    setSelectedImage(photo?.uri);
+      setSelectedImage(photo?.uri);
     setHasCamera(false);
   };
 
@@ -98,9 +97,8 @@ const Camera = ({
         facing="back"
         autofocus="on"
         mode="picture"
-        flash="off"
-        enableTorch
         zoom={0}
+        flash="off"
       >
         <Overlay>
           <BackContent onTouchStart={() => setHasCamera(false)}>

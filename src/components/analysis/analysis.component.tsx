@@ -15,6 +15,7 @@ import { AnalysisProps } from './types';
 import { Feather } from '@expo/vector-icons';
 import CatOpenCam from '@/assets/catOpenCam.svg';
 import DropdownCreateAnimalComponent from '../dropdown-create-animal/dropdown-create-animal.component';
+import { useTranslation } from 'react-i18next';
 
 const Analysis = ({
   handlePredictAnimal,
@@ -23,6 +24,8 @@ const Analysis = ({
   isOpen,
   selectedImage,
 }: AnalysisProps) => {
+  const { t } = useTranslation('analysis');
+
   return (
     <Container>
       <DropdownCreateAnimalComponent
@@ -34,28 +37,25 @@ const Analysis = ({
       ) : (
         <OpenCamera>
           <CatOpenCam />
-          <OpenCameraText>Abrir câmera</OpenCameraText>
+          <OpenCameraText>{t('openCamera')}</OpenCameraText>
         </OpenCamera>
       )}
       {selectedImage ? (
         <ButtonContent>
           <UploadButton onPress={handlePredictAnimal}>
-            <UploadText>Continuar</UploadText>
+            <UploadText>{t('buttons.continue')}</UploadText>
           </UploadButton>
           <CancelButton onPress={() => handleLibraryUpload('cancel')}>
-            <CancelButtonText>Cancelar</CancelButtonText>
+            <CancelButtonText>{t('buttons.cancel')}</CancelButtonText>
           </CancelButton>
         </ButtonContent>
       ) : (
         <React.Fragment>
           <UploadButton onPress={() => handleLibraryUpload('')}>
             <Feather name="upload" size={24} color="white" />
-            <UploadText>Upload</UploadText>
+            <UploadText>{t('buttons.upload')}</UploadText>
           </UploadButton>
-          <UploadDescription>
-            Faça uma nova análise do seu gato, aproxime o olho dele da câmera
-            para uma melhor experiência.
-          </UploadDescription>
+          <UploadDescription>{t('instructions')}</UploadDescription>
         </React.Fragment>
       )}
     </Container>

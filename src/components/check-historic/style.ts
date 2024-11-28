@@ -1,4 +1,4 @@
-import { PredictedClassProps } from '@/app/complete-analysis/types';
+import { PredictedClassProps } from '@/app/complete-analysis/_types';
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { theme } from '@/themes';
-import { ColorProps } from './types';
-import { InputContainerProps, LabelInputProps } from '../login/types';
+import { ColorProps } from './_types';
+import { InputContainerProps, LabelInputProps } from '../login/_types';
 
 export const Container = styled.Pressable`
   display: flex;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container } from './styles';
+import { Container } from './_styles';
 import Analysis from '@/components/analysis/analysis.component';
 import * as ImagePicker from 'expo-image-picker';
 import { useImageContext } from '@/context/analysis-image';
@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import Camera from '@/components/camera/camera.component';
 import Loading from '@/components/loading/loading.component';
 import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
 type RouteParams = {
   selectedTabRoute: string;
 };
@@ -28,6 +29,8 @@ const Home = () => {
   const [hasCamera, setHasCamera] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const localParams = useLocalSearchParams<{ healthHistoryId: any }>();
+  const { t } = useTranslation('home');
+
   useEffect(() => {
     return () => {
       localParams.healthHistoryId = null;
@@ -84,67 +87,37 @@ const Home = () => {
         }
         dispatch(fetchAnimalsSuccess(allAnimals));
       } catch (error) {
-        router.replace('/error-page/');
+        router.replace('/error-page');
       }
     }
   }, []);
   const handlePredictAnimal = async () => {
-    setIsLoading(true);
+  setIsLoading(true);
+  try {
     const user = await AsyncStorage.getItem('@userAuthentication');
     if (user) {
-      if (analyzedData.nameAnimal !== 'Aleatório') {
-        const userObj = JSON.parse(user);
-        try {
-          const predictAnimal = await redBagApiService.predictByAnimalId(
-            selectedImage,
-            analyzedData.animalId,
-            userObj.token
-          );
-          setAnalyzedData({
-            analyzedImage: selectedImage ?? selectedImage.uri,
-            predictedClass: predictAnimal.predicted_class,
-            confidence: predictAnimal.confidence,
-          });
-
-          console.log(predictAnimal, 'com id');
-          router.push('/complete-analysis/');
-        } catch (error) {
-          setIsLoading(false);
-          Toast.show({
-            type: 'error',
-            text1: 'Erro ao salvar animal',
-            text2:
-              'Ocorreu um erro ao enviar a imagem. Por favor, tente novamente.',
-          });
-        }
-      } else {
-        const user = await AsyncStorage.getItem('@userAuthentication');
-        const userObj = JSON.parse(user!);
-        try {
-          const predictAnimal = await redBagApiService.predictAnimal(
-            selectedImage,
-            userObj.token
-          );
-          setAnalyzedData({
-            analyzedImage: selectedImage ?? selectedImage.uri,
-            predictedClass: predictAnimal.predicted_class,
-            confidence: predictAnimal.confidence,
-          });
-          console.log(predictAnimal, 'sem id');
-
-          router.push('/complete-analysis/');
-        } catch (error) {
-          setIsLoading(false);
-          Toast.show({
-            type: 'error',
-            text1: 'Erro ao salvar animal',
-            text2:
-              'Ocorreu um erro ao enviar a imagem. Por favor, tente novamente.',
-          });
-        }
-      }
+      const userObj = JSON.parse(user);
+      const predictAnimal = analyzedData.nameAnimal !== 'Aleatório'
+        ? await redBagApiService.predictByAnimalId(selectedImage, analyzedData.animalId, userObj.token)
+        : await redBagApiService.predictAnimal(selectedImage, userObj.token);
+      
+      setAnalyzedData({
+        analyzedImage: selectedImage ?? selectedImage.uri,
+        predictedClass: predictAnimal.predicted_class,
+        confidence: predictAnimal.confidence,
+      });
+      router.push('/complete-analysis');
     }
-  };
+  } catch (error) {
+    Toast.show({
+      type: 'error',
+      text1: t('toastError.text1'),
+      text2: t('toastError.text2'),
+    });
+  } finally {
+    setIsLoading(false); 
+  }
+};
   React.useEffect(() => {
     fetchAllAnimalsByUser();
   }, [fetchAllAnimalsByUser]);
@@ -171,7 +144,7 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <Loading textLoading="Explorando o mundo pelos olhos do cachorro, um pixel de cada vez." />
+      <Loading textLoading={t('loading')} />
     );
   }
   return (

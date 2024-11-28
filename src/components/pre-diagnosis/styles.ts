@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { theme } from '@/themes';
-import { PredictedClassProps } from '@/app/complete-analysis/types';
+import { PredictedClassProps } from '@/app/complete-analysis/_types';
 
 export const Container = styled.View`
   display: flex;

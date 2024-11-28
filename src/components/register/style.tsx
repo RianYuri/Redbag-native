@@ -1,7 +1,7 @@
 import { theme } from '@/themes';
 import styled from 'styled-components/native';
 import { CircleProps } from './types';
-import { LabelInputProps } from '@/app/login/types';
+import { LabelInputProps } from '@/app/login/_types';
 
 export const Content = styled.View`
   display: flex;

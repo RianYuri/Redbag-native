@@ -10,11 +10,12 @@ import {
   TextDateDog,
 } from './style';
 import { router } from 'expo-router';
-import { AnimalHistoriesProps } from '@/app/home/types';
+import { AnimalHistoriesProps } from '@/app/home/_types';
 import { formatDate } from '@/utils/format-date/format-date';
 import CatIcon from '@/assets/catIcon';
 import { MotiTransitionProp } from 'moti';
 import { Skeleton } from 'moti/skeleton';
+import { useTranslation } from 'react-i18next';
 const AnimalHistories = ({
   dateAnalysis,
   animalName,
@@ -25,6 +26,8 @@ const AnimalHistories = ({
   color,
   hasSkeleton,
 }: AnimalHistoriesProps) => {
+  const { t } = useTranslation('home');
+
   const formatConfidence = (value: number) => {
     const roundedValue = value?.toFixed(2);
     return roundedValue.toString().slice(0, 2);
@@ -40,7 +43,7 @@ const AnimalHistories = ({
     <Container
       onPress={() =>
         router.push({
-          pathname: '/all-analyzes/',
+          pathname: '/all-analyzes',
           params: {
             animalId,
           },
@@ -72,13 +75,15 @@ const AnimalHistories = ({
       >
         <DateContent>
           <TextDate>{formatDate(dateAnalysis)}</TextDate>
-          <TextDate>Diagnóstico</TextDate>
-          <TextDate>Assertividade</TextDate>
+          <TextDate>{t('patientRecords.diagnosis')}</TextDate>
+          <TextDate>{t('patientRecords.accuracy')}</TextDate>
         </DateContent>
         <DateContent>
           <TextDateDog>{animalName}</TextDateDog>
           <TextDateDog>
-            {predictClass === 'UNHEALTHY' ? 'Catarata' : ' Saudável'}
+            {predictClass === 'UNHEALTHY'
+              ? t('condition.unhealthy')
+              : t('condition.healthy')}
           </TextDateDog>
           <TextDateDog>{formatConfidence(accuracy)}%</TextDateDog>
         </DateContent>

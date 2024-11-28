@@ -11,13 +11,15 @@ import {
   TextDescription,
   TextExit,
   TextTitle,
-} from './style';
+} from './_style';
 import { FlatList } from 'react-native';
 import StepComponent from '@/components/step-component/step-component.component';
 import { stepList } from '@/data/stepList';
 import { router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 const StepByStep = () => {
+  const { t } = useTranslation('step-by-step');
   const stepListRef = React.useRef<any>(null);
   const [currentRegister, setCurrentRegister] = React.useState(0);
   const totalStepRegister = stepList.length - 1;
@@ -36,7 +38,7 @@ const StepByStep = () => {
       setCurrentRegister(newIndex);
     }
     if (currentRegister === 3) {
-      router.replace('/home/');
+      router.replace('/home');
     }
   };
 
@@ -44,9 +46,9 @@ const StepByStep = () => {
     <Container>
       <RectangleTop source={require('@/assets/rectangleTop.png')} />
       <Content>
-        <TextTitle>Passo a passo</TextTitle>
+        <TextTitle>{t('step1')}</TextTitle>
         <TextDescription>
-          Antes de entrar, gostaríamos de ajudar em sua experiência
+         {t('step2')}
         </TextDescription>
         <FlatList
           ref={stepListRef}
@@ -62,10 +64,10 @@ const StepByStep = () => {
         />
         <ButtonContent>
           <ContinueButton onPress={handleStepByStep}>
-            <TextContinue>Continuar</TextContinue>
+            <TextContinue>{t('continue')}</TextContinue>
           </ContinueButton>
-          <ExitButton onPress={() => router.replace('/home/')}>
-            <TextExit>Pular</TextExit>
+          <ExitButton onPress={() => router.replace('/home')}>
+            <TextExit>{t('skip')}</TextExit>
           </ExitButton>
         </ButtonContent>
       </Content>

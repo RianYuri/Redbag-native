@@ -18,7 +18,7 @@ import {
   TextTitle,
   UploadButton,
   UploadText,
-} from './style';
+} from './_style';
 import { Entypo, Feather } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { router } from 'expo-router';
@@ -38,7 +38,10 @@ import { redBagApiService } from '@/services/redBagApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 import Loading from '@/components/loading/loading.component';
+import { useTranslation } from 'react-i18next';
 const CreateAnimal = () => {
+  const { t } = useTranslation('create-animal');
+
   const [color, setColor] = React.useState('#3D85E3');
   const [isColor, setIsColor] = React.useState(false);
   const [text, setText] = React.useState('');
@@ -84,14 +87,14 @@ const CreateAnimal = () => {
         );
         Toast.show({
           type: 'success',
-          text1: 'Sucesso',
-          text2: 'Animal salvo com sucesso!',
+          text1: t('toast.success.text1'),
+          text2: t('toast.success.text2'),
         });
-        router.push('/home/');
+        router.push('/home');
       } catch (error) {
         setIsLoading(false);
 
-        let errorMessage = 'Algo deu errado';
+        let errorMessage = t('toast.error.text2');
 
         if (error instanceof Error) {
           errorMessage = error.message;
@@ -100,16 +103,14 @@ const CreateAnimal = () => {
         }
         Toast.show({
           type: 'error',
-          text1: 'Erro ao salvar animal',
+          text1: t('toast.error.text1'),
           text2: errorMessage,
         });
       }
     }
   };
   if (isLoading) {
-    return (
-      <Loading textLoading="Salvando os dados do seu animal de estimação..." />
-    );
+    return <Loading textLoading={t('loading')} />;
   }
 
   return (
@@ -129,10 +130,10 @@ const CreateAnimal = () => {
               <HeaderDate />
               <BackContent onTouchStart={() => router.back()}>
                 <Entypo name="chevron-left" size={28} color="#9D2D15" />
-                <BackText>Voltar</BackText>
+                <BackText>{t('back')}</BackText>
               </BackContent>
               <Content>
-                <TextTitle>Novo Pet</TextTitle>
+                <TextTitle>{t('newPet')}</TextTitle>
                 {selectedImage ? (
                   <ImageAnalysis
                     source={{ uri: selectedImage.uri ?? selectedImage }}
@@ -140,7 +141,7 @@ const CreateAnimal = () => {
                 ) : (
                   <BoxUpdatePhoto>
                     <OpenCameraImage />
-                    <TextOpenCamera>Abrir câmera</TextOpenCamera>
+                    <TextOpenCamera>{t('openCamera')}</TextOpenCamera>
                   </BoxUpdatePhoto>
                 )}
                 <UploadButton
@@ -148,7 +149,7 @@ const CreateAnimal = () => {
                   isColor={isColor}
                 >
                   <Feather name="upload" size={24} color="#FE5433" />
-                  <UploadText>Upload</UploadText>
+                  <UploadText>{t('upload')}</UploadText>
                 </UploadButton>
                 <InputContainer isColor={isColor}>
                   <TextInput
@@ -158,7 +159,7 @@ const CreateAnimal = () => {
                     onChangeText={setText}
                     value={text}
                   />
-                  <LabelInput isFocused={text !== ''}>Nome</LabelInput>
+                  <LabelInput isFocused={text !== ''}>{t('name')}</LabelInput>
                 </InputContainer>
                 <InputColorContent onPress={() => setIsColor(!isColor)}>
                   {isColor && (
@@ -179,11 +180,11 @@ const CreateAnimal = () => {
                     />
                   )}
                   <ChoseColor color={color} />
-                  <TextInputColor>Cor de identificação</TextInputColor>
+                  <TextInputColor>{t('identificationColor')}</TextInputColor>
                 </InputColorContent>
                 <AddDog onPress={fetchSaveAnimal}>
                   <FontAwesome name="plus" size={24} color="white" />
-                  <TextAddDog>Adicionar pet</TextAddDog>
+                  <TextAddDog>{t('addPet')}</TextAddDog>
                 </AddDog>
               </Content>
             </Container>

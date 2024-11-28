@@ -7,7 +7,7 @@ import {
   ImageDog,
   NameAndIcon,
   TextName,
-} from './style';
+} from './_style';
 import CatIcon from '@/assets/catIcon';
 import CheckHistoricComponent from '@/components/check-historic/check-historic.component';
 import { ScrollView } from 'react-native';
@@ -30,7 +30,7 @@ const AllAnalyzes = () => {
   React.useEffect(() => {
     if (selectedTabRoute) {
       router.push({
-        pathname: '/home/',
+        pathname: '/home',
         params: {
           selectedTabRoute,
         },
@@ -59,7 +59,7 @@ const AllAnalyzes = () => {
           text2: `Seu animal foi excluido com sucesso`,
         });
         console.log(res);
-        router.push('/home/');
+        router.push('/home');
       } catch (error) {
         Toast.show({
           type: 'error',
